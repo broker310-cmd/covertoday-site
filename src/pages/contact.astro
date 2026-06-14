@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+const phone = '+13102995555';
+---
+<Base title="Contact CoverToday Insurance | (310) 299-5555" description="Contact CoverToday Insurance Agency in Los Angeles. Call or text (310) 299-5555. Russian-speaking agents. 272 S Rampart Blvd, Los Angeles, CA 90057.">
+  <section class="hero"><div class="wrap">
+    <h1>Talk to a licensed agent</h1>
+    <p class="sub">Call, text, or stop by. We answer in English and Russian — мы говорим по-русски.</p>
+    <div class="ctas">
+      <a class="btn btn-call btn-lg" href={`tel:${phone}`}>📞 Call (310) 299-5555</a>
+      <a class="btn btn-text btn-lg" href={`sms:${phone}`}>💬 Text us</a>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Reach us</h3>
+        <p style="margin-top:8px"><strong>Phone / Text:</strong> (310) 299-5555<br/>
+        <strong>Email:</strong> info@covertoday.com<br/>
+        <strong>Address:</strong> 272 S Rampart Blvd, Los Angeles, CA 90057<br/>
+        <strong>License:</strong> DOI #0K77310</p>
+        <h3 style="margin-top:20px">Hours</h3>
+        <p style="margin-top:8px">Mon–Fri: 9:00 AM – 6:30 PM<br/>Saturday: 9:00 AM – 5:00 PM<br/>Sunday: Closed</p>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <iframe title="CoverToday location" width="100%" height="100%" style="min-height:340px;border:0" loading="lazy"
+          src="https://www.google.com/maps?q=272+S+Rampart+Blvd,+Los+Angeles,+CA+90057&output=embed"></iframe>
+      </div>
+    </div>
+  </div></section>
+</Base>

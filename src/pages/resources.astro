@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+const topics = [
+  { t: 'SR-22 & DUI', d: 'Filing fast, costs, license reinstatement, and getting back on the road.' },
+  { t: 'Commercial trucking & DOT/MC', d: 'New authority, owner-operator guides, cargo van & last-mile coverage.' },
+  { t: 'Rideshare & delivery', d: 'Uber, Lyft, DoorDash, Amazon Flex/DSP — what coverage you actually need.' },
+  { t: 'Home & fire zone', d: 'Non-renewals, wildfire coverage, and a 30-day action plan.' },
+  { t: 'Business: GL, WC, BOP', d: 'What contractors and new businesses need in the first 30 days.' },
+  { t: 'Auto requirements', d: 'California & Texas minimums and how to save in 2026.' },
+];
+---
+<Base title="Insurance Resources & Guides | CoverToday" description="Plain-English insurance guides: SR-22, trucking/DOT-MC, rideshare, fire-zone homes, business coverage, and state requirements.">
+  <section class="hero"><div class="wrap">
+    <h1>Resources &amp; guides</h1>
+    <p class="sub">Plain-English answers to the hard insurance questions. Our full library of 50+ articles is being migrated here from the old site.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="eyebrow">Browse by topic</div>
+    <h2 class="sec">What do you need help with?</h2>
+    <div class="grid grid-3">
+      {topics.map((t) => (
+        <div class="card"><h3>{t.t}</h3><p>{t.d}</p></div>
+      ))}
+    </div>
+    <p class="lead" style="margin-top:24px">Have a specific question? Call or text <strong>(310) 299-5555</strong> — we answer in English and Russian.</p>
+  </div></section>
+</Base>

@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+const phone = '+13102995555';
+---
+<Base title="Get a Free Insurance Quote | CoverToday" description="Get a free quote for auto, SR-22, trucking, business or home insurance. We compare 40+ carriers. Russian-speaking agents. Call (310) 299-5555.">
+  <section class="hero"><div class="wrap">
+    <h1>Get your free quote</h1>
+    <p class="sub">Tell us a little about you and we’ll find your lowest rate from 40+ carriers. Prefer to talk? Call or text — мы говорим по-русски.</p>
+  </div></section>
+
+  <section><div class="wrap" style="max-width:640px">
+    <form class="card" onsubmit="return quoteSubmit(event)" style="padding:30px">
+      <h2 class="sec" style="font-size:24px">Request a quote</h2>
+      <label>Full name</label>
+      <input name="name" required placeholder="John Doe" />
+      <label>Phone</label>
+      <input name="phone" type="tel" required placeholder="(310) 555-0123" />
+      <label>ZIP code</label>
+      <input name="zip" required placeholder="90057" />
+      <label>What do you need?</label>
+      <select name="line">
+        <option>Auto insurance</option>
+        <option>SR-22</option>
+        <option>Commercial trucking / DOT-MC</option>
+        <option>Business insurance</option>
+        <option>Home / renters</option>
+        <option>Rideshare / Uber / TCP</option>
+        <option>Other</option>
+      </select>
+      <button class="btn btn-call" type="submit" style="width:100%;justify-content:center;margin-top:18px">Get my quote →</button>
+      <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:10px">Or call us directly at (310) 299-5555</p>
+    </form>
+  </div></section>
+
+  <style>
+    form label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:14px 0 5px}
+    form input,form select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit}
+    form input:focus,form select:focus{outline:none;border-color:var(--blue)}
+  </style>
+
+  <script is:inline>
+    function quoteSubmit(e){
+      e.preventDefault();
+      alert("Thanks! Your request is noted. We’ll wire this form to email/CRM next — for now please call or text (310) 299-5555 and we’ll get you a quote fast.");
+      window.location.href = "tel:+13102995555";
+      return false;
+    }
+  </script>
+</Base>
