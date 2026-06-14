@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import { states, stateNiches } from '../../data/states.js';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const st of states) {
+    for (const n of stateNiches) {
+      paths.push({ params: { state: st.slug, niche: n.slug }, props: { st, n } });
+    }
+  }
+  return paths;
+}
+
+const { st, n } = Astro.props;
+const phone = '+13102995555';
+const title = `${n.label} in ${st.name} | CoverToday`;
+const desc = n.sub(st.name).slice(0, 155);
+---
+<Base title={title} description={desc}>
+  <section class="hero"><div class="wrap">
+    <h1>{n.h1(st.name)}</h1>
+    <p class="sub">{n.sub(st.name)}</p>
+    <div class="ctas">
+      <a class="btn btn-call btn-lg" href={`tel:${phone}`}>📞 Call (310) 299-5555</a>
+      <a class="btn btn-text btn-lg" href="/quote">Get a free quote</a>
+    </div>
+    <div class="reassure">
+      <span><span class="tick">✓</span> Licensed in {st.name} ({st.abbr})</span>
+      <span><span class="tick">✓</span> Same-day binding</span>
+      <span><span class="tick">✓</span> Russian-speaking agents</span>
+    </div>
+  </div></section>
+
+  <div class="trust"><div class="wrap">
+    <span class="item">🏆 5.0 ★ Yelp</span>
+    <span class="item">🤝 40+ carriers</span>
+    <span class="item">⚡ Same-day in {st.abbr}</span>
+    <span class="item">🇷🇺 English &amp; Russian</span>
+  </div></div>
+
+  <section><div class="wrap" style="max-width:820px">
+    <div class="eyebrow">{st.name}</div>
+    <h2 class="sec">{n.label} for {st.name} residents</h2>
+    <p class="lead">{n.body(st.name)}</p>
+  </div></section>
+
+  <section class="soft"><div class="wrap">
+    <div class="eyebrow">Simple process</div>
+    <h2 class="sec">How it works in {st.name}</h2>
+    <div class="grid grid-3">
+      {n.steps.map((s, i) => (
+        <div class="card"><div class="ic">{i + 1}</div><h3>{s.t}</h3><p>{s.d}</p></div>
+      ))}
+    </div>
+    <p class="lead" style="margin-top:24px">Serving {st.name} and 6 other states. Call or text <strong>(310) 299-5555</strong> for a {st.name} quote today.</p>
+  </div></section>
+</Base>

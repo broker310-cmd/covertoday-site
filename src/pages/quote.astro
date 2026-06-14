@@ -9,8 +9,16 @@ const phone = '+13102995555';
   </div></section>
 
   <section><div class="wrap" style="max-width:640px">
-    <form class="card" onsubmit="return quoteSubmit(event)" style="padding:30px">
+    <form class="card" style="padding:30px" action="https://formsubmit.co/info@covertoday.com" method="POST">
       <h2 class="sec" style="font-size:24px">Request a quote</h2>
+
+      <!-- FormSubmit settings -->
+      <input type="hidden" name="_subject" value="New quote request from covertoday.com" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://covertoday-site.vercel.app/quote?sent=1" />
+      <input type="text" name="_honey" style="display:none" />
+
       <label>Full name</label>
       <input name="name" required placeholder="John Doe" />
       <label>Phone</label>
@@ -36,14 +44,17 @@ const phone = '+13102995555';
     form label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:14px 0 5px}
     form input,form select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit}
     form input:focus,form select:focus{outline:none;border-color:var(--blue)}
+    #sent-banner{background:#e9f9ef;border:1px solid #1f9d57;color:#0c6b39;border-radius:12px;padding:14px 18px;margin:0 auto 18px;max-width:640px;font-weight:600;text-align:center}
   </style>
 
   <script is:inline>
-    function quoteSubmit(e){
-      e.preventDefault();
-      alert("Thanks! Your request is noted. We’ll wire this form to email/CRM next — for now please call or text (310) 299-5555 and we’ll get you a quote fast.");
-      window.location.href = "tel:+13102995555";
-      return false;
+    if (location.search.includes('sent=1')) {
+      const b = document.createElement('div');
+      b.id = 'sent-banner';
+      b.textContent = '✓ Thank you! Your request was sent. We’ll call or text you shortly.';
+      const form = document.querySelector('form');
+      form.parentNode.insertBefore(b, form);
+      form.reset();
     }
   </script>
 </Base>

@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { states } from '../data/states.js';
 const phone = '+13102995555';
 const niches = [
   { ic: '🚗', t: 'Auto Insurance', d: 'Full coverage, SR-22, foreign-license & high-risk drivers welcome.', href: '/auto-insurance' },
@@ -68,6 +69,20 @@ const niches = [
       <div class="card"><p>"Finding affordable auto insurance in LA was very challenging — everyone charged exorbitant prices. One call and the rate was reasonable. Paul explained everything in simple terms."</p><p><strong>— Keber K.</strong></p></div>
       <div class="card"><p>"The best company in town! I’ve used Giorgi’s services for 7 years. I strongly recommend only this company!"</p><p><strong>— Aleksandr L., Pasadena</strong></p></div>
       <div class="card"><p>"Giorgi found me a great option and cancelled my previous policy without any hiccups. Friendly, quick and knowledgeable. Will definitely come back!"</p><p><strong>— Veranika S., Los Angeles</strong></p></div>
+    </div>
+  </div></section>
+
+  <section class="soft"><div class="wrap">
+    <div class="eyebrow">Licensed nationwide</div>
+    <h2 class="sec">States we serve</h2>
+    <p class="lead">Licensed in 7 states and growing — with dedicated coverage pages for each.</p>
+    <div class="grid grid-3">
+      {states.map((st) => (
+        <a class="card" href={`/${st.slug}/auto-insurance`}>
+          <h3>{st.name} ({st.abbr})</h3>
+          <p>Auto, SR-22, commercial trucking &amp; business insurance in {st.name}.</p>
+        </a>
+      ))}
     </div>
   </div></section>
 

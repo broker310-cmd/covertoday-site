@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/carinsurance", "destination": "/auto-insurance", "permanent": true },
+    { "source": "/home", "destination": "/home-insurance", "permanent": true },
+    { "source": "/event", "destination": "/", "permanent": true },
+    { "source": "/business", "destination": "/business-insurance", "permanent": true },
+    { "source": "/business/businessinsurance", "destination": "/business-insurance", "permanent": true },
+    { "source": "/generalliabilityinsurance", "destination": "/business-insurance", "permanent": true },
+    { "source": "/business/workerscompensation-insurance", "destination": "/business-insurance", "permanent": true },
+    { "source": "/business/commercial-auto-insurance", "destination": "/commercial-truck-insurance", "permanent": true },
+    { "source": "/commercialautoinsurance", "destination": "/commercial-truck-insurance", "permanent": true },
+    { "source": "/license-bond", "destination": "/sr22-insurance", "permanent": true },
+    { "source": "/insurance101", "destination": "/resources", "permanent": true },
+    { "source": "/renters-insurance-form", "destination": "/quote", "permanent": true },
+    { "source": "/auto-insurance-form", "destination": "/quote", "permanent": true },
+    { "source": "/about", "destination": "/contact", "permanent": true },
+    { "source": "/autowarranty", "destination": "/auto-insurance", "permanent": true },
+    { "source": "/moto", "destination": "/", "permanent": true },
+    { "source": "/services", "destination": "/", "permanent": true },
+    { "source": "/single-post/:slug*", "destination": "/resources", "permanent": true }
+  ]
+}
