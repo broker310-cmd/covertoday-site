@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await post.render();
+const phone = '+13102995555';
+---
+<Base title={`${post.data.title} | CoverToday`} description={post.data.description}>
+  <article class="wrap" style="max-width:740px;padding:48px 22px 10px">
+    <a href="/resources" style="color:var(--blue);font-weight:600;font-size:14px">← Resources</a>
+    <h1 style="font-size:34px;margin-top:14px">{post.data.title}</h1>
+    <p style="color:var(--muted);margin-top:8px;font-size:14px">{post.data.category ? post.data.category + ' · ' : ''}{post.data.date}</p>
+    <div class="post-body">
+      <Content />
+    </div>
+    <div class="card" style="margin:34px 0;background:var(--blue-light);border:none;text-align:center">
+      <h3 style="color:var(--blue)">Get a free quote in minutes</h3>
+      <p style="margin:8px 0 16px">Call or text — English &amp; Russian.</p>
+      <a class="btn btn-call" href={`tel:${phone}`}>📞 (310) 299-5555</a>
+    </div>
+  </article>
+</Base>
+<style is:global>
+  .post-body{margin-top:26px}
+  .post-body h2{font-size:24px;margin:30px 0 10px;font-weight:800}
+  .post-body p{margin:14px 0;font-size:17px;line-height:1.75;color:var(--ink)}
+  .post-body ul,.post-body ol{margin:14px 0 14px 22px}
+  .post-body li{margin:7px 0;font-size:17px;line-height:1.6}
+  .post-body strong{color:var(--ink)}
+  .post-body a{color:var(--blue);font-weight:600}
+</style>
