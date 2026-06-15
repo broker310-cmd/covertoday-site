@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import { states } from '../data/states.js';
+const phone = '+13102995555';
+const niches = [
+  { ic: '🚗', t: 'Auto Insurance', d: 'Full coverage, SR-22, foreign-license & high-risk drivers welcome.', href: '/auto-insurance' },
+  { ic: '📄', t: 'SR-22 Filing', d: 'Same-day DMV filing after a DUI, lapse, or suspension.', href: '/sr22-insurance' },
+  { ic: '🚚', t: 'Commercial Trucking & DOT/MC', d: 'New authority, owner-operators, cargo & long-haul.', href: '/commercial-truck-insurance' },
+  { ic: '🏢', t: 'Business Insurance', d: 'General liability, workers’ comp, BOP & commercial auto.', href: '/business-insurance' },
+  { ic: '🏠', t: 'Home & High-Risk Home', d: 'Renters, homeowners, fire-zone & post-non-renewal coverage.', href: '/home-insurance' },
+  { ic: '🚙', t: 'Rideshare / Uber / TCP', d: 'Keep coverage driving Uber, Lyft, DoorDash & livery.', href: '/rideshare-insurance' },
+];
+---
+<Base
+  title="CoverToday Insurance — Russian-Speaking Brokers | Auto, SR-22, Trucking, Business | CA · TX · IL · AZ · NV · NC · WA"
+  description="Independent insurance brokers serving the Russian-speaking community nationwide. SR-22, commercial trucking/DOT-MC, auto, business & high-risk home. Compare 40+ carriers. Call (310) 299-5555.">
+
+  <section class="hero"><div class="wrap">
+    <h1>Insurance that says yes — even for the hard-to-place.</h1>
+    <p class="sub">Independent brokers serving the Russian-speaking community across CA, TX, IL, AZ, NV, NC & WA. We shop 40+ carriers for SR-22, commercial trucking & DOT/MC, auto, business, and fire-zone homes — and bind same-day. Мы говорим по-русски.</p>
+    <div class="ctas">
+      <a class="btn btn-call btn-lg" href={`tel:${phone}`}>📞 Call (310) 299-5555</a>
+      <a class="btn btn-text btn-lg" href="/quote">Get a free quote</a>
+    </div>
+    <div class="reassure">
+      <span><span class="tick">✓</span> 5.0 ★ on Yelp</span>
+      <span><span class="tick">✓</span> Same-day filing & COIs</span>
+      <span><span class="tick">✓</span> We never sell your info</span>
+      <span><span class="tick">✓</span> Licensed since 2013</span>
+    </div>
+  </div></section>
+
+  <div class="trust"><div class="wrap">
+    <span class="item">🤝 40+ carriers compared</span>
+    <span class="item">⚡ Bind same-day</span>
+    <span class="item">🇷🇺 Russian-speaking agents</span>
+    <span class="item">📍 7 states licensed</span>
+  </div></div>
+
+  <section><div class="wrap">
+    <div class="eyebrow">What we cover</div>
+    <h2 class="sec">Specialists in the policies others decline</h2>
+    <p class="lead">Captive agents sell one carrier. We shop dozens and place the cases other agencies turn away — then file fast so you’re covered today.</p>
+    <div class="grid grid-3">
+      {niches.map((n) => (
+        <a class="card" href={n.href}>
+          <div class="ic">{n.ic}</div>
+          <h3>{n.t}</h3>
+          <p>{n.d}</p>
+        </a>
+      ))}
+    </div>
+  </div></section>
+
+  <section class="soft"><div class="wrap">
+    <div class="eyebrow">Why a broker</div>
+    <h2 class="sec">One call. Every option. Filed same-day.</h2>
+    <div class="grid grid-3">
+      <div class="card"><div class="ic">1</div><h3>Tell us about you</h3><p>2 minutes online or by phone — in English or Russian.</p></div>
+      <div class="card"><div class="ic">2</div><h3>We shop 40+ carriers</h3><p>We find your lowest rate and the carrier that will actually take your case.</p></div>
+      <div class="card"><div class="ic">3</div><h3>Bind & file same-day</h3><p>SR-22 to the DMV, COIs for your business — often within the hour.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="eyebrow">Real clients</div>
+    <h2 class="sec">5.0 ★ on Yelp</h2>
+    <div class="grid grid-3">
+      <div class="card"><p>"Finding affordable auto insurance in LA was very challenging — everyone charged exorbitant prices. One call and the rate was reasonable. Paul explained everything in simple terms."</p><p><strong>— Keber K.</strong></p></div>
+      <div class="card"><p>"The best company in town! I’ve used Giorgi’s services for 7 years. I strongly recommend only this company!"</p><p><strong>— Aleksandr L., Pasadena</strong></p></div>
+      <div class="card"><p>"Giorgi found me a great option and cancelled my previous policy without any hiccups. Friendly, quick and knowledgeable. Will definitely come back!"</p><p><strong>— Veranika S., Los Angeles</strong></p></div>
+    </div>
+  </div></section>
+
+  <section class="soft"><div class="wrap">
+    <div class="eyebrow">Licensed nationwide</div>
+    <h2 class="sec">States we serve</h2>
+    <p class="lead">Licensed in 7 states and growing — with dedicated coverage pages for each.</p>
+    <div class="grid grid-3">
+      {states.map((st) => (
+        <a class="card" href={`/${st.slug}/auto-insurance`}>
+          <h3>{st.name} ({st.abbr})</h3>
+          <p>Auto, SR-22, commercial trucking &amp; business insurance in {st.name}.</p>
+        </a>
+      ))}
+    </div>
+  </div></section>
+
+</Base>

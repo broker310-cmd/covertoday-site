@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import { quote } from '../../i18n/content-standalone.js';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'ru' }, props: { c: quote.ru, lang: 'ru' } },
+    { params: { lang: 'es' }, props: { c: quote.es, lang: 'es' } },
+  ];
+}
+const { c, lang } = Astro.props;
+const next = `https://covertoday-site.vercel.app/${lang}/quote?sent=1`;
+---
+<Base title={c.metaTitle} description={c.metaDesc}>
+  <section class="hero"><div class="wrap">
+    <h1>{c.h1}</h1>
+    <p class="sub">{c.sub}</p>
+  </div></section>
+
+  <section><div class="wrap" style="max-width:640px">
+    <form class="card" style="padding:30px" action="https://formsubmit.co/info@covertoday.com" method="POST">
+      <h2 class="sec" style="font-size:24px">{c.formTitle}</h2>
+      <input type="hidden" name="_subject" value="New quote request (covertoday.com)" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value={next} />
+      <input type="text" name="_honey" style="display:none" />
+      <label>{c.name}</label><input name="name" required />
+      <label>{c.phone}</label><input name="phone" type="tel" required />
+      <label>{c.zip}</label><input name="zip" required />
+      <label>{c.need}</label>
+      <select name="line">{c.options.map((o) => (<option>{o}</option>))}</select>
+      <button class="btn btn-call" type="submit" style="width:100%;justify-content:center;margin-top:18px">{c.button}</button>
+      <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:10px">{c.or}</p>
+    </form>
+  </div></section>
+
+  <style>
+    form label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:14px 0 5px}
+    form input,form select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit}
+    form input:focus,form select:focus{outline:none;border-color:var(--blue)}
+    #sent-banner{background:#e9f9ef;border:1px solid #1f9d57;color:#0c6b39;border-radius:12px;padding:14px 18px;margin:0 auto 18px;max-width:640px;font-weight:600;text-align:center}
+  </style>
+  <script is:inline define:vars={{ msg: c.sent }}>
+    if (location.search.includes('sent=1')) {
+      const b = document.createElement('div');
+      b.id = 'sent-banner'; b.textContent = msg;
+      const form = document.querySelector('form');
+      form.parentNode.insertBefore(b, form); form.reset();
+    }
+  </script>
+</Base>

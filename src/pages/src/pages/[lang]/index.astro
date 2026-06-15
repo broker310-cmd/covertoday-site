@@ -1,0 +1,61 @@
+---
+import Base from '../../layouts/Base.astro';
+import { home } from '../../i18n/content.js';
+import { states } from '../../data/states.js';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'ru' }, props: { c: home.ru, lang: 'ru' } },
+    { params: { lang: 'es' }, props: { c: home.es, lang: 'es' } },
+  ];
+}
+const { c, lang } = Astro.props;
+const phone = '+13102995555';
+---
+<Base title={c.metaTitle} description={c.metaDesc}>
+  <section class="hero"><div class="wrap">
+    <h1>{c.heroH1}</h1>
+    <p class="sub">{c.heroSub}</p>
+    <div class="ctas">
+      <a class="btn btn-call btn-lg" href={`tel:${phone}`}>📞 (310) 299-5555</a>
+      <a class="btn btn-text btn-lg" href={`/${lang}/quote`}>{lang==='ru'?'Получить расчёт':'Cotización gratis'}</a>
+    </div>
+    <div class="reassure">{c.reassure.map((r) => (<span><span class="tick">✓</span> {r}</span>))}</div>
+  </div></section>
+
+  <div class="trust"><div class="wrap">{c.trust.map((it) => (<span class="item">{it}</span>))}</div></div>
+
+  <section><div class="wrap">
+    <div class="eyebrow">{c.coverEyebrow}</div>
+    <h2 class="sec">{c.coverTitle}</h2>
+    <p class="lead">{c.coverLead}</p>
+    <div class="grid grid-3">
+      {c.niches.map((n) => (<a class="card" href={n.href}><div class="ic">{n.ic}</div><h3>{n.t}</h3><p>{n.d}</p></a>))}
+    </div>
+  </div></section>
+
+  <section class="soft"><div class="wrap">
+    <div class="eyebrow">{c.whyEyebrow}</div>
+    <h2 class="sec">{c.whyTitle}</h2>
+    <div class="grid grid-3">
+      {c.steps.map((s, i) => (<div class="card"><div class="ic">{i + 1}</div><h3>{s.t}</h3><p>{s.d}</p></div>))}
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="eyebrow">{c.reviewsEyebrow}</div>
+    <h2 class="sec">{c.reviewsTitle}</h2>
+    <div class="grid grid-3">
+      {c.reviews.map((r) => (<div class="card"><p>{r.q}</p><p><strong>{r.name}</strong></p></div>))}
+    </div>
+  </div></section>
+
+  <section class="soft"><div class="wrap">
+    <div class="eyebrow">{c.statesEyebrow}</div>
+    <h2 class="sec">{c.statesTitle}</h2>
+    <p class="lead">{c.statesLead}</p>
+    <div class="grid grid-3">
+      {states.map((st) => (<a class="card" href={`/${lang}/${st.slug}/auto-insurance`}><h3>{st.name} ({st.abbr})</h3><p>{c.stateCard(st.name)}</p></a>))}
+    </div>
+  </div></section>
+</Base>

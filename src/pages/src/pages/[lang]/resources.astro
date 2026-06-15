@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import { resources } from '../../i18n/content-standalone.js';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'ru' }, props: { c: resources.ru } },
+    { params: { lang: 'es' }, props: { c: resources.es } },
+  ];
+}
+const { c } = Astro.props;
+---
+<Base title={c.metaTitle} description={c.metaDesc}>
+  <section class="hero"><div class="wrap">
+    <h1>{c.h1}</h1>
+    <p class="sub">{c.sub}</p>
+  </div></section>
+  <section><div class="wrap">
+    <div class="eyebrow">{c.eyebrow}</div>
+    <h2 class="sec">{c.title}</h2>
+    <div class="grid grid-3">
+      {c.topics.map((tp) => (<div class="card"><h3>{tp.t}</h3><p>{tp.d}</p></div>))}
+    </div>
+    <p class="lead" style="margin-top:24px" set:html={c.cta}></p>
+  </div></section>
+</Base>
