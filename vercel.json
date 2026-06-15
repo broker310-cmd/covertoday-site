@@ -14,7 +14,6 @@
     { "source": "/insurance101", "destination": "/resources", "permanent": true },
     { "source": "/renters-insurance-form", "destination": "/quote", "permanent": true },
     { "source": "/auto-insurance-form", "destination": "/quote", "permanent": true },
-    { "source": "/about", "destination": "/contact", "permanent": true },
     { "source": "/autowarranty", "destination": "/auto-insurance", "permanent": true },
     { "source": "/moto", "destination": "/", "permanent": true },
     { "source": "/services", "destination": "/", "permanent": true },
