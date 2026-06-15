@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+const phone = '+13102995555';
+---
+<Base title="About CoverToday Insurance — Independent LA Broker" description="CoverToday is an independent, bilingual (English/Russian) insurance brokerage in Los Angeles. We shop 40+ A-rated carriers for auto, SR-22, trucking, business and home insurance. CA License #0K77310.">
+  <section class="hero"><div class="wrap">
+    <h1>Insurance should be simple, fast, and on your side.</h1>
+    <p class="sub">CoverToday is an independent brokerage in Los Angeles. We work for you — not one carrier — and we speak your language. Мы говорим по-русски.</p>
+  </div></section>
+
+  <section><div class="wrap" style="max-width:820px">
+    <h2 class="sec">Who we are</h2>
+    <p>CoverToday Insurance Agency is a family-run, independent property & casualty brokerage based at 272 S Rampart Blvd in Los Angeles, serving clients across California, Texas, Illinois, Arizona, Nevada, North Carolina and Washington. Because we're independent, we compare 40+ A-rated carriers in a single conversation and place coverage that captive agents simply can't — including the hard-to-cover cases other agencies turn away.</p>
+
+    <h2 class="sec">What makes us different</h2>
+    <ul style="line-height:2;font-size:17px">
+      <li><strong>We shop, you save.</strong> One call compares dozens of carriers instead of one.</li>
+      <li><strong>Hard-to-place is our specialty.</strong> DUI/SR-22, foreign licenses, new DOT/MC authority, fire-zone homes after a non-renewal.</li>
+      <li><strong>Same-day service.</strong> Same-day binding, certificates of insurance, and SR-22 filings.</li>
+      <li><strong>Bilingual, personal service.</strong> English and Russian, with a real person who knows your file.</li>
+    </ul>
+
+    <h2 class="sec">Who we help</h2>
+    <p>Drivers (including high-risk and SR-22), owner-operators and trucking fleets, movers, rideshare and TCP/limo operators, contractors and small businesses needing GL / workers' comp / COIs, and homeowners — including fire-zone properties that standard carriers have dropped.</p>
+
+    <h2 class="sec">Licensed & trusted</h2>
+    <p>California Department of Insurance License #0K77310. We never sell your personal information. Hours: Mon–Fri 9:00–6:30, Sat 9:00–5:00.</p>
+
+    <div class="card" style="padding:26px;margin-top:24px;text-align:center">
+      <h2 style="margin-top:0">Talk to a real broker today</h2>
+      <p style="color:var(--muted)">Get a free quote in minutes — English or Russian.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px">
+        <a class="btn btn-call" href={`tel:${phone}`}>📞 (310) 299-5555</a>
+        <a class="btn btn-ghost" href="/quote">Get a quote →</a>
+      </div>
+    </div>
+  </div></section>
+</Base>

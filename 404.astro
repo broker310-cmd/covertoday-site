@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+const phone = '+13102995555';
+---
+<Base title="Page not found (404) | CoverToday" description="That page moved or doesn't exist. Find auto, SR-22, trucking, business and home insurance, or call CoverToday at (310) 299-5555.">
+  <section class="hero"><div class="wrap">
+    <h1>Hmm — that page isn't here.</h1>
+    <p class="sub">The page may have moved. Here's how to get where you're going — or just call us, мы говорим по-русски.</p>
+  </div></section>
+
+  <section><div class="wrap" style="max-width:760px">
+    <div class="card" style="padding:30px">
+      <h2 class="sec" style="font-size:22px;margin-top:0">Popular pages</h2>
+      <ul style="line-height:2;font-size:17px">
+        <li><a href="/">Home</a></li>
+        <li><a href="/auto-insurance">Auto insurance</a></li>
+        <li><a href="/sr22-insurance">SR-22 insurance</a></li>
+        <li><a href="/commercial-truck-insurance">Commercial trucking / DOT-MC</a></li>
+        <li><a href="/business-insurance">Business insurance</a></li>
+        <li><a href="/home-insurance">Home insurance</a></li>
+        <li><a href="/resources">Resources &amp; guides</a></li>
+        <li><a href="/quote">Get a free quote</a></li>
+      </ul>
+      <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-call" href={`tel:${phone}`}>📞 (310) 299-5555</a>
+        <a class="btn btn-ghost" href="/quote">Get a quote →</a>
+      </div>
+    </div>
+  </div></section>
+</Base>

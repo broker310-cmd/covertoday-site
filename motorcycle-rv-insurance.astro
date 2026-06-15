@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+const phone = '+13102995555';
+---
+<Base title="Motorcycle, RV, ATV & Boat Insurance | CoverToday" description="Insurance for motorcycles, RVs & motorhomes, ATVs/UTVs, and boats. Liability, full coverage, and specialty toys — compared across carriers. Bilingual EN/RU. Call (310) 299-5555.">
+  <section class="hero"><div class="wrap">
+    <h1>Motorcycle, RV, ATV & boat insurance.</h1>
+    <p class="sub">Whatever you ride or drive on the weekend, we compare specialty carriers to get you covered for less. Мы говорим по-русски.</p>
+  </div></section>
+
+  <section><div class="wrap" style="max-width:820px">
+    <h2 class="sec">Coverage for every kind of ride</h2>
+    <ul style="line-height:2;font-size:17px">
+      <li><strong>Motorcycle</strong> — liability, full coverage, accessories, and lay-up/seasonal options.</li>
+      <li><strong>RV & motorhome</strong> — Class A/B/C, travel trailers and fifth-wheels, full-timer coverage.</li>
+      <li><strong>ATV / UTV / off-road</strong> — liability and physical damage for your toys.</li>
+      <li><strong>Boat & personal watercraft</strong> — liability, hull, and on-water towing.</li>
+    </ul>
+
+    <h2 class="sec">Why use a broker for specialty vehicles</h2>
+    <p>Specialty vehicles are priced very differently from carrier to carrier, and many bundle nicely with your auto or home policy for an extra discount. As an independent broker we compare those markets in one place — and we can usually beat a single-carrier quote, including for riders with tickets or coverage lapses.</p>
+
+    <div class="card" style="padding:26px;margin-top:24px;text-align:center">
+      <h2 style="margin-top:0">Get your specialty quote</h2>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px">
+        <a class="btn btn-call" href={`tel:${phone}`}>📞 (310) 299-5555</a>
+        <a class="btn btn-ghost" href="/quote">Get a quote →</a>
+      </div>
+    </div>
+  </div></section>
+</Base>

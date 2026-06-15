@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a4ba0"/>
+      <stop offset="1" stop-color="#073876"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(90,150)">
+    <path d="M40 0l52 16v44C92 98 70 122 40 132 10 122-12 98-12 60V16L40 0z" fill="#fff"/>
+    <path d="M14 64l20 20 38-40" stroke="#0a4ba0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <text x="230" y="230" font-family="Arial, Helvetica, sans-serif" font-size="84" font-weight="800" fill="#ffffff">CoverToday</text>
+  <text x="92" y="360" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" fill="#ffd24d">Insurance, the easy way.</text>
+  <text x="92" y="430" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#dce8fb">Auto · SR-22 · Trucking · Business · Home — 40+ carriers</text>
+  <text x="92" y="486" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#dce8fb">Bilingual EN / RU · Same-day quotes</text>
+  <text x="92" y="566" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800" fill="#ffffff">(310) 299-5555 · covertoday.com</text>
+</svg>
