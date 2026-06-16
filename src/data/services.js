@@ -466,7 +466,7 @@ export const services = [
     slug: 'surety-bond-insurance',
     h1: 'Surety & license bonds — contractor, freight & permit bonds.',
     sub: 'Contractor license bonds (CSLB $25,000), freight-broker BMC-84, DMV, notary and city permit bonds. Fast quotes and same-day issue. Мы говорим по-русски · Hablamos español.',
-    metaTitle: 'Surety Bonds & License Bonds — Buy Online | CoverToday',
+    metaTitle: 'Surety Bonds & License Bonds — Same-Day Issue | CoverToday',
     metaDesc: 'Surety and license bonds: contractor (CSLB $25,000), freight broker BMC-84 ($75k), DMV, notary and permit bonds. Fast quotes, same-day issue. Call (310) 299-5555.',
     reassure: ['Same-day bond issue', 'Contractor · Freight · Permit', 'Low premiums, fast quotes'],
     whatTitle: 'The bond that lets you get licensed',
