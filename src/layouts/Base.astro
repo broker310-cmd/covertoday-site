@@ -115,7 +115,26 @@ const schema = {
       <a class="btn btn-ghost" href={lang === 'en' ? '/quote' : '/' + lang + '/quote'}>{t.getQuote}</a>
       <a class="btn btn-call" href={`tel:${phone}`}>📞 {phoneDisplay}</a>
     </div>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false" onclick="ctToggleMenu()"><span></span><span></span><span></span></button>
   </div></header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mm-top">
+      <span class="brand-text"><span class="bt-name"><span class="bt-cover">Cover</span><span class="bt-today">Today</span></span><span class="bt-sub">Insurance Agency</span></span>
+      <button class="mm-close" aria-label="Close menu" onclick="ctToggleMenu()">✕</button>
+    </div>
+    <div class="mm-body">
+      {t.nav.map((n) => (
+        n.children ? (
+          <div class="mm-group"><div class="mm-head">{n.label}</div>{n.children.map((c) => (<a href={c.href}>{c.label}</a>))}</div>
+        ) : (<a class="mm-link" href={n.href}>{n.label}</a>)
+      ))}
+      <div class="mm-cta">
+        <a class="btn btn-call btn-lg" href={`tel:${phone}`}>📞 {phoneDisplay}</a>
+        <a class="btn btn-text btn-lg" href={lang === 'en' ? '/quote' : '/' + lang + '/quote'}>{t.getFreeQuote}</a>
+      </div>
+    </div>
+  </div>
 
   <slot />
 
@@ -148,6 +167,9 @@ const schema = {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'generate_lead', lead_type: a.getAttribute('href').indexOf('sms:') === 0 ? 'text' : 'call' });
     });
+  </script>
+  <script is:inline>
+    function ctToggleMenu(){var m=document.getElementById('mobileMenu');var b=document.querySelector('.hamburger');var o=m.classList.toggle('open');if(b){b.classList.toggle('is-open',o);b.setAttribute('aria-expanded',o);}m.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':'';}
   </script>
 </body>
 </html>
