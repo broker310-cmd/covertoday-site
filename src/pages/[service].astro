@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { services } from '../data/services.js';
+import { relatedMap, LABELS, relatedTitle } from '../data/related.js';
 
 export function getStaticPaths() {
   return services.map((s) => ({ params: { service: s.slug }, props: { s } }));
@@ -8,6 +9,7 @@ export function getStaticPaths() {
 
 const { s } = Astro.props;
 const phone = '+13102995555';
+const rel = relatedMap[s.slug] || [];
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -95,6 +97,15 @@ const faqSchema = {
       ))}
     </div>
   </div></section>
+
+  {rel.length > 0 && (
+    <section class="soft"><div class="wrap" style="max-width:820px">
+      <div class="eyebrow">{relatedTitle.en}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px">
+        {rel.map((r) => (<a class="btn btn-ghost" href={`/${r}`}>{LABELS.en[r]}</a>))}
+      </div>
+    </div></section>
+  )}
 
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)}></script>
 </Base>
