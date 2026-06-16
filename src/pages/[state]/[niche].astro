@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { states, stateNiches } from '../../data/states.js';
+import { cities, cityNiches } from '../../data/cities.js';
 
 export function getStaticPaths() {
   const paths = [];
@@ -9,10 +10,16 @@ export function getStaticPaths() {
       paths.push({ params: { state: st.slug, niche: n.slug }, props: { st, n } });
     }
   }
+  for (const c of cities) {
+    for (const slug of c.niches) {
+      const n = cityNiches[slug];
+      paths.push({ params: { state: c.slug, niche: slug }, props: { st: { name: c.name, abbr: c.abbr, slug: c.slug }, n, community: c.community, product: n.product, productLabel: n.label } });
+    }
+  }
   return paths;
 }
 
-const { st, n } = Astro.props;
+const { st, n, community, product, productLabel } = Astro.props;
 const phone = '+13102995555';
 const title = `${n.label} in ${st.name} | CoverToday`;
 const desc = n.sub(st.name).slice(0, 155);
@@ -55,4 +62,16 @@ const desc = n.sub(st.name).slice(0, 155);
     </div>
     <p class="lead" style="margin-top:24px">Serving {st.name} and 6 other states. Call or text <strong>(310) 299-5555</strong> for a {st.name} quote today.</p>
   </div></section>
+
+  {community && (
+    <section><div class="wrap" style="max-width:820px">
+      <div class="eyebrow">Russian-speaking community</div>
+      <h2 class="sec">Serving the Russian-speaking community in {st.name}</h2>
+      <p class="lead">{community}</p>
+      <div class="ctas" style="margin-top:22px">
+        <a class="btn btn-call btn-lg" href={`tel:${phone}`}>📞 Call (310) 299-5555</a>
+        <a class="btn btn-text btn-lg" href={product}>See full {productLabel} details</a>
+      </div>
+    </div></section>
+  )}
 </Base>
