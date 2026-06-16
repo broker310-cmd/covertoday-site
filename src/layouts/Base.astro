@@ -95,7 +95,14 @@ const schema = {
       CoverToday
     </a>
     <nav class="nav-links">
-      {t.nav.map((n) => (<a href={n.href}>{n.label}</a>))}
+      {t.nav.map((n) => (
+        n.children ? (
+          <div class="nav-group">
+            <a href={n.href}>{n.label} <span class="caret">▾</span></a>
+            <div class="submenu">{n.children.map((c) => (<a href={c.href}>{c.label}</a>))}</div>
+          </div>
+        ) : (<a href={n.href}>{n.label}</a>)
+      ))}
     </nav>
     <div class="header-cta">
       <a class="btn btn-ghost" href={lang === 'en' ? '/quote' : '/' + lang + '/quote'}>{t.getQuote}</a>
