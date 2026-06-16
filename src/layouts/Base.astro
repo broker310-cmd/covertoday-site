@@ -90,9 +90,16 @@ const schema = {
   </div></div>
 
   <header class="site-header"><div class="wrap">
-    <a class="brand" href={homeHref}>
-      <svg class="shield" viewBox="0 0 30 34" fill="none"><path d="M15 1l13 4v11c0 9-5.6 14.5-13 17C7.6 31.5 2 26 2 16V5l13-4z" fill="#0a4ba0"/><path d="M9 16.5l4 4 8-8" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      CoverToday
+    <a class="brand" href={homeHref} aria-label="CoverToday Insurance Agency — home">
+      <svg class="shield" viewBox="0 0 44 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 2 L40 8 V24 C40 36 32.5 44.5 22 48 C11.5 44.5 4 36 4 24 V8 Z" fill="#0a4ba0"/>
+        <path d="M6.5 30 C9.5 38 15 43.5 22 47.6 C18.4 43 15.9 38 15.4 32.4 C20.6 31.4 26.2 28.4 31.2 24 C22 22.4 13 24 6.5 30 Z" fill="#ff5a1f"/>
+        <path d="M6 27 C13 22 23 21 33.5 24.2" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" fill="none" opacity="0.95"/>
+      </svg>
+      <span class="brand-text">
+        <span class="bt-name"><span class="bt-cover">Cover</span><span class="bt-today">Today</span></span>
+        <span class="bt-sub">Insurance Agency</span>
+      </span>
     </a>
     <nav class="nav-links">
       {t.nav.map((n) => (
