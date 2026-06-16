@@ -2,11 +2,10 @@
 export const UI = {
   en: {
     nav: [
-      { label: 'Auto & SR-22', href: '/auto-insurance', children: [
+      { label: 'Auto', href: '/auto-insurance', children: [
         { label: 'Auto insurance', href: '/auto-insurance' },
         { label: 'SR-22 filing', href: '/sr22-insurance' },
         { label: 'Rideshare / Uber / TCP', href: '/rideshare-insurance' },
-        { label: 'Motorcycle, RV & boat', href: '/motorcycle-rv-insurance' },
       ] },
       { label: 'Business', href: '/business-insurance', children: [
         { label: 'Business insurance', href: '/business-insurance' },
@@ -20,16 +19,16 @@ export const UI = {
         { label: 'Motor truck cargo', href: '/cargo-insurance' },
         { label: 'Moving companies', href: '/household-goods-movers-insurance' },
       ] },
-      { label: 'Salons & Trades', href: '/nail-salon-insurance', children: [
+      { label: 'Trades', href: '/nail-salon-insurance', children: [
         { label: 'Nail salon', href: '/nail-salon-insurance' },
         { label: 'Hair & beauty salon', href: '/hair-salon-insurance' },
         { label: 'Appliance repair', href: '/appliance-repair-insurance' },
         { label: 'HVAC contractors', href: '/hvac-insurance' },
       ] },
-      { label: 'Personal & Event', href: '/home-insurance', children: [
+      { label: 'Personal', href: '/home-insurance', children: [
         { label: 'Home & high-risk home', href: '/home-insurance' },
-        { label: 'Event insurance', href: '/event-insurance' },
         { label: 'Motorcycle, RV & boat', href: '/motorcycle-rv-insurance' },
+        { label: 'Event insurance', href: '/event-insurance' },
       ] },
       { label: 'Resources', href: '/resources' },
       { label: 'Contact', href: '/contact' },
@@ -53,7 +52,7 @@ export const UI = {
   },
   ru: {
     nav: [
-      { label: 'Авто и SR-22', href: '/ru/auto-insurance', children: [
+      { label: 'Авто', href: '/ru/auto-insurance', children: [
         { label: 'Автострахование', href: '/ru/auto-insurance' },
         { label: 'Оформление SR-22', href: '/ru/sr22-insurance' },
         { label: 'Uber / Lyft / TCP', href: '/ru/rideshare-insurance' },
@@ -65,20 +64,21 @@ export const UI = {
         { label: 'Business Owners Policy', href: '/ru/bop-insurance' },
         { label: 'Поручительские бонды', href: '/ru/surety-bond-insurance' },
       ] },
-      { label: 'Грузоперевозки', href: '/ru/commercial-truck-insurance', children: [
+      { label: 'Грузовики', href: '/ru/commercial-truck-insurance', children: [
         { label: 'Грузовики / DOT-MC', href: '/ru/commercial-truck-insurance' },
         { label: 'Груз (Motor Truck Cargo)', href: '/ru/cargo-insurance' },
         { label: 'Компании по переезду', href: '/ru/household-goods-movers-insurance' },
       ] },
-      { label: 'Салоны и сервис', href: '/ru/nail-salon-insurance', children: [
+      { label: 'Сервис', href: '/ru/nail-salon-insurance', children: [
         { label: 'Ногтевой салон', href: '/ru/nail-salon-insurance' },
         { label: 'Салон красоты', href: '/ru/hair-salon-insurance' },
         { label: 'Ремонт техники', href: '/ru/appliance-repair-insurance' },
         { label: 'HVAC-подрядчики', href: '/ru/hvac-insurance' },
       ] },
-      { label: 'Дом', href: '/ru/home-insurance', children: [
+      { label: 'Личное', href: '/ru/home-insurance', children: [
         { label: 'Дом и зона пожаров', href: '/ru/home-insurance' },
-        { label: 'Жильё / renters', href: '/ru/home-insurance' },
+        { label: 'Мотоцикл, RV и лодка', href: '/ru/motorcycle-rv-insurance' },
+        { label: 'Страховка мероприятия', href: '/ru/event-insurance' },
       ] },
       { label: 'Ресурсы', href: '/ru/resources' },
       { label: 'Контакт', href: '/ru/contact' },
@@ -102,7 +102,7 @@ export const UI = {
   },
   es: {
     nav: [
-      { label: 'Auto y SR-22', href: '/es/auto-insurance', children: [
+      { label: 'Auto', href: '/es/auto-insurance', children: [
         { label: 'Seguro de auto', href: '/es/auto-insurance' },
         { label: 'Trámite de SR-22', href: '/es/sr22-insurance' },
         { label: 'Uber / Lyft / TCP', href: '/es/rideshare-insurance' },
@@ -119,14 +119,16 @@ export const UI = {
         { label: 'Carga (Motor Truck Cargo)', href: '/es/cargo-insurance' },
         { label: 'Compañías de mudanzas', href: '/es/household-goods-movers-insurance' },
       ] },
-      { label: 'Salones y oficios', href: '/es/nail-salon-insurance', children: [
+      { label: 'Oficios', href: '/es/nail-salon-insurance', children: [
         { label: 'Salón de uñas', href: '/es/nail-salon-insurance' },
         { label: 'Salón de belleza', href: '/es/hair-salon-insurance' },
         { label: 'Reparación de electrodomésticos', href: '/es/appliance-repair-insurance' },
         { label: 'Contratistas HVAC', href: '/es/hvac-insurance' },
       ] },
-      { label: 'Hogar', href: '/es/home-insurance', children: [
+      { label: 'Personal', href: '/es/home-insurance', children: [
         { label: 'Vivienda y zona de incendios', href: '/es/home-insurance' },
+        { label: 'Motocicleta, RV y bote', href: '/es/motorcycle-rv-insurance' },
+        { label: 'Seguro de evento', href: '/es/event-insurance' },
       ] },
       { label: 'Recursos', href: '/es/resources' },
       { label: 'Contacto', href: '/es/contact' },
