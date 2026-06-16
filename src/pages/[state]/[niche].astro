@@ -13,7 +13,7 @@ export function getStaticPaths() {
   for (const c of cities) {
     for (const slug of c.niches) {
       const n = cityNiches[slug];
-      paths.push({ params: { state: c.slug, niche: slug }, props: { st: { name: c.name, abbr: c.abbr, slug: c.slug }, n, community: c.community, product: n.product, productLabel: n.label } });
+      paths.push({ params: { state: c.slug, niche: slug }, props: { st: { name: c.name, abbr: c.abbr, slug: c.slug }, n, community: c.community.en, product: n.product, productLabel: n.label } });
     }
   }
   return paths;
