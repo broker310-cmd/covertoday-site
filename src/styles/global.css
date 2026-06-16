@@ -88,3 +88,12 @@ h2.sec{font-size:32px;margin-bottom:14px}
 @media(min-width:760px){.sticky{display:none}}
 body{padding-bottom:74px}
 @media(min-width:760px){body{padding-bottom:0}}
+
+/* nav dropdowns */
+.nav-group{position:relative;display:inline-block}
+.nav-group>a{display:inline-flex;align-items:center;gap:4px}
+.nav-group>a .caret{font-size:10px;opacity:.65}
+.nav-group .submenu{position:absolute;top:100%;left:0;padding:8px;min-width:248px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 16px 40px rgba(16,38,61,.16);display:none;z-index:90}
+.nav-group:hover .submenu{display:block}
+.nav-group .submenu a{display:block;padding:9px 12px;border-radius:8px;white-space:nowrap;color:var(--ink);font-weight:600;font-size:14.5px}
+.nav-group .submenu a:hover{background:var(--blue-light);color:var(--blue)}
