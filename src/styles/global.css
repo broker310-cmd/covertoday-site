@@ -21,6 +21,8 @@ a{color:inherit;text-decoration:none}
 .btn-call:hover{background:var(--accent-dark)}
 .btn-ghost{background:var(--blue-light);color:var(--blue)}
 .btn-text{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.btn-ru{background:#fff;color:var(--blue);border:2px solid #ff5a1f;box-shadow:0 6px 16px rgba(255,90,31,.18)}
+.btn-ru:hover{background:#fff5f0}
 .btn-lg{padding:16px 30px;font-size:17px}
 
 /* header */
