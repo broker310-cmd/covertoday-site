@@ -50,6 +50,17 @@ const phone = '+13102995555';
     </div>
   </div></section>
 
+  {c.communities && (
+    <section><div class="wrap">
+      <div class="eyebrow">{c.communitiesEyebrow}</div>
+      <h2 class="sec">{c.communitiesTitle}</h2>
+      <p class="lead">{c.communitiesLead}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px">
+        {c.communities.map((x) => (<span style="display:inline-block;background:var(--blue-light);color:var(--blue);font-weight:600;font-size:14px;padding:6px 12px;border-radius:8px">📍 {x}</span>))}
+      </div>
+    </div></section>
+  )}
+
   <section class="soft"><div class="wrap">
     <div class="eyebrow">{c.statesEyebrow}</div>
     <h2 class="sec">{c.statesTitle}</h2>
