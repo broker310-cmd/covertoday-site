@@ -3,6 +3,7 @@ import Base from '../../../layouts/Base.astro';
 import { states } from '../../../data/states.js';
 import { niches } from '../../../i18n/content-services.js';
 import { UI } from '../../../i18n/ui.js';
+import { cities, cityNichesI18n } from '../../../data/cities.js';
 
 export function getStaticPaths() {
   const paths = [];
@@ -12,10 +13,16 @@ export function getStaticPaths() {
         paths.push({ params: { lang, state: st.slug, niche: n.slug }, props: { st, n, lang } });
       }
     }
+    for (const c of cities) {
+      for (const slug of c.niches) {
+        const n = cityNichesI18n[lang][slug];
+        paths.push({ params: { lang, state: c.slug, niche: slug }, props: { st: { name: c.name, abbr: c.abbr, slug: c.slug }, n, lang, community: c.community[lang], product: n.product, productLabel: n.label } });
+      }
+    }
   }
   return paths;
 }
-const { st, n, lang } = Astro.props;
+const { st, n, lang, community, product, productLabel } = Astro.props;
 const t = UI[lang];
 const phone = '+13102995555';
 const title = `${n.label} — ${st.name} | CoverToday`;
@@ -56,4 +63,16 @@ const desc = n.sub(st.name).slice(0, 155);
       {n.steps.map((s, i) => (<div class="card"><div class="ic">{i + 1}</div><h3>{s.t}</h3><p>{s.d}</p></div>))}
     </div>
   </div></section>
+
+  {community && (
+    <section><div class="wrap" style="max-width:820px">
+      <div class="eyebrow">{lang==='ru'?'Русскоязычное сообщество':'Comunidad de habla rusa'}</div>
+      <h2 class="sec">{lang==='ru'?`Обслуживаем русскоязычное сообщество в ${st.name}`:`Atendemos a la comunidad de habla rusa en ${st.name}`}</h2>
+      <p class="lead">{community}</p>
+      <div class="ctas" style="margin-top:22px">
+        <a class="btn btn-call btn-lg" href={`tel:${phone}`}>📞 {t.callNow}</a>
+        <a class="btn btn-text btn-lg" href={`/${lang}${product}`}>{lang==='ru'?`Подробнее: ${productLabel}`:`Ver detalles: ${productLabel}`}</a>
+      </div>
+    </div></section>
+  )}
 </Base>
