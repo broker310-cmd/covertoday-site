@@ -9,7 +9,7 @@ export function getStaticPaths() {
   ];
 }
 const { c, lang } = Astro.props;
-const next = `https://covertoday-site.vercel.app/${lang}/quote?sent=1`;
+const next = `https://covertoday.com/${lang}/quote?sent=1`;
 ---
 <Base title={c.metaTitle} description={c.metaDesc}>
   <section class="hero"><div class="wrap">
@@ -42,10 +42,16 @@ const next = `https://covertoday-site.vercel.app/${lang}/quote?sent=1`;
     #sent-banner{background:#e9f9ef;border:1px solid #1f9d57;color:#0c6b39;border-radius:12px;padding:14px 18px;margin:0 auto 18px;max-width:640px;font-weight:600;text-align:center}
   </style>
   <script is:inline define:vars={{ msg: c.sent }}>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', () => {
+      const p = form.querySelector('input[name="phone"]');
+      const d = p.value.replace(/\D/g, '');
+      if (d.length === 10) p.value = '+1' + d;
+      else if (d.length === 11 && d.startsWith('1')) p.value = '+' + d;
+    });
     if (location.search.includes('sent=1')) {
       const b = document.createElement('div');
       b.id = 'sent-banner'; b.textContent = msg;
-      const form = document.querySelector('form');
       form.parentNode.insertBefore(b, form); form.reset();
     }
   </script>
