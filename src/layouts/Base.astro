@@ -157,8 +157,11 @@ const schema = {
     <a class="btn btn-text" href={`sms:${phone}`}>💬 {t.text}</a>
   </div>
 
-  <!-- HighLevel (LeadConnector) chat widget — replaced Telegram fab 2026-07-02 -->
-  <script is:inline src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a46c39deacf7e67b995848e" data-source="WEB_USER"></script>
+  <!-- HighLevel (LeadConnector) chat widget — replaced Telegram fab 2026-07-02.
+       Not rendered on quote pages: A2P compliance requires the widget to be the only SMS opt-in method on pages where it's embedded, and quote pages have their own consent forms. -->
+  {!Astro.url.pathname.includes('/quote') && (
+    <script is:inline src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a46c39deacf7e67b995848e" data-source="WEB_USER"></script>
+  )}
 
   <script is:inline>
     document.addEventListener('click', function (e) {
