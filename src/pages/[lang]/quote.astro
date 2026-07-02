@@ -30,8 +30,13 @@ const next = `https://covertoday.com/${lang}/quote?sent=1`;
       <label>{c.zip}</label><input name="zip" required />
       <label>{c.need}</label>
       <select name="line">{c.options.map((o) => (<option>{o}</option>))}</select>
+      <label style="display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-weight:400;font-size:13px;line-height:1.5;color:var(--muted);cursor:pointer">
+        <input type="checkbox" name="sms_consent" value="yes" style="width:auto;margin-top:3px;flex-shrink:0" />
+        <span>{c.smsConsent}</span>
+      </label>
       <button class="btn btn-call" type="submit" style="width:100%;justify-content:center;margin-top:18px">{c.button}</button>
       <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:10px">{c.or}</p>
+      <p style="text-align:center;color:var(--muted);font-size:12px;margin-top:8px;line-height:1.5" set:html={c.legal}></p>
     </form>
   </div></section>
 

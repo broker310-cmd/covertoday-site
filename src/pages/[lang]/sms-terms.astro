@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const content = {
+  ru: {
+    metaTitle: 'Условия SMS-рассылки | CoverToday',
+    metaDesc: 'Условия SMS-сообщений CoverToday Insurance: согласие, частота сообщений, STOP и HELP, тарифы и конфиденциальность.',
+    h1: 'Условия SMS-рассылки',
+    sub: 'Как работает обмен текстовыми сообщениями с CoverToday Insurance Agency.',
+    updated: 'Последнее обновление: 2 июля 2026',
+    sections: [
+      ['Описание программы', 'Указав свой номер мобильного телефона и дав согласие, вы можете получать от CoverToday Insurance Agency («CoverToday», «мы») текстовые сообщения (SMS/MMS) о расчётах страховки, заявках, обслуживании полисов, сертификатах страхования, напоминаниях о встречах и — при отдельном согласии — о специальных предложениях.'],
+      ['Согласие', 'Указывая номер телефона и отмечая поле согласия в наших формах, вы соглашаетесь получать текстовые сообщения от CoverToday на указанный номер. Согласие не является условием покупки. Согласие на маркетинговые и сервисные сообщения запрашивается отдельно.'],
+      ['Частота сообщений', 'Частота сообщений зависит от вашего взаимодействия с нами (например, когда вы запрашиваете расчёт или мы уточняем документы).'],
+      ['Тарифы', 'Может взиматься плата за сообщения и передачу данных в зависимости от вашего оператора и тарифного плана.'],
+      ['Отписка — ответьте STOP', 'Вы можете отменить SMS-сообщения в любой момент, ответив <strong>STOP</strong> на любое сообщение. После отправки STOP мы пришлём подтверждение и прекратим отправку. Чтобы снова подписаться, ответьте <strong>START</strong>.'],
+      ['Помощь — ответьте HELP', 'Для помощи ответьте <strong>HELP</strong> на любое сообщение, позвоните (310) 299-5555 или напишите <a href="mailto:info@covertoday.com">info@covertoday.com</a>.'],
+      ['Конфиденциальность', 'Мы никогда не продаём ваши персональные данные и не передаём их третьим лицам для их маркетинга. Данные о мобильных номерах не передаются третьим лицам или аффилированным компаниям в маркетинговых или рекламных целях. Подробнее — в нашей <a href="/ru/privacy-policy">Политике конфиденциальности</a>.'],
+      ['Операторы связи', 'Операторы связи не несут ответственности за задержку или недоставку сообщений.'],
+      ['Контакты', 'CoverToday Insurance Agency, 272 S Rampart Blvd, Los Angeles, CA 90057 · (310) 299-5555 · info@covertoday.com · Лицензия CA #0K77310.'],
+    ],
+  },
+  es: {
+    metaTitle: 'Términos y Condiciones de SMS | CoverToday',
+    metaDesc: 'Términos de mensajes de texto de CoverToday Insurance: consentimiento, frecuencia de mensajes, STOP y HELP, tarifas y privacidad.',
+    h1: 'Términos y Condiciones de SMS',
+    sub: 'Cómo funcionan los mensajes de texto con CoverToday Insurance Agency.',
+    updated: 'Última actualización: 2 de julio de 2026',
+    sections: [
+      ['Descripción del programa', 'Cuando proporciona su número de móvil y da su consentimiento, CoverToday Insurance Agency («CoverToday», «nosotros») puede enviarle mensajes de texto (SMS/MMS) sobre cotizaciones de seguros, solicitudes, servicio de pólizas, certificados de seguro, recordatorios de citas y — si lo consiente por separado — ofertas promocionales.'],
+      ['Consentimiento', 'Al proporcionar su número de teléfono y marcar la casilla de consentimiento en nuestros formularios, acepta recibir mensajes de texto de CoverToday en el número indicado. El consentimiento no es una condición de compra. El consentimiento para mensajes de marketing y de servicio se solicita por separado.'],
+      ['Frecuencia de mensajes', 'La frecuencia de los mensajes varía según su interacción con nosotros (por ejemplo, cuando solicita una cotización o damos seguimiento a documentos).'],
+      ['Tarifas de mensajes y datos', 'Pueden aplicarse tarifas de mensajes y datos, según su operador móvil y su plan.'],
+      ['Cancelar — responda STOP', 'Puede cancelar los mensajes SMS en cualquier momento respondiendo <strong>STOP</strong> a cualquier mensaje. Después de enviar STOP, le enviaremos una confirmación y dejaremos de enviar mensajes. Para volver a suscribirse, responda <strong>START</strong>.'],
+      ['Ayuda — responda HELP', 'Para obtener ayuda, responda <strong>HELP</strong> a cualquier mensaje, llámenos al (310) 299-5555 o escriba a <a href="mailto:info@covertoday.com">info@covertoday.com</a>.'],
+      ['Privacidad', 'Nunca vendemos su información personal ni la compartimos con terceros para su propio marketing. La información móvil no se compartirá con terceros ni afiliados con fines de marketing o promocionales. Consulte nuestra <a href="/es/privacy-policy">Política de privacidad</a> para más detalles.'],
+      ['Operadores', 'Los operadores de telefonía no son responsables de mensajes retrasados o no entregados.'],
+      ['Contacto', 'CoverToday Insurance Agency, 272 S Rampart Blvd, Los Angeles, CA 90057 · (310) 299-5555 · info@covertoday.com · Licencia CA #0K77310.'],
+    ],
+  },
+};
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ru' } }, { params: { lang: 'es' } }];
+}
+const { lang } = Astro.params;
+const c = content[lang];
+---
+<Base title={c.metaTitle} description={c.metaDesc}>
+  <section class="hero"><div class="wrap">
+    <h1>{c.h1}</h1>
+    <p class="sub">{c.sub}</p>
+  </div></section>
+
+  <section><div class="wrap" style="max-width:820px">
+    <p style="color:var(--muted)">{c.updated}</p>
+    {c.sections.map(([h, body]) => (
+      <>
+        <h2 class="sec">{h}</h2>
+        <p set:html={body}></p>
+      </>
+    ))}
+  </div></section>
+</Base>
