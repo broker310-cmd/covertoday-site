@@ -157,8 +157,8 @@ const schema = {
     <a class="btn btn-text" href={`sms:${phone}`}>💬 {t.text}</a>
   </div>
 
-  <a class="chat-fab" href="https://t.me/insurance_america" target="_blank" rel="noopener" aria-label="Chat with us on Telegram">✈ Telegram</a>
-  <style is:inline>.chat-fab{position:fixed;right:16px;bottom:88px;z-index:60;background:#229ED9;color:#fff;font-weight:700;padding:10px 15px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25);font-size:14px}@media(max-width:760px){.chat-fab{bottom:150px}}</style>
+  <!-- HighLevel (LeadConnector) chat widget — replaced Telegram fab 2026-07-02 -->
+  <script is:inline src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a46ac6d8acf50dff3cc625d" data-source="WEB_USER"></script>
 
   <script is:inline>
     document.addEventListener('click', function (e) {
