@@ -83,7 +83,10 @@ export const UI = {
         { label: 'Мотоцикл, RV и лодка', href: '/ru/motorcycle-rv-insurance' },
         { label: 'Страховка мероприятия', href: '/ru/event-insurance' },
       ] },
-      { label: 'Ресурсы', href: '/ru/resources' },
+      { label: 'Ресурсы', href: '/ru/resources', children: [
+        { label: 'Гайды и статьи', href: '/ru/resources' },
+        { label: 'Вопросы и ответы — FAQ', href: '/ru/faq' },
+      ] },
       { label: 'Контакт', href: '/ru/contact' },
     ],
     getQuote: 'Расчёт',
