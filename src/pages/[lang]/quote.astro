@@ -27,6 +27,7 @@ const thankYou = `/${lang}/thank-you`;
       <input type="text" name="_honey" style="display:none" />
       <label>{c.name}</label><input name="name" required />
       <label>{c.phone}</label><input name="phone" type="tel" required />
+      <label>Email <span style="font-weight:400">(необязательно)</span></label><input name="email" type="email" />
       <label>{c.zip}</label><input name="zip" required />
       <label>{c.need}</label>
       <select name="line">{c.options.map((o) => (<option>{o}</option>))}</select>
@@ -63,6 +64,7 @@ const thankYou = `/${lang}/thank-you`;
       const payload = {
         full_name: form.name.value.trim(),
         phone: p.value,
+        email: form.email.value.trim(),
         zip: form.zip.value.trim(),
         insurance_type: form.line.value,
         sms_consent: form.sms_consent.checked ? 'yes' : 'no',
