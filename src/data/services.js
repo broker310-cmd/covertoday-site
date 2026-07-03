@@ -171,7 +171,7 @@ export const services = [
   {
     slug: 'nail-salon-insurance',
     h1: 'Nail salon insurance — GL, BOP & workers’ comp in one call.',
-    sub: 'Coverage built for nail techs and salon owners: general & professional liability for slips, burns and reactions, product liability, a BOP for your suite, and workers’ comp for your staff. Same-day certificate for your landlord. Мы говорим по-русски · Hablamos español.',
+    sub: 'Coverage built for nail techs and salon owners: general & professional liability for slips, burns and reactions, product liability, a BOP for your suite, and workers’ comp for your staff. Same-day certificate for your landlord. Мы говорим по-русски.',
     metaTitle: 'Nail Salon Insurance — GL, BOP & Workers’ Comp | CoverToday',
     metaDesc: 'Nail salon insurance: general & professional liability, product liability, BOP and workers’ comp for salons and nail techs. Same-day COI for your lease. Call (310) 299-5555.',
     reassure: ['Same-day COI for your lease', 'GL · BOP · Workers’ comp', 'Booth renters & full salons'],
@@ -205,7 +205,7 @@ export const services = [
   {
     slug: 'hair-salon-insurance',
     h1: 'Hair & beauty salon insurance — color, cuts, lashes & more.',
-    sub: 'General & professional liability for chemical services, a BOP for your space, and workers’ comp for stylists. Booth renters and full salons. Certificate same-day. Мы говорим по-русски · Hablamos español.',
+    sub: 'General & professional liability for chemical services, a BOP for your space, and workers’ comp for stylists. Booth renters and full salons. Certificate same-day. Мы говорим по-русски.',
     metaTitle: 'Hair & Beauty Salon Insurance — GL, BOP & WC | CoverToday',
     metaDesc: 'Hair and beauty salon insurance: general & professional liability for color, cuts, lashes and waxing; BOP and workers’ comp. Same-day COI. Call (310) 299-5555.',
     reassure: ['Chemical-service liability', 'BOP + workers’ comp', 'Booth renters & salons'],
@@ -465,7 +465,7 @@ export const services = [
   {
     slug: 'surety-bond-insurance',
     h1: 'Surety & license bonds — contractor, freight & permit bonds.',
-    sub: 'Contractor license bonds (CSLB $25,000), freight-broker BMC-84, DMV, notary and city permit bonds. Fast quotes and same-day issue. Мы говорим по-русски · Hablamos español.',
+    sub: 'Contractor license bonds (CSLB $25,000), freight-broker BMC-84, DMV, notary and city permit bonds. Fast quotes and same-day issue. Мы говорим по-русски.',
     metaTitle: 'Surety Bonds & License Bonds — Same-Day Issue | CoverToday',
     metaDesc: 'Surety and license bonds: contractor (CSLB $25,000), freight broker BMC-84 ($75k), DMV, notary and permit bonds. Fast quotes, same-day issue. Call (310) 299-5555.',
     reassure: ['Same-day bond issue', 'Contractor · Freight · Permit', 'Low premiums, fast quotes'],
@@ -528,7 +528,7 @@ export const services = [
   {
     slug: 'event-insurance',
     h1: 'Event insurance — special-event liability, COI today.',
-    sub: 'Weddings, parties, pop-ups, markets and vendor booths. Your venue needs a certificate of insurance — we issue it the same day, with them named as additional insured. Hablamos español · Мы говорим по-русски.',
+    sub: 'Weddings, parties, pop-ups, markets and vendor booths. Your venue needs a certificate of insurance — we issue it the same day, with them named as additional insured. Мы говорим по-русски.',
     metaTitle: 'Event Insurance — Special-Event Liability (Same-Day COI) | CoverToday',
     metaDesc: 'Special event & one-day liability insurance for weddings, parties, pop-ups and vendors. Same-day certificate of insurance with the venue as additional insured. Call (310) 299-5555.',
     reassure: ['Same-day COI', 'Venue as additional insured', 'Host liquor liability available'],
