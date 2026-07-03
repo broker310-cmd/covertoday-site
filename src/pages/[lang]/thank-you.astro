@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ru' } }];
+}
+const phone = '+13102995555';
+---
+<Base title="Спасибо! | CoverToday" description="Ваша заявка получена. Лицензированный агент свяжется с вами в ближайшее время." noindex={true}>
+  <section class="hero"><div class="wrap" style="text-align:center">
+    <h1>✓ Заявка получена!</h1>
+    <p class="sub" style="max-width:560px;margin:12px auto 0">Спасибо — лицензированный агент позвонит вам сегодня в рабочее время (пн–пт, 9:00–17:00) с расчётом от 40+ страховых компаний.</p>
+  </div></section>
+  <section><div class="wrap" style="max-width:560px;text-align:center">
+    <div class="card" style="padding:28px">
+      <p style="font-weight:700;margin-bottom:6px">Нужно быстрее?</p>
+      <p style="color:var(--muted)">Звоните или пишите прямо сейчас: <a href={`tel:${phone}`} style="color:var(--blue);font-weight:700">(310) 299-5555</a> — мы говорим по-русски.</p>
+      <a class="btn btn-call" href="/ru/" style="margin-top:18px;display:inline-flex">← На главную</a>
+    </div>
+  </div></section>
+</Base>
