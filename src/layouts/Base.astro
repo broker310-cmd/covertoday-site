@@ -14,7 +14,6 @@ const t = UI[lang];
 
 const enHref = bp;
 const ruHref = bp === '/' ? '/ru/' : '/ru' + bp;
-const esHref = bp === '/' ? '/es/' : '/es' + bp;
 const homeHref = lang === 'en' ? '/' : '/' + lang + '/';
 const canonical = site + pathname;
 const ogLocale = lang === 'ru' ? 'ru_RU' : lang === 'es' ? 'es_ES' : 'en_US';
@@ -37,7 +36,7 @@ const schema = {
     "addressCountry": "US"
   },
   "areaServed": ["California", "Texas", "Illinois", "Arizona", "Nevada", "North Carolina", "Washington"],
-  "knowsLanguage": ["en", "ru", "es"],
+  "knowsLanguage": ["en", "ru"],
   "openingHoursSpecification": [
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:30" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "17:00" }
@@ -58,7 +57,6 @@ const schema = {
   <meta name="description" content={description} />
   <link rel="alternate" hreflang="en" href={site + enHref} />
   <link rel="alternate" hreflang="ru" href={site + ruHref} />
-  <link rel="alternate" hreflang="es" href={site + esHref} />
   <link rel="alternate" hreflang="x-default" href={site + enHref} />
   <link rel="canonical" href={canonical} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -85,7 +83,6 @@ const schema = {
     <span class="langs">
       <a href={enHref} class={lang === 'en' ? 'active' : ''}>EN</a>
       <a href={ruHref} class={lang === 'ru' ? 'active' : ''}>RU</a>
-      <a href={esHref} class={lang === 'es' ? 'active' : ''}>ES</a>
     </span>
   </div></div>
 
