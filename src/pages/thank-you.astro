@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+const phone = '+13102995555';
+---
+<Base title="Thank You | CoverToday" description="Your quote request was received. A licensed agent will contact you shortly." noindex={true}>
+  <section class="hero"><div class="wrap" style="text-align:center">
+    <h1>✓ Request received!</h1>
+    <p class="sub" style="max-width:560px;margin:12px auto 0">Thank you — a licensed agent will call you today during business hours (Mon–Fri 9am–5pm) with your quote from 40+ carriers.</p>
+  </div></section>
+  <section><div class="wrap" style="max-width:560px;text-align:center">
+    <div class="card" style="padding:28px">
+      <p style="font-weight:700;margin-bottom:6px">Need it faster?</p>
+      <p style="color:var(--muted)">Call or text us now at <a href={`tel:${phone}`} style="color:var(--blue);font-weight:700">(310) 299-5555</a> — мы говорим по-русски.</p>
+      <a class="btn btn-call" href="/" style="margin-top:18px;display:inline-flex">← Back to homepage</a>
+    </div>
+  </div></section>
+</Base>
