@@ -30,7 +30,10 @@ export const UI = {
         { label: 'Motorcycle, RV & boat', href: '/motorcycle-rv-insurance' },
         { label: 'Event insurance', href: '/event-insurance' },
       ] },
-      { label: 'Resources', href: '/resources' },
+      { label: 'Resources', href: '/resources', children: [
+        { label: 'Guides & articles', href: '/resources' },
+        { label: 'FAQ — instant answers', href: '/faq' },
+      ] },
       { label: 'Contact', href: '/contact' },
     ],
     getQuote: 'Get Quote',
