@@ -48,3 +48,9 @@ Trucking insurance is its own market with carriers and underwriters who only do 
 ## Get a trucking quote today
 
 Call or text 310-299-5555. We'll quote multiple carriers, bind the policy same-day, and have your COI in your inbox before close of business. CoverToday Insurance Agency, LLC. CA License #0K77310. Licensed in California, Texas, Illinois, Arizona, Nevada, North Carolina, and Washington.
+
+## Related guides
+
+- [MC numbers in 2026: FMCSA's Motus registration and the insurance you must file](/resources/mc-numbers-in-2026-fmcsa-motus-registration-and-insurance-explained)
+- [How much does commercial truck insurance cost in California in 2026?](/resources/how-much-does-commercial-truck-insurance-cost-in-california-2026)
+- [Insurance FAQ — instant answers + live AI help](/faq)
