@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+const phone = '+13102995555';
+
+// Hybrid FAQ hub — static answers for SEO + "Ask our AI" buttons that open the
+// GoHighLevel chat widget (window.leadConnector.chatWidget.openWidget()) for
+// live, on-demand answers. Widget is loaded site-wide by Base.astro.
+const cats = [
+  {
+    id: 'quotes',
+    icon: '⚡',
+    name: 'Quotes & Working With Us',
+    faqs: [
+      { q: 'How do I get a quote, and what does it cost?', a: 'Quotes are always free and take minutes. Three ways: ask the AI assistant in the chat window (bottom right), call or text (310) 299-5555, or use the <a href="/quote">online quote form</a>. A licensed agent follows up the same day with real numbers from A-rated carriers.' },
+      { q: 'What information do you need for an accurate quote?', a: 'Less than you think — a quote is a free estimate and nothing is mandatory to start. For auto: vehicle year/make/model (or VIN), your age, ZIP code, and years of driving experience (any country counts). Share what you can; a licensed agent fills in the rest by phone.' },
+      { q: 'Are you an insurance company or a broker?', a: 'We are independent brokers, licensed since 2013 (CA License #0K77310). We work for you, not for one insurance company — we compare 15+ A-rated carriers in one conversation and place your policy with whichever offers the best rate for your situation.' },
+      { q: 'Do you speak Russian? Вы говорите по-русски?', a: 'Да! Мы говорим по-русски. You can chat, call, or text in Russian: (310) 299-5555. Russian site: <a href="/ru">covertoday.com/ru</a>.' },
+      { q: 'What states are you licensed in?', a: 'California (home base, License #0K77310), plus Texas, Illinois, Arizona, Nevada, North Carolina, and Washington.' },
+      { q: 'How fast can I get proof of insurance?', a: 'Same day in most cases. Same-day binding, same-day SR-22 and DOT/MC filings, and certificates of insurance (COIs) delivered in hours — often while you wait.' },
+      { q: 'Can I send you documents?', a: 'Yes — attach photos right in the chat window (paperclip icon), email <a href="mailto:info@covertoday.com">info@covertoday.com</a>, or text (310) 299-5555. Registration, driver’s license, and your current policy declarations page speed up any quote.' },
+      { q: 'What are your hours?', a: 'Office hours: Mon–Fri 9:00–6:30, Sat 9:00–5:00 Pacific. The AI assistant in the chat answers instantly 24/7, and an agent follows up the same business day.' },
+    ],
+  },
+  {
+    id: 'auto',
+    icon: '🚗',
+    name: 'Auto & SR-22',
+    faqs: [
+      { q: 'How much does car insurance cost?', a: 'Rates depend on your driving record, vehicle, ZIP code, and coverage level — there is no one price. What we do: compare 15+ A-rated carriers and apply every discount you qualify for. The quote is free, so the fastest way to know your real number is to ask.' },
+      { q: 'What discounts can I get on auto insurance?', a: 'Good driver (3+ years licensed — experience in any country counts — and no more than 1 point), marriage discount, family discount, multi-car, multi-policy bundle, and more. A licensed agent applies everything you qualify for automatically.' },
+      { q: 'I have accidents, tickets, a DUI, or no license. Can you insure me?', a: 'Yes. Hard-to-place drivers are our specialty: accidents, points, DUI, suspended licenses, foreign or international licenses — even no license at all. Every record can be insured.' },
+      { q: 'What is SR-22 and how fast can you file it?', a: 'An SR-22 is a certificate of financial responsibility filed with the DMV — usually required after a DUI, driving without insurance, or a suspension. It’s a filing attached to an auto policy, not a separate policy. We file SR-22s the same day. More: <a href="/resources/sr-22-insurance-in-california-what-it-is-what-it-costs-and-how-to-get-it">SR-22 in California guide</a>.' },
+      { q: 'I just moved to the US and have a foreign license. What are my options?', a: 'We insure drivers with foreign and international licenses, and your driving experience from any country can count toward the good-driver discount. Many of our clients start exactly this way.' },
+      { q: 'Do you insure Uber, Lyft, or TCP drivers?', a: 'Yes — rideshare (Uber/Lyft), Uber Black, and TCP-permitted drivers and fleets, including the commercial policies TCP permits require. See the <a href="/resources/rideshare-and-delivery-insurance-in-california-what-uber-lyft-doordash-and-amazon-flex-drivers">rideshare insurance guide</a>.' },
+      { q: 'Is a quote a commitment? Will it affect my credit?', a: 'No commitment — a quote is a free estimate, and you decide if you want the policy. Insurance quotes use a soft inquiry that does not lower your credit score.' },
+    ],
+  },
+  {
+    id: 'trucking',
+    icon: '🚛',
+    name: 'Commercial Trucking',
+    faqs: [
+      { q: 'What insurance does a new DOT authority need?', a: 'Federal minimums: $750,000 auto liability for general freight (GVWR over 10,001 lbs) — most shippers and brokers demand $1,000,000. Add cargo coverage (typically $100,000 — brokers require it), physical damage for your truck, and your broker files the federal forms (BMC-91/91X) with FMCSA. Important: proof of insurance must reach FMCSA within 90 days of applying or the application is dismissed.' },
+      { q: 'Do MC numbers still exist in 2026?', a: 'Mostly yes — but registration changed. FMCSA’s new Motus registration system now ties authority to your USDOT number, issues randomized numbers, and assigns one docket number per new authority. MC/MX/FF prefixes still exist; full elimination of docket numbers is only "under consideration." Full explainer: <a href="/resources/mc-numbers-in-2026-fmcsa-motus-registration-and-insurance-explained">MC numbers & Motus in 2026</a>.' },
+      { q: 'How much does commercial truck insurance cost in California?', a: 'Typical market ranges in 2026: roughly $8,000–$16,000/year for an owner-operator with a clean record, $12,000–$20,000+ for a new authority, more with violations or claims. Leased-on owner-operators (non-trucking liability + physical damage only) often pay $3,000–$5,000. Details: <a href="/resources/how-much-does-commercial-truck-insurance-cost-in-california-2026">truck insurance cost guide</a>.' },
+      { q: 'What do you need from me for a truck insurance quote?', a: 'Helpful (nothing mandatory to start): DOT or MC number, truck and trailer type, radius of operation, and cargo hauled. We handle owner-operators and fleets: liability, physical damage, cargo, filings, and same-day COIs.' },
+      { q: 'Can you issue a COI (certificate of insurance) today?', a: 'Yes — same-day COIs are standard for us, usually delivered within hours, including certificates for brokers, shippers, and lease agreements.' },
+      { q: 'Do you insure box trucks, hotshots, and cargo vans?', a: 'Yes — box trucks, hotshots, cargo vans, dry vans, reefers, flatbeds, car haulers, and local delivery. Owner-operators under their own authority or leased on. See the <a href="/resources/commercial-trucking-insurance-in-california-dot-mc-owner-operator-guide">owner-operator guide</a>.' },
+      { q: 'My trucking insurance renewal jumped. Can you beat it?', a: 'Often, yes. Rates vary widely between trucking carriers, and a multi-carrier broker can re-shop your whole program (liability, cargo, physical damage) at once. Send your current declarations page via chat or to info@covertoday.com and we’ll compare.' },
+    ],
+  },
+  {
+    id: 'business',
+    icon: '🏢',
+    name: 'Business Insurance',
+    faqs: [
+      { q: 'What does a small business need for a general liability quote?', a: 'Business name, industry/type of work, and number of employees — that’s enough to start. We insure contractors, HVAC, appliance repair, movers, nail & hair salons, and many other small businesses.' },
+      { q: 'I need a COI for a license, landlord, or contract. How fast?', a: 'Same day — usually within hours. Tell us who needs to be listed as certificate holder or additional insured and we’ll send it directly.' },
+      { q: 'Is workers’ comp required in California?', a: 'Yes — California requires workers’ compensation for any business with employees, even one part-timer. Details: <a href="/resources/workers-compensation-insurance-in-california-mandatory-coverage-every-employer-needs">workers’ comp guide</a>.' },
+      { q: 'Can I bundle business, auto, and home policies?', a: 'Yes, and it usually pays: multi-policy discounts apply across personal and commercial lines, and one broker managing everything means one renewal review and one phone number.' },
+    ],
+  },
+  {
+    id: 'claims',
+    icon: '🛟',
+    name: 'Claims & Policy Changes',
+    faqs: [
+      { q: 'I just had a car accident. What should I do?', a: '1) Check for injuries; call 911 if anyone is hurt. 2) Move to safety, exchange driver/insurance info, photograph vehicles and the scene. 3) Get witness contacts. 4) File the claim directly with your insurance company’s claims department — call the customer service number on your insurance card and choose the claims option (usually 24/7). 5) In California, also file DMV form SR-1 within 10 days if damage exceeds $1,000 or anyone was injured. Not sure who your carrier is? We’ll point you in the right direction — free, whether or not you’re our client.' },
+      { q: 'How do I add a car or driver, or change my address?', a: 'Tell us what to change — in chat, by call/text at (310) 299-5555, or email info@covertoday.com. A licensed agent processes every change; it takes effect once the agent or carrier confirms it.' },
+      { q: 'My rate went up after a claim. What can I do?', a: 'Have us re-shop it. A claim doesn’t price the same at every carrier — as independent brokers we compare 15+ A-rated markets and move your policy if someone prices your record better.' },
+    ],
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: cats.flatMap((c) => c.faqs).map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+  })),
+};
+---
+<Base title="Insurance FAQ — Instant Answers + Live AI Help | CoverToday" description="Answers about auto, SR-22, commercial trucking, and business insurance in California — plus a live AI assistant that answers your exact question 24/7, in English or Russian.">
+  <section class="hero"><div class="wrap">
+    <h1>Questions? Answered — instantly.</h1>
+    <p class="sub">Browse the answers below, or ask our AI assistant your exact question — 24/7, no forms, English or Russian. Licensed agents one step away.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px">
+      <button class="btn btn-call ask-ai" type="button">💬 Ask our AI now</button>
+      <a class="btn btn-ghost" href={`tel:${phone}`}>📞 (310) 299-5555</a>
+    </div>
+  </div></section>
+
+  <section><div class="wrap" style="max-width:860px">
+    <nav class="faq-nav" aria-label="FAQ categories">
+      {cats.map((c) => <a href={`#${c.id}`}>{c.icon} {c.name}</a>)}
+    </nav>
+
+    {cats.map((c) => (
+      <div id={c.id} class="faq-cat">
+        <h2 class="sec">{c.icon} {c.name}</h2>
+        {c.faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <div class="faq-a">
+              <p set:html={f.a}></p>
+              <button class="ask-ai faq-ask" type="button">💬 Ask our AI about this</button>
+            </div>
+          </details>
+        ))}
+      </div>
+    ))}
+
+    <div class="card" style="margin:40px 0;background:var(--blue-light);border:none;text-align:center;padding:30px">
+      <h2 style="margin-top:0;color:var(--blue)">Didn't find your question?</h2>
+      <p style="margin:8px 0 18px">Ask the AI assistant — it answers instantly, day or night. Or reach a licensed agent directly.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-call ask-ai" type="button">💬 Ask our AI</button>
+        <a class="btn btn-ghost" href="/quote">Get a free quote →</a>
+      </div>
+    </div>
+  </div></section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)}></script>
+
+  <script is:inline>
+    // "Ask our AI" → open the site chat widget; fall back to phone if unavailable.
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.ask-ai');
+      if (!btn) return;
+      try {
+        if (window.leadConnector && window.leadConnector.chatWidget) {
+          window.leadConnector.chatWidget.openWidget();
+          return;
+        }
+      } catch (err) {}
+      window.location.href = 'tel:+13102995555';
+    });
+  </script>
+</Base>
+
+<style>
+  .faq-nav{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 10px}
+  .faq-nav a{background:var(--blue-light);color:var(--blue);font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;text-decoration:none}
+  .faq-nav a:hover{filter:brightness(.96)}
+  .faq-cat{margin-top:26px}
+  .faq-item{border:1px solid #e3e8f0;border-radius:12px;margin:10px 0;background:#fff;overflow:hidden}
+  .faq-item summary{cursor:pointer;padding:15px 18px;font-weight:700;font-size:16.5px;list-style:none;position:relative;padding-right:44px}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{content:'+';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--blue);font-weight:800}
+  .faq-item[open] summary::after{content:'\2212'}
+  .faq-item[open] summary{border-bottom:1px solid #eef1f6}
+  .faq-a{padding:14px 18px 16px}
+  .faq-a p{margin:0 0 12px;font-size:16px;line-height:1.7;color:var(--ink)}
+  .faq-ask{background:none;border:1.5px solid var(--blue);color:var(--blue);font-weight:700;font-size:13.5px;padding:7px 14px;border-radius:999px;cursor:pointer}
+  .faq-ask:hover{background:var(--blue-light)}
+</style>
