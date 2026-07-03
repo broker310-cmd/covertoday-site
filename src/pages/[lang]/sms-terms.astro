@@ -41,7 +41,7 @@ const content = {
 };
 
 export function getStaticPaths() {
-  return [{ params: { lang: 'ru' } }, { params: { lang: 'es' } }];
+  return [{ params: { lang: 'ru' } }];
 }
 const { lang } = Astro.params;
 const c = content[lang];

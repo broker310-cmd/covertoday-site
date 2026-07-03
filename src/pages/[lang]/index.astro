@@ -6,7 +6,6 @@ import { states } from '../../data/states.js';
 export function getStaticPaths() {
   return [
     { params: { lang: 'ru' }, props: { c: home.ru, lang: 'ru' } },
-    { params: { lang: 'es' }, props: { c: home.es, lang: 'es' } },
   ];
 }
 const { c, lang } = Astro.props;

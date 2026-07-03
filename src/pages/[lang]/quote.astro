@@ -5,7 +5,6 @@ import { quote } from '../../i18n/content-standalone.js';
 export function getStaticPaths() {
   return [
     { params: { lang: 'ru' }, props: { c: quote.ru, lang: 'ru' } },
-    { params: { lang: 'es' }, props: { c: quote.es, lang: 'es' } },
   ];
 }
 const { c, lang } = Astro.props;

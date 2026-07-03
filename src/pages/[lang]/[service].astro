@@ -6,7 +6,7 @@ import { relatedMap, LABELS, relatedTitle } from '../../data/related.js';
 
 export function getStaticPaths() {
   const paths = [];
-  for (const lang of ['ru', 'es']) {
+  for (const lang of ['ru']) {
     for (const s of services[lang]) {
       paths.push({ params: { lang, service: s.slug }, props: { s, lang } });
     }
