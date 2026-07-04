@@ -60,6 +60,11 @@ export const services = [
       { t: 'We match the right carriers', d: 'We shop trucking-specialist markets for new and seasoned authority.' },
       { t: 'Filings & COIs same-day', d: 'We handle DOT/MC filings and issue COIs fast.' },
     ],
+    guides: [
+      { href: '/resources/how-much-does-commercial-truck-insurance-cost-in-california-2026', t: 'How much does commercial truck insurance cost in California? (2026 guide)' },
+      { href: '/resources/mc-numbers-in-2026-fmcsa-motus-registration-and-insurance-explained', t: 'MC numbers in 2026 — FMCSA Motus registration & insurance, explained' },
+      { href: '/resources/commercial-trucking-insurance-in-california-dot-mc-owner-operator-guide', t: 'Commercial trucking insurance in California — DOT/MC owner-operator guide' },
+    ],
     faqs: [
       { q: 'How much does new-authority truck insurance cost?', a: 'Usually $12,000–$20,000 per year, or about $1,000–$2,000 per month per tractor, depending on state, lanes, commodity and experience. It drops after ~3 clean years.' },
       { q: 'Can you cover brand-new DOT/MC authority?', a: 'Yes — we specialize in new-authority owner-operators that many agencies turn away.' },
@@ -326,6 +331,11 @@ export const services = [
       { t: 'We match the right carriers', d: 'Trucking-specialist markets for cargo and physical damage.' },
       { t: 'COIs same-day', d: 'Certificates issued fast for brokers and shippers.' },
     ],
+    guides: [
+      { href: '/resources/how-much-does-commercial-truck-insurance-cost-in-california-2026', t: 'How much does commercial truck insurance cost in California? (2026 guide)' },
+      { href: '/resources/mc-numbers-in-2026-fmcsa-motus-registration-and-insurance-explained', t: 'MC numbers in 2026 — FMCSA Motus registration & insurance, explained' },
+      { href: '/resources/commercial-trucking-insurance-in-california-dot-mc-owner-operator-guide', t: 'Commercial trucking insurance in California — DOT/MC owner-operator guide' },
+    ],
     faqs: [
       { q: 'How much does cargo insurance cost?', a: 'It depends on your commodity, limit and history, and is usually quoted with your liability and physical damage. We bundle it to keep the total competitive.' },
       { q: 'What cargo limit do brokers and shippers require?', a: 'Most require at least $100,000; high-value or specialized freight needs more. We match your certificate to the loads you haul.' },
@@ -338,31 +348,35 @@ export const services = [
   {
     slug: 'household-goods-movers-insurance',
     h1: 'Moving company insurance — truck, cargo & liability.',
-    sub: 'Insurance for household-goods and local movers: commercial auto, motor truck cargo for customers’ goods, general liability and workers’ comp — plus CAL-T / DOT filings.',
+    sub: 'Insurance for household-goods and local movers: commercial auto, motor truck cargo for customers’ goods, general liability and workers’ comp — plus the California MTR permit (formerly CAL-T) and DOT filings.',
     metaTitle: 'Moving Company Insurance — Truck, Cargo & GL | CoverToday',
-    metaDesc: 'Insurance for moving companies and household-goods movers: commercial auto, cargo, general liability and workers’ comp, plus CAL-T/DOT filings. Call (310) 299-5555.',
-    reassure: ['Cargo for customers’ goods', 'Auto · GL · WC', 'CAL-T / DOT filings'],
+    metaDesc: 'Insurance for moving companies and household-goods movers: commercial auto, cargo, general liability and workers’ comp, plus MTR (ex CAL-T)/DOT filings. Call (310) 299-5555.',
+    reassure: ['Cargo for customers’ goods', 'Auto · GL · WC', 'MTR / DOT filings'],
     whatTitle: 'The full program movers actually need',
-    whatBody: 'Moving companies carry unusual risk: customers’ belongings in your truck, liability inside their home, and state authority requirements. We build the complete program — commercial auto, motor truck cargo covering household goods, general liability, and workers’ comp — and handle CAL-T and DOT filings so you’re legal to operate.',
+    whatBody: 'Moving companies carry unusual risk: customers’ belongings in your truck, liability inside their home, and state authority requirements. We build the complete program — commercial auto, motor truck cargo covering household goods, general liability, and workers’ comp — and handle your California MTR household-mover permit (the successor to the old CPUC CAL-T) and USDOT filings so you’re legal to operate.',
     covers: [
       { t: 'Commercial auto', d: 'Your trucks and drivers on the road and at the job.' },
       { t: 'Cargo (customers’ goods)', d: 'Furniture and belongings in your care, custody and control.' },
       { t: 'General liability', d: 'Damage to the customer’s home or injuries during the move.' },
       { t: 'Workers’ compensation', d: 'Required for your moving crew’s on-the-job injuries.' },
-      { t: 'CAL-T / DOT filings', d: 'State and federal authority paperwork to operate legally.' },
+      { t: 'MTR / DOT filings', d: 'California BHGS household-mover permit (ex CAL-T) and federal authority paperwork.' },
     ],
     cost: 'Mover insurance is a program — commercial auto, cargo, general liability and workers’ comp — so total cost depends on your trucks, crew size, payroll and whether you operate locally or interstate. Pricing the package together (rather than piecemeal) and shopping movers’ specialty markets keeps it competitive. We quote the whole program and handle the filings in one place.',
-    whoNeeds: 'Household-goods movers in California need CPUC authority (a CAL-T number) and the insurance filings that go with it; interstate movers need USDOT/FMCSA authority and cargo coverage. Any mover with employees needs workers’ comp, and general liability is required for work inside customers’ homes.',
+    whoNeeds: 'Household-goods movers in California need a Household Mover permit (MTR) from the Bureau of Household Goods and Services — since 2018 the successor to the old CPUC CAL-T — plus liability and cargo insurance on file with the BHGS; interstate movers need USDOT/FMCSA authority and cargo coverage. Any mover with employees needs workers’ comp, and general liability is required for work inside customers’ homes.',
     steps: [
       { t: 'Tell us about your operation', d: 'Trucks, crew, local vs interstate, and authority status.' },
       { t: 'We build the program', d: 'Auto, cargo, GL and workers’ comp from movers’ markets.' },
-      { t: 'Filings & COIs same-day', d: 'CAL-T / DOT handled and certificates issued fast.' },
+      { t: 'Filings & COIs same-day', d: 'MTR / DOT handled and certificates issued fast.' },
+    ],
+    guides: [
+      { href: '/resources/how-much-does-commercial-truck-insurance-cost-in-california-2026', t: 'How much does commercial truck insurance cost in California? (2026 guide)' },
+      { href: '/resources/workers-compensation-insurance-in-california-mandatory-coverage-every-employer-needs', t: 'Workers’ comp in California — mandatory coverage every employer needs' },
     ],
     faqs: [
       { q: 'How much does moving company insurance cost?', a: 'It’s a program priced on your trucks, crew, payroll and local vs interstate operation. Quoting it together and shopping movers’ markets keeps the total competitive.' },
       { q: 'What coverages do movers need?', a: 'Commercial auto, cargo for customers’ goods, general liability, and workers’ comp — plus the required state/federal filings.' },
       { q: 'Does cargo cover my customers’ furniture?', a: 'Yes — motor truck cargo for movers is written to cover household goods in your care, custody and control.' },
-      { q: 'Can you handle CAL-T or DOT filings?', a: 'Yes — we file the state (CPUC/CAL-T) and federal (USDOT) authority paperwork movers need to operate legally.' },
+      { q: 'Can you handle MTR (CAL-T) or DOT filings?', a: 'Yes — in 2018 California moved household-mover licensing from the CPUC (CAL-T) to the BHGS, and the permit is now called MTR. We file the state MTR insurance paperwork and federal USDOT filings movers need to operate legally.' },
       { q: 'Do I need workers’ comp for my crew?', a: 'Yes — California requires it for any employees, and moving is a higher-risk class.' },
       { q: 'How fast can I get a certificate of insurance?', a: 'Same day once your program is bound.' },
     ],
@@ -396,6 +410,7 @@ export const services = [
       { q: 'What COI do marketplaces like Thumbtack require?', a: 'Usually a $1M general liability certificate, sometimes naming the platform as additional insured. We issue it same-day.' },
       { q: 'Do I need it as a 1099 contractor?', a: 'Yes — as an independent you’re personally liable for property damage; GL protects you and unlocks marketplace work.' },
       { q: 'How fast can I get a certificate?', a: 'Same day once your policy is bound.' },
+      { q: 'Do I need commercial auto for my service van?', a: 'Usually yes — personal auto policies typically exclude business use, so a claim during a work call can be denied. We quote commercial auto for your van alongside GL, often with a multi-policy discount.' },
     ],
   },
   {
@@ -428,6 +443,7 @@ export const services = [
       { q: 'Can you add the general contractor as additional insured?', a: 'Yes — usually same-day, which is what most GCs require before you start.' },
       { q: 'Do I need insurance to pull permits or win bids?', a: 'Most GCs and many jurisdictions require proof of general liability (and workers’ comp if you have staff) to bid or pull permits.' },
       { q: 'Does residential vs commercial change my cost?', a: 'Yes — commercial and new-construction work generally carries higher exposure and cost than residential service.' },
+      { q: 'Do I need workers’ comp even with no employees?', a: 'In California, yes — since 2023, C-20 HVAC contractors must carry workers’ compensation (or approved self-insurance) even with no employees (SB 216). We can write a minimum-premium policy that satisfies the CSLB.' },
     ],
   },
   {
@@ -460,6 +476,7 @@ export const services = [
       { q: 'Who is eligible for a BOP?', a: 'Most small and mid-size lower-risk businesses — retail, office, salon, and many contractors with a fixed location.' },
       { q: 'Does a BOP include workers’ comp?', a: 'No — workers’ comp is separate. We can add it alongside your BOP in the same call.' },
       { q: 'Can I get a certificate of insurance today?', a: 'Yes — same-day, with additional insured added for your landlord or client.' },
+      { q: 'What’s the difference between a BOP and general liability?', a: 'General liability only covers third-party claims — injuries and property damage you cause. A BOP includes that same GL plus coverage for your own property (equipment, inventory) and business interruption, usually for not much more than GL alone.' },
     ],
   },
   {
