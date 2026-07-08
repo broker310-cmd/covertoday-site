@@ -31,7 +31,7 @@ export const quote = {
     formTitle: 'Запросить расчёт', name: 'Имя и фамилия', phone: 'Телефон', zip: 'Почтовый индекс (ZIP)', need: 'Что вам нужно?',
     options: ['Автострахование', 'SR-22', 'Грузоперевозки / DOT-MC', 'Страхование бизнеса', 'Дом / аренда', 'Uber / Lyft / TCP', 'Другое'],
     button: 'Получить расчёт →', or: 'Или звоните напрямую: (310) 299-5555', sent: '✓ Спасибо! Заявка отправлена. Мы скоро позвоним или напишем.',
-    smsConsent: 'Я согласен(на) получать текстовые сообщения (SMS) от CoverToday Insurance Agency о моём запросе и обслуживании полиса. Согласие не является условием покупки. Ответьте STOP для отписки, HELP для помощи. Может взиматься плата за сообщения и данные; частота сообщений может меняться.',
+    smsConsent: 'Я согласен(на) получать текстовые сообщения (SMS) от CoverToday Insurance Agency (DBA компании Univision Insurance Services LLC) о моём запросе и обслуживании полиса. Согласие не является условием покупки. Ответьте STOP для отписки, HELP для помощи. Может взиматься плата за сообщения и данные; частота сообщений может меняться.',
     legal: 'Отправляя форму, вы принимаете нашу <a href="/ru/privacy-policy">Политику конфиденциальности</a> и <a href="/ru/sms-terms">Условия SMS-рассылки</a>. Мобильные данные не передаются третьим лицам в маркетинговых целях.' },
   es: { metaTitle: 'Cotización de seguro gratis | CoverToday', metaDesc: 'Obtenga una cotización gratis de auto, SR-22, camiones, negocios o vivienda. Comparamos 40+ aseguradoras. (310) 299-5555.',
     h1: 'Obtenga su cotización gratis', sub: 'Cuéntenos un poco sobre usted y encontramos su mejor tarifa entre 40+ aseguradoras. ¿Prefiere hablar? Llame o escriba — hablamos español.',
