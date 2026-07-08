@@ -13,7 +13,13 @@ const bp = basePath(pathname);
 const t = UI[lang];
 
 const enHref = bp;
-const ruHref = bp === '/' ? '/ru/' : '/ru' + bp;
+// RU switcher: only link to RU pages that actually exist.
+// EN-only pages (blog articles, about, careers, 404) fall back to the closest RU page.
+const EN_ONLY = ['/about', '/careers', '/404'];
+const ruHref = bp === '/' ? '/ru/'
+  : bp.startsWith('/resources/') ? '/ru/resources'
+  : EN_ONLY.includes(bp) ? '/ru/'
+  : '/ru' + bp;
 const homeHref = lang === 'en' ? '/' : '/' + lang + '/';
 const canonical = site + pathname;
 const ogLocale = lang === 'ru' ? 'ru_RU' : lang === 'es' ? 'es_ES' : 'en_US';
