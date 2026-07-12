@@ -17,6 +17,9 @@ export const UI = {
       { label: 'Trucking', href: '/commercial-truck-insurance', children: [
         { label: 'Commercial trucking / DOT-MC', href: '/commercial-truck-insurance' },
         { label: 'Motor truck cargo', href: '/cargo-insurance' },
+        { label: 'Amazon trucking', href: '/amazon-trucking-insurance' },
+        { label: 'Cargo van & Sprinter', href: '/cargo-van-sprinter-insurance' },
+        { label: 'Intermodal / drayage', href: '/intermodal-drayage-insurance' },
         { label: 'Moving companies', href: '/household-goods-movers-insurance' },
       ] },
       { label: 'Trades', href: '/nail-salon-insurance', children: [
@@ -70,6 +73,9 @@ export const UI = {
       { label: 'Грузовики', href: '/ru/commercial-truck-insurance', children: [
         { label: 'Грузовики / DOT-MC', href: '/ru/commercial-truck-insurance' },
         { label: 'Груз (Motor Truck Cargo)', href: '/ru/cargo-insurance' },
+        { label: 'Amazon-перевозки', href: '/ru/amazon-trucking-insurance' },
+        { label: 'Cargo van и Sprinter', href: '/ru/cargo-van-sprinter-insurance' },
+        { label: 'Intermodal / drayage', href: '/ru/intermodal-drayage-insurance' },
         { label: 'Компании по переезду', href: '/ru/household-goods-movers-insurance' },
       ] },
       { label: 'Сервис', href: '/ru/nail-salon-insurance', children: [
