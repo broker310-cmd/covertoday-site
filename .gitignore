@@ -1,0 +1,7 @@
+# Build output & tooling caches — never commit (Vercel builds fresh)
+dist/
+.astro/
+node_modules/
+.vercel/
+.DS_Store
+*.log
