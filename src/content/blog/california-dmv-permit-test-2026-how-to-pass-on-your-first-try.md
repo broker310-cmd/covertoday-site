@@ -1,13 +1,13 @@
 ---
 title: "California DMV Permit Test 2026: How to Pass on Your First Try (+ Free Practice Test)"
-description: "What's on the California DMV knowledge test, how many questions you can miss, the topics most people fail, and a free 150-question interactive practice test in English and Russian."
+description: "What's on the California DMV knowledge test, how many questions you can miss, the topics most people fail, and a free 180-question interactive practice test in English and Russian."
 date: "2026-07-15"
 category: "DMV & Licensing"
 ---
 
 Getting a California learner's permit starts with one hurdle: the DMV knowledge test. Roughly half of first-time takers fail it — not because it's hard, but because they walk in unprepared. Here is exactly what to expect and how to pass the first time.
 
-**Want to skip straight to practicing?** Try our [free interactive DMV practice test](/dmv-practice-test) — 150 questions with instant feedback, flashcards, and topic-by-topic study mode. No sign-up, and it's also available [in Russian](/ru/dmv-practice-test).
+**Want to skip straight to practicing?** Try our [free interactive DMV practice test](/dmv-practice-test) — 180 questions with instant feedback, flashcards, and topic-by-topic study mode. No sign-up, and it's also available [in Russian](/ru/dmv-practice-test).
 
 ## What the California knowledge test looks like
 
@@ -32,7 +32,7 @@ After the test, most people say the same thing: "the questions about numbers got
 - **Distances and timing** — signal 100 feet before a turn, signal 5 seconds before a freeway lane change, park within 18 inches of the curb.
 - **Sign shapes and colors** — octagon = stop, pennant = no passing, pentagon = school zone, orange = work zone.
 
-Our [practice test](/dmv-practice-test) organizes all 150 questions into 19 topics exactly along these lines, so you can drill your weak areas instead of re-reading the whole handbook.
+Our [practice test](/dmv-practice-test) organizes all 180 questions into 20 topics exactly along these lines, so you can drill your weak areas instead of re-reading the whole handbook.
 
 ## Seven tips for test day
 
