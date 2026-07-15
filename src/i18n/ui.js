@@ -36,6 +36,10 @@ export const UI = {
       { label: 'Resources', href: '/resources', children: [
         { label: 'Guides & articles', href: '/resources' },
         { label: 'DMV practice test — free', href: '/dmv-practice-test' },
+        { label: 'Car accident checklist', href: '/car-accident-checklist' },
+        { label: 'Save on car insurance', href: '/insurance-savings' },
+        { label: 'Fight a traffic ticket', href: '/fight-traffic-ticket' },
+        { label: 'Start a trucking company', href: '/start-trucking-company' },
         { label: 'FAQ — instant answers', href: '/faq' },
       ] },
       { label: 'Contact', href: '/contact' },
@@ -93,6 +97,10 @@ export const UI = {
       { label: 'Ресурсы', href: '/ru/resources', children: [
         { label: 'Гайды и статьи', href: '/ru/resources' },
         { label: 'Тест DMV — бесплатно', href: '/ru/dmv-practice-test' },
+        { label: 'Что делать при ДТП', href: '/ru/car-accident-checklist' },
+        { label: 'Экономия на страховке', href: '/ru/insurance-savings' },
+        { label: 'Как оспорить штраф', href: '/ru/fight-traffic-ticket' },
+        { label: 'Открыть транспортную компанию', href: '/ru/start-trucking-company' },
         { label: 'Вопросы и ответы — FAQ', href: '/ru/faq' },
       ] },
       { label: 'Контакт', href: '/ru/contact' },

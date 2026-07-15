@@ -15,6 +15,15 @@ const { c } = Astro.props;
     <p class="sub">{c.sub}</p>
   </div></section>
   <section><div class="wrap">
+    {c.tools && (
+      <>
+        <div class="eyebrow">{c.toolsEyebrow}</div>
+        <h2 class="sec">{c.toolsTitle}</h2>
+        <div class="grid grid-3" style="margin-bottom:40px">
+          {c.tools.map((tl) => (<a class="card" href={tl.href}><div class="eyebrow" style="margin-bottom:6px">{tl.k}</div><h3>{tl.t}</h3><p>{tl.d}</p></a>))}
+        </div>
+      </>
+    )}
     <div class="eyebrow">{c.eyebrow}</div>
     <h2 class="sec">{c.title}</h2>
     <div class="grid grid-3">

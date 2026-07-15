@@ -12,7 +12,18 @@ const posts = (await getCollection('blog')).sort(
   </div></section>
 
   <section><div class="wrap">
-    <div class="eyebrow">Latest articles</div>
+    <div class="eyebrow">Free tools &amp; guides</div>
+    <h2 class="sec">Driver help center</h2>
+    <div class="grid grid-3">
+      <a class="card" href="/dmv-practice-test"><div class="eyebrow" style="margin-bottom:6px">Interactive test</div><h3>DMV permit practice test</h3><p>180 questions with instant feedback, flashcards, and study-by-topic. Free, EN &amp; RU.</p></a>
+      <a class="card" href="/car-accident-checklist"><div class="eyebrow" style="margin-bottom:6px">Checklist</div><h3>What to do after an accident</h3><p>Step by step: the scene, photos, the SR-1 10-day rule, and your claim.</p></a>
+      <a class="card" href="/insurance-savings"><div class="eyebrow" style="margin-bottom:6px">Save money</div><h3>Pay less for car insurance</h3><p>12 California-specific ways — including three rights most drivers don't know.</p></a>
+      <a class="card" href="/fight-traffic-ticket"><div class="eyebrow" style="margin-bottom:6px">Tickets</div><h3>Fight a traffic ticket</h3><p>Traffic school, fix-it tickets, Trial by Written Declaration — your 5 options.</p></a>
+      <a class="card" href="/start-trucking-company"><div class="eyebrow" style="margin-bottom:6px">Trucking</div><h3>Start a trucking company</h3><p>The 12-step 2026 checklist: Motus, filings, CARB, and the 90-day insurance trap.</p></a>
+      <a class="card" href="/faq"><div class="eyebrow" style="margin-bottom:6px">Q&amp;A</div><h3>Insurance FAQ</h3><p>Instant answers to the questions we hear every day — or ask our AI.</p></a>
+    </div>
+
+    <div class="eyebrow" style="margin-top:40px">Latest articles</div>
     <h2 class="sec">Guides &amp; articles</h2>
     <div class="grid grid-3">
       {posts.map((p) => (
