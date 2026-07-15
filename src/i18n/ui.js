@@ -35,6 +35,7 @@ export const UI = {
       ] },
       { label: 'Resources', href: '/resources', children: [
         { label: 'Guides & articles', href: '/resources' },
+        { label: 'DMV practice test — free', href: '/dmv-practice-test' },
         { label: 'FAQ — instant answers', href: '/faq' },
       ] },
       { label: 'Contact', href: '/contact' },
@@ -91,6 +92,7 @@ export const UI = {
       ] },
       { label: 'Ресурсы', href: '/ru/resources', children: [
         { label: 'Гайды и статьи', href: '/ru/resources' },
+        { label: 'Тест DMV — бесплатно', href: '/ru/dmv-practice-test' },
         { label: 'Вопросы и ответы — FAQ', href: '/ru/faq' },
       ] },
       { label: 'Контакт', href: '/ru/contact' },

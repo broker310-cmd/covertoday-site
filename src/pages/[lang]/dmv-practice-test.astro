@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import DmvPractice from '../../components/DmvPractice.astro';
+import data from '../../i18n/dmv-quiz-ru.js';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ru' } }];
+}
+
+const faqs = [
+  { q: 'Сколько вопросов в письменном тесте DMV Калифорнии?', a: 'До 18 лет — 46 вопросов, для сдачи нужно 38 правильных ответов (допускается до 8 ошибок). От 18 лет — 36 вопросов, нужно 30 правильных (до 6 ошибок).' },
+  { q: 'Со скольки лет можно получить ученическое разрешение (permit) в Калифорнии?', a: 'С 15½ лет. Если вам меньше 17½, перед тестом необходимо пройти одобренный курс обучения вождению (driver education).' },
+  { q: 'Можно ли сдавать письменный тест DMV на русском языке?', a: 'Да — DMV Калифорнии предлагает письменный тест на русском и многих других языках. Наш тренажёр помогает подготовиться на русском, а термины DMV даёт и на английском.' },
+  { q: 'Этот тест — официальный?', a: 'Нет — это бесплатный обучающий тренажёр от CoverToday на основе «Справочника водителя Калифорнии». Он не связан с DMV и не одобрен им. Перед экзаменом сверяйте правила с официальным справочником.' },
+];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })),
+};
+---
+<Base
+  title="Бесплатный тест DMV Калифорнии на русском — 150 вопросов | CoverToday"
+  description="Подготовка к письменному тесту DMV Калифорнии на русском: 150 вопросов с ответами по темам. Интерактивный тест, карточки и режим изучения. Бесплатно, без регистрации."
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)}></script>
+
+  <section class="hero"><div class="wrap">
+    <h1>{data.ui.heroH1a} <span style="color:var(--accent)">{data.ui.heroH1b}</span></h1>
+    <p class="sub">{data.ui.heroSub}</p>
+  </div></section>
+
+  <DmvPractice data={data} quoteHref="/ru/quote" />
+
+  <section><div class="wrap" style="max-width:860px">
+    <h2 class="sec" style="font-size:24px">Частые вопросы</h2>
+    {faqs.map(f => (
+      <details class="faq-item" style="background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:8px;padding:0 18px">
+        <summary style="padding:14px 0;cursor:pointer;font-weight:700">{f.q}</summary>
+        <p style="padding:0 0 16px;color:var(--muted)">{f.a}</p>
+      </details>
+    ))}
+    <p style="margin:22px 0 40px;font-size:15px">
+      Получаете первую страховку в США?&nbsp;
+      <a href="/ru/auto-insurance" style="color:var(--blue);font-weight:600">Автострахование для начинающих водителей — по-русски</a>.
+    </p>
+  </div></section>
+</Base>

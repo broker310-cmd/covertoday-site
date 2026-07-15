@@ -1,0 +1,280 @@
+---
+// Interactive DMV practice tool (quiz + flashcards + browse). Used by
+// /dmv-practice-test (EN) and /ru/dmv-practice-test (RU).
+// Props: data = { topics, items, ui } from src/data/dmv-quiz.js or src/i18n/dmv-quiz-ru.js;
+//        quoteHref = localized /quote link.
+const { data, quoteHref } = Astro.props;
+const { topics, items, ui } = data;
+---
+<section class="dmvq"><div class="wrap">
+  <div class="dmvq-stats">
+    <div class="dstat"><b>{ui.stat1b}</b> {ui.stat1}</div>
+    <div class="dstat"><b>{ui.stat2b}</b> {ui.stat2}</div>
+    <div class="dstat"><b>{ui.stat3b}</b> {ui.stat3}</div>
+  </div>
+
+  <div class="dmvq-tabs" role="tablist">
+    <button class="dtab active" data-panel="quiz" role="tab">{ui.tabQuiz}</button>
+    <button class="dtab" data-panel="cards" role="tab">{ui.tabCards}</button>
+    <button class="dtab" data-panel="browse" role="tab">{ui.tabBrowse}</button>
+  </div>
+
+  <!-- PRACTICE TEST -->
+  <div class="dpanel active" id="dpanel-quiz">
+    <div class="dcard" id="dq-setup">
+      <h3>{ui.setupTitle}</h3>
+      <p class="dmuted">{ui.setupDesc}</p>
+      <div class="dchips" id="dq-len">
+        <button class="dchip sel" data-len="10">{ui.len10}</button>
+        <button class="dchip" data-len="25">{ui.len25}</button>
+        <button class="dchip" data-len="46">{ui.len46}</button>
+      </div>
+      <div class="dchips" id="dq-topics"></div>
+      <button class="btn btn-call" id="dq-start">{ui.startBtn}</button>
+    </div>
+    <div class="dcard" id="dq-run" style="display:none">
+      <div class="dq-meta"><span id="dq-count"></span><span class="dq-topic" id="dq-topic"></span></div>
+      <div class="dprogress"><i id="dq-bar" style="width:0%"></i></div>
+      <div class="dq-text" id="dq-text"></div>
+      <div id="dq-opts"></div>
+      <div class="dq-feedback" id="dq-feedback"></div>
+      <button class="btn btn-call" id="dq-next" style="display:none">{ui.nextBtn}</button>
+    </div>
+    <div class="dcard" id="dq-done" style="display:none;text-align:center">
+      <div class="dq-score" id="dq-score"></div>
+      <div class="dmuted" id="dq-msg" style="margin:6px 0 20px"></div>
+      <div style="text-align:left" id="dq-missed"></div>
+      <div class="dq-actions">
+        <button class="btn btn-call" id="dq-retry" style="display:none">{ui.retryBtn}</button>
+        <button class="btn btn-ghost" id="dq-new">{ui.newBtn}</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLASHCARDS -->
+  <div class="dpanel" id="dpanel-cards">
+    <div class="dcard">
+      <div class="dfc-controls">
+        <select id="dfc-topic" aria-label="Topic"></select>
+        <button class="btn btn-ghost" id="dfc-shuffle">{ui.fcShuffle}</button>
+      </div>
+      <div class="dfc-stage">
+        <div class="dflash" id="dflash" tabindex="0">
+          <div class="dface dfront"><div class="dlbl">{ui.fcFrontLbl}</div><div class="dtxt" id="dfc-q"></div></div>
+          <div class="dface dback"><div class="dlbl">{ui.fcBackLbl}</div><div class="dtxt" id="dfc-a"></div></div>
+        </div>
+      </div>
+      <div class="dfc-nav">
+        <button class="btn btn-ghost" id="dfc-prev">{ui.fcPrev}</button>
+        <span class="dfc-count" id="dfc-count"></span>
+        <button class="btn btn-ghost" id="dfc-next">{ui.fcNext}</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BROWSE -->
+  <div class="dpanel" id="dpanel-browse">
+    <input class="dsearch" id="dsearch" type="search" placeholder={ui.searchPh} />
+    <div id="dbrowse"></div>
+  </div>
+
+  <div class="dcta">
+    <h3>{ui.ctaTitle}</h3>
+    <p>{ui.ctaBody}</p>
+    <a class="btn btn-call btn-lg" href={quoteHref}>{ui.ctaBtn}</a>
+    <p class="dcta-phone">(310) 299-5555 · covertoday.com{quoteHref}</p>
+  </div>
+
+  <div class="dlinks">
+    <div class="dlinks-title">{ui.linksTitle}</div>
+    <a href="https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/" target="_blank" rel="noopener">{ui.link1}</a>
+    <a href="https://www.dmv.ca.gov/portal/driver-education-and-safety/educational-materials/sample-driver-license-dl-knowledge-tests/" target="_blank" rel="noopener">{ui.link2}</a>
+    <a href="https://www.dmv.ca.gov/portal/appointments/" target="_blank" rel="noopener">{ui.link3}</a>
+    <p class="ddisc">{ui.disclaimer}</p>
+    <p class="ddisc">{ui.broker}</p>
+  </div>
+</div></section>
+
+<script is:inline define:vars={{ TOPICS: topics, ITEMS: items, UI: ui }}>
+(function(){
+  const $=(id)=>document.getElementById(id);
+  const DB = ITEMS.map((it,i)=>({i, t:TOPICS[it[0]], q:it[1], a:it[2]}));
+  const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+  const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+  /* tabs */
+  document.querySelectorAll('.dtab').forEach(t=>t.addEventListener('click',()=>{
+    document.querySelectorAll('.dtab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.dpanel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active'); $('dpanel-'+t.dataset.panel).classList.add('active');
+  }));
+
+  function distractors(item,n){
+    const pool = shuffle(DB.filter(r=>r.t===item.t&&r.a!==item.a)).concat(shuffle(DB.filter(r=>r.t!==item.t&&r.a!==item.a)));
+    const out=[],seen=new Set([item.a.toLowerCase()]);
+    for(const r of pool){const k=r.a.toLowerCase();if(!seen.has(k)){seen.add(k);out.push(r.a);if(out.length===n)break;}}
+    return out;
+  }
+
+  /* quiz */
+  let qLen=10,qTopics=new Set(),qQs=[],qi=0,qCorrect=0,qMissed=[];
+  $('dq-len').addEventListener('click',e=>{ if(!e.target.dataset.len)return;
+    $('dq-len').querySelectorAll('.dchip').forEach(c=>c.classList.remove('sel'));
+    e.target.classList.add('sel'); qLen=+e.target.dataset.len; });
+  $('dq-topics').innerHTML='<button class="dchip sel" data-t="__all__">'+esc(UI.allTopics)+'</button>'+
+    TOPICS.map(t=>'<button class="dchip" data-t="'+esc(t)+'">'+esc(t)+'</button>').join('');
+  $('dq-topics').addEventListener('click',e=>{ const t=e.target.dataset.t; if(!t)return;
+    const all=$('dq-topics').querySelector('[data-t="__all__"]');
+    if(t==='__all__'){qTopics.clear();$('dq-topics').querySelectorAll('.dchip').forEach(c=>c.classList.remove('sel'));all.classList.add('sel');}
+    else{e.target.classList.toggle('sel');e.target.classList.contains('sel')?qTopics.add(t):qTopics.delete(t);all.classList.toggle('sel',qTopics.size===0);} });
+  $('dq-start').addEventListener('click',()=>{
+    const pool=qTopics.size?DB.filter(r=>qTopics.has(r.t)):DB;
+    qQs=shuffle(pool).slice(0,Math.min(qLen,pool.length)); runQuiz(); });
+  function runQuiz(){ qi=0;qCorrect=0;qMissed=[];
+    $('dq-setup').style.display='none';$('dq-done').style.display='none';$('dq-run').style.display='block';
+    renderQ(); $('dpanel-quiz').scrollIntoView({behavior:'smooth',block:'start'}); }
+  function renderQ(){
+    const item=qQs[qi];
+    $('dq-count').textContent=UI.questionOf.replace('{i}',qi+1).replace('{n}',qQs.length);
+    $('dq-topic').textContent=item.t;
+    $('dq-bar').style.width=(qi/qQs.length*100)+'%';
+    $('dq-text').textContent=item.q;
+    const opts=shuffle([item.a].concat(distractors(item,3)));
+    $('dq-opts').innerHTML=opts.map(o=>'<button class="dopt">'+esc(o)+'</button>').join('');
+    $('dq-feedback').style.display='none'; $('dq-next').style.display='none';
+    $('dq-opts').querySelectorAll('.dopt').forEach(b=>b.addEventListener('click',()=>{
+      const right=b.textContent===item.a;
+      $('dq-opts').querySelectorAll('.dopt').forEach(x=>{x.disabled=true;if(x.textContent===item.a)x.classList.add('dright');});
+      if(!right){b.classList.add('dwrong');qMissed.push(item);}else qCorrect++;
+      const fb=$('dq-feedback'); fb.textContent=right?UI.correctFb:UI.wrongFb;
+      fb.className='dq-feedback '+(right?'ok':'no'); fb.style.display='block';
+      $('dq-next').style.display='inline-flex';
+      $('dq-next').textContent=qi+1<qQs.length?UI.nextBtn:UI.seeScore;
+    }));
+  }
+  $('dq-next').addEventListener('click',()=>{qi++;qi<qQs.length?renderQ():showScore();});
+  function showScore(){
+    $('dq-run').style.display='none';$('dq-done').style.display='block';
+    const pct=Math.round(qCorrect/qQs.length*100);
+    $('dq-score').textContent=qCorrect+'/'+qQs.length;
+    let msg=pct+'% — '+(pct>=85?UI.scoreGreat:pct>=70?UI.scoreOk:UI.scoreLow);
+    if(qQs.length>=46) msg+=' '+UI.passNote46;
+    $('dq-msg').textContent=msg;
+    $('dq-missed').innerHTML=qMissed.length?'<h3 class="dq-rev">'+esc(UI.reviewTitle)+'</h3>'+
+      qMissed.map(m=>'<div class="dmiss"><b>'+esc(m.q)+'</b><span>✓ '+esc(m.a)+'</span></div>').join(''):'';
+    $('dq-retry').style.display=qMissed.length?'inline-flex':'none';
+  }
+  $('dq-retry').addEventListener('click',()=>{qQs=shuffle(qMissed);runQuiz();});
+  $('dq-new').addEventListener('click',()=>{$('dq-done').style.display='none';$('dq-setup').style.display='block';});
+
+  /* flashcards */
+  let deck=shuffle(DB),fci=0;
+  $('dfc-topic').innerHTML='<option value="__all__">'+esc(UI.fcAll)+'</option>'+TOPICS.map(t=>'<option>'+esc(t)+'</option>').join('');
+  function fcRender(){ const c=deck[fci];
+    $('dflash').classList.remove('flipped');
+    setTimeout(()=>{$('dfc-q').textContent=c.q;$('dfc-a').textContent=c.a;},160);
+    $('dfc-count').textContent=(fci+1)+' / '+deck.length; }
+  $('dfc-topic').addEventListener('change',()=>{
+    deck=$('dfc-topic').value==='__all__'?shuffle(DB):shuffle(DB.filter(r=>r.t===$('dfc-topic').value));
+    fci=0;fcRender(); });
+  $('dflash').addEventListener('click',()=>$('dflash').classList.toggle('flipped'));
+  $('dflash').addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();$('dflash').classList.toggle('flipped');}});
+  $('dfc-prev').addEventListener('click',()=>{fci=(fci-1+deck.length)%deck.length;fcRender();});
+  $('dfc-next').addEventListener('click',()=>{fci=(fci+1)%deck.length;fcRender();});
+  $('dfc-shuffle').addEventListener('click',()=>{deck=shuffle(deck);fci=0;fcRender();});
+  fcRender();
+
+  /* browse */
+  function renderBrowse(filter){
+    const f=(filter||'').trim().toLowerCase();
+    let html='';
+    for(const t of TOPICS){
+      const its=DB.filter(r=>r.t===t&&(!f||r.q.toLowerCase().includes(f)||r.a.toLowerCase().includes(f)));
+      if(!its.length)continue;
+      html+='<div class="dtopic"><h4>'+esc(t)+' <em>· '+its.length+'</em></h4>'+
+        its.map(r=>'<details'+(f?' open':'')+'><summary>'+esc(r.q)+'</summary><div class="dans"><b>✓</b> '+esc(r.a)+'</div></details>').join('')+'</div>';
+    }
+    $('dbrowse').innerHTML=html||'<p class="dnores">'+esc(UI.noResults)+'</p>';
+  }
+  $('dsearch').addEventListener('input',e=>renderBrowse(e.target.value));
+  renderBrowse('');
+})();
+</script>
+
+<style is:global>
+  .dmvq{padding:10px 0 40px}
+  .dmvq-stats{display:flex;gap:10px;justify-content:center;margin:6px 0 20px;flex-wrap:wrap}
+  .dstat{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:13.5px;color:var(--muted)}
+  .dstat b{color:var(--ink)}
+  .dmvq-tabs{display:flex;gap:8px;justify-content:center;margin:0 0 22px;flex-wrap:wrap}
+  .dtab{border:1px solid var(--line);background:rgba(255,255,255,.94);color:var(--ink);padding:11px 22px;border-radius:999px;
+    font-size:15px;font-weight:700;cursor:pointer;transition:.15s;box-shadow:0 1px 5px rgba(10,75,160,.07)}
+  .dtab:hover{border-color:var(--accent)}
+  .dtab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .dpanel{display:none}
+  .dpanel.active{display:block;animation:dfade .25s ease}
+  @keyframes dfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .dcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin:0 auto 18px;max-width:860px}
+  .dcard h3{font-size:20px;margin-bottom:6px}
+  .dmuted{color:var(--muted);font-size:14.5px;margin-bottom:16px}
+  .dchips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .dchip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13.5px;cursor:pointer;color:var(--ink);transition:.15s}
+  .dchip:hover{border-color:var(--accent)}
+  .dchip.sel{background:#fff3e8;border-color:var(--accent);color:#a44d00;font-weight:600}
+  .dprogress{height:7px;background:var(--line);border-radius:99px;overflow:hidden;margin:4px 0 18px}
+  .dprogress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#ffb066);transition:width .3s}
+  .dq-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:8px;gap:10px;flex-wrap:wrap}
+  .dq-topic{background:var(--soft);border-radius:99px;padding:3px 12px}
+  .dq-text{font-size:19px;font-weight:700;line-height:1.4;margin-bottom:18px;color:var(--ink)}
+  .dopt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:14px;
+    padding:14px 16px;font-size:15.5px;color:var(--ink);cursor:pointer;margin-bottom:10px;transition:.15s;line-height:1.45;font-family:inherit}
+  .dopt:hover:not([disabled]){border-color:var(--accent);background:#fff8f2}
+  .dopt[disabled]{cursor:default}
+  .dopt.dright{background:#e8f6ef;border-color:var(--green);font-weight:600}
+  .dopt.dwrong{background:#fdecea;border-color:#c0392b}
+  .dq-feedback{font-size:14.5px;font-weight:700;margin:4px 0 14px;display:none}
+  .dq-feedback.ok{color:var(--green)} .dq-feedback.no{color:#c0392b}
+  .dq-score{font-size:52px;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+  .dq-rev{font-size:17px;margin:8px 0 12px}
+  .dmiss{border-left:3px solid #c0392b;padding:10px 14px;background:#fdecea;border-radius:0 12px 12px 0;margin-bottom:10px;font-size:14.5px}
+  .dmiss b{display:block;margin-bottom:3px;color:var(--ink)}
+  .dmiss span{color:var(--green);font-weight:600}
+  .dq-actions{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .dfc-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+  .dfc-controls select{border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:15px;color:var(--ink);background:#fff;max-width:100%;font-family:inherit}
+  .dfc-stage{perspective:1200px;margin:6px 0 16px}
+  .dflash{position:relative;width:100%;min-height:270px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s}
+  .dflash.flipped{transform:rotateY(180deg)}
+  .dface{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:34px;box-shadow:var(--shadow)}
+  .dfront{background:#fff;border:1px solid var(--line)}
+  .dback{background:var(--blue-dark);transform:rotateY(180deg)}
+  .dlbl{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;opacity:.55;margin-bottom:14px}
+  .dback .dlbl{color:#fff}
+  .dtxt{font-size:19px;font-weight:600;line-height:1.45;color:var(--ink)}
+  .dback .dtxt{color:#fff}
+  .dfc-nav{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+  .dfc-count{color:var(--muted);font-size:14px;min-width:76px;text-align:center}
+  .dsearch{width:100%;max-width:860px;display:block;margin:0 auto 18px;border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:16px;font-family:inherit}
+  .dsearch:focus{outline:2px solid var(--accent)}
+  .dtopic{max-width:860px;margin:0 auto}
+  .dtopic h4{font-size:16.5px;margin:22px 0 10px}
+  .dtopic h4 em{font-style:normal;color:var(--muted);font-weight:500;font-size:13px}
+  .dtopic details{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:8px;overflow:hidden}
+  .dtopic summary{padding:14px 18px;cursor:pointer;font-weight:600;font-size:15px;list-style:none;display:flex;gap:10px}
+  .dtopic summary::before{content:"+";color:var(--accent);font-weight:800;flex:0 0 14px}
+  .dtopic details[open] summary::before{content:"–"}
+  .dans{padding:0 18px 16px 42px;color:var(--ink);font-size:15px}
+  .dans b{color:var(--green)}
+  .dnores{color:var(--muted);text-align:center;padding:30px}
+  .dcta{background:var(--blue-dark);border-radius:var(--radius);color:#fff;text-align:center;padding:36px 28px;margin:34px auto 18px;max-width:860px;box-shadow:var(--shadow)}
+  .dcta h3{font-size:24px;color:#fff}
+  .dcta p{opacity:.88;margin:8px auto 18px;max-width:540px;font-size:15.5px}
+  .dcta-phone{margin-top:14px !important;font-size:14px !important;margin-bottom:0 !important}
+  .dlinks{max-width:860px;margin:0 auto;text-align:center;padding:6px 0 10px}
+  .dlinks-title{font-weight:800;font-size:15px;margin-bottom:8px}
+  .dlinks a{color:var(--blue);font-weight:600;font-size:14px;margin:0 10px;display:inline-block;padding:2px 0}
+  .dlinks a:hover{color:var(--accent)}
+  .ddisc{color:var(--muted);font-size:12.5px;max-width:740px;margin:10px auto 0}
+  @media(max-width:560px){.dcard{padding:20px}.dface{padding:22px}.dtxt{font-size:16.5px}.dq-text{font-size:17px}}
+</style>

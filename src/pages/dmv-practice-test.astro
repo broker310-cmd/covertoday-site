@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import DmvPractice from '../components/DmvPractice.astro';
+import data from '../data/dmv-quiz.js';
+
+const faqs = [
+  { q: 'How many questions are on the California DMV permit test?', a: 'If you are under 18, the knowledge test has 46 questions and you need 38 correct answers to pass (you can miss up to 8). If you are 18 or older, the test has 36 questions and you need 30 correct (you can miss up to 6).' },
+  { q: 'How old do I need to be to get a California learner’s permit?', a: 'You must be at least 15½ years old. Applicants under 17½ must also complete an approved driver education course before taking the knowledge test.' },
+  { q: 'Is this practice test official?', a: 'No — this is a free educational tool from CoverToday based on the California Driver’s Handbook. It is not affiliated with or endorsed by the DMV. Always verify current rules in the official handbook.' },
+  { q: 'Is the practice test available in Russian?', a: 'Yes — the full practice test, flashcards, and study mode are available in Russian at covertoday.com/ru/dmv-practice-test.' },
+  { q: 'What should I study for the permit test?', a: 'The California Driver’s Handbook covers everything on the test. The most commonly missed areas are right-of-way rules, speed limits for special situations (school zones, railroad crossings, uncontrolled intersections), alcohol laws, and sign shapes and colors — all covered in this practice tool.' },
+];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })),
+};
+---
+<Base
+  title="Free California DMV Permit Practice Test — 150 Questions | CoverToday"
+  description="Free CA DMV permit practice test: 150 questions with answers organized by topic. Interactive quiz, flashcards, and study mode. In English and Russian. No sign-up."
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)}></script>
+
+  <section class="hero"><div class="wrap">
+    <h1>{data.ui.heroH1a} <span style="color:var(--accent)">{data.ui.heroH1b}</span></h1>
+    <p class="sub">{data.ui.heroSub}</p>
+  </div></section>
+
+  <DmvPractice data={data} quoteHref="/quote" />
+
+  <section><div class="wrap" style="max-width:860px">
+    <h2 class="sec" style="font-size:24px">Frequently asked questions</h2>
+    {faqs.map(f => (
+      <details class="faq-item" style="background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:8px;padding:0 18px">
+        <summary style="padding:14px 0;cursor:pointer;font-weight:700">{f.q}</summary>
+        <p style="padding:0 0 16px;color:var(--muted)">{f.a}</p>
+      </details>
+    ))}
+    <p style="margin:22px 0 40px;font-size:15px">
+      New driver getting insured for the first time? See&nbsp;
+      <a href="/auto-insurance" style="color:var(--blue);font-weight:600">auto insurance for California drivers</a>.
+    </p>
+  </div></section>
+</Base>
