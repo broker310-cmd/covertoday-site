@@ -1,0 +1,125 @@
+---
+// On-page lead form for service pages. A2P-compliant: SMS consent checkbox is
+// PRESENT, UNCHECKED by default, and REQUIRED before submit, with the exact
+// approved v2 consent text naming the legal entity + Privacy Policy / SMS Terms
+// links (source of truth: Specs/A2P & SMS Compliance — Canonical Spec).
+// Posts to the GHL webhook (same as /ru/quote) with a FormSubmit email fallback.
+const { lang = 'en', line = '', formType = 'default', slug = '' } = Astro.props;
+const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/eYZdYbKt9k4UeIF4JLJJ/webhook-trigger/32bb8191-de93-4bc7-9ff5-6a95fb6599f4';
+const thankYou = lang === 'en' ? '/thank-you' : `/${lang}/thank-you`;
+const privacyHref = lang === 'en' ? '/privacy-policy' : `/${lang}/privacy-policy`;
+const smsHref = lang === 'en' ? '/sms-terms' : `/${lang}/sms-terms`;
+
+const T = {
+  en: {
+    title: 'Get your free quote',
+    intro: 'Tell us a little about you and we’ll compare available options from 40+ carriers. No obligation.',
+    name: 'Full name', phone: 'Phone', email: 'Email (optional)', zip: 'ZIP / state',
+    coverage: 'Coverage type',
+    insured: 'Currently insured?', insuredOpts: ['— select —', 'Yes', 'No', 'Not sure'],
+    dotmc: 'DOT / MC number (if you have one)', units: 'Number of power units / trucks',
+    venture: 'New authority / new venture?', ventureOpts: ['— select —', 'Yes — new venture', 'No — established'],
+    button: 'Get my free quote →',
+    or: 'Prefer to talk? Call or text (310) 299-5555 — мы говорим по-русски.',
+    consent: 'By checking this box, I agree to receive text messages (SMS) and emails from CoverToday Insurance Agency, a DBA of Univision Insurance Services LLC, at the phone number and email I provided, about my insurance quotes, policies, billing, account and customer service, and occasional promotional offers. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase (the box is unchecked by default).',
+    seeOur: 'See our', and: 'and', privacy: 'Privacy Policy', sms: 'SMS Terms',
+    dba: 'CoverToday Insurance Agency — a DBA of Univision Insurance Services LLC · CA License #0K77310',
+  },
+  ru: {
+    title: 'Получите бесплатный расчёт',
+    intro: 'Расскажите немного о себе, и мы сравним доступные варианты среди 40+ компаний. Без обязательств.',
+    name: 'Имя и фамилия', phone: 'Телефон', email: 'Email (необязательно)', zip: 'ZIP / штат',
+    coverage: 'Вид страхования',
+    insured: 'Сейчас застрахованы?', insuredOpts: ['— выберите —', 'Да', 'Нет', 'Не уверен(а)'],
+    dotmc: 'Номер DOT / MC (если есть)', units: 'Количество тягачей / траков',
+    venture: 'Новая authority / новый бизнес?', ventureOpts: ['— выберите —', 'Да — новый бизнес', 'Нет — уже работаю'],
+    button: 'Получить бесплатный расчёт →',
+    or: 'Удобнее поговорить? Звоните или пишите (310) 299-5555 — говорим по-русски.',
+    consent: 'Отмечая этот пункт, я соглашаюсь получать текстовые сообщения (SMS) и электронные письма от CoverToday Insurance Agency (DBA компании Univision Insurance Services LLC) на указанные мной номер и эл. почту — о страховых расчётах, полисах, счетах и обслуживании аккаунта, а также периодические рекламные предложения. Может взиматься плата за сообщения и данные. Частота сообщений может меняться. Ответьте STOP для отписки или HELP для помощи. Согласие не является условием покупки (пункт по умолчанию не отмечен).',
+    seeOur: 'См.', and: 'и', privacy: 'Политику конфиденциальности', sms: 'Условия SMS',
+    dba: 'CoverToday Insurance Agency — DBA компании Univision Insurance Services LLC · Лицензия CA #0K77310',
+  },
+}[lang];
+const source = `Service page lead form (${slug || 'service'}, ${lang})`;
+---
+<section id="quote-form"><div class="wrap" style="max-width:640px">
+  <form class="card lead-form" style="padding:28px" method="POST"
+        action="https://formsubmit.co/info@covertoday.com"
+        data-source={source} data-thankyou={thankYou}>
+    <div class="eyebrow">{lang === 'en' ? 'Free quote' : 'Бесплатный расчёт'}</div>
+    <h2 class="sec" style="font-size:24px;margin-top:4px">{T.title}</h2>
+    <p style="color:var(--muted);font-size:15px;margin:8px 0 6px">{T.intro}</p>
+
+    <input type="hidden" name="_subject" value="New quote request (covertoday.com service page)" />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="_next" value={`https://covertoday.com${thankYou}`} />
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+    <label>{T.name}</label><input name="name" required autocomplete="name" />
+    <label>{T.phone}</label><input name="phone" type="tel" required autocomplete="tel" />
+    <label>{T.email}</label><input name="email" type="email" autocomplete="email" />
+    <label>{T.zip}</label><input name="zip" required autocomplete="postal-code" />
+    <label>{T.coverage}</label><input name="line" value={line} required />
+
+    {formType === 'auto' && (
+      <>
+        <label>{T.insured}</label>
+        <select name="currently_insured">{T.insuredOpts.map((o) => (<option>{o}</option>))}</select>
+      </>
+    )}
+    {formType === 'trucking' && (
+      <>
+        <label>{T.dotmc}</label><input name="dot_mc" />
+        <label>{T.units}</label><input name="units" type="number" min="1" inputmode="numeric" />
+        <label>{T.venture}</label>
+        <select name="new_venture">{T.ventureOpts.map((o) => (<option>{o}</option>))}</select>
+      </>
+    )}
+
+    <label style="display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-weight:400;font-size:12.5px;line-height:1.5;color:var(--muted);cursor:pointer">
+      <input type="checkbox" name="sms_consent" value="yes" required style="width:auto;margin-top:3px;flex-shrink:0" />
+      <span set:html={`${T.consent} ${T.seeOur} <a href="${privacyHref}">${T.privacy}</a> ${T.and} <a href="${smsHref}">${T.sms}</a>.`}></span>
+    </label>
+
+    <button class="btn btn-call" type="submit" style="width:100%;justify-content:center;margin-top:18px">{T.button}</button>
+    <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:10px">{T.or}</p>
+    <p style="text-align:center;color:var(--muted);font-size:11.5px;margin-top:8px;line-height:1.5">{T.dba}</p>
+  </form>
+</div></section>
+
+<style>
+  .lead-form label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin:14px 0 5px}
+  .lead-form input,.lead-form select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit}
+  .lead-form input[name="sms_consent"]{width:auto}
+  .lead-form input:focus,.lead-form select:focus{outline:none;border-color:var(--blue)}
+</style>
+
+<script is:inline define:vars={{ webhook: WEBHOOK_URL }}>
+  document.querySelectorAll('form.lead-form').forEach(function (form) {
+    let sending = false;
+    form.addEventListener('submit', function (e) {
+      if (sending) return; // allow native FormSubmit fallback to resubmit
+      const p = form.querySelector('input[name="phone"]');
+      const d = p.value.replace(/\D/g, '');
+      if (d.length === 10) p.value = '+1' + d;
+      else if (d.length === 11 && d.charAt(0) === '1') p.value = '+' + d;
+      if (form.querySelector('input[name="_honey"]').value) { e.preventDefault(); return; } // bot
+      if (!webhook) return; // native FormSubmit path
+      e.preventDefault();
+      sending = true;
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      const fd = new FormData(form);
+      const payload = {};
+      fd.forEach(function (v, k) { if (k.charAt(0) === '_') return; payload[k] = v; });
+      payload.sms_consent = form.querySelector('input[name="sms_consent"]').checked ? 'yes' : 'no';
+      payload.source = form.getAttribute('data-source');
+      payload.page = location.href;
+      payload.submitted_at = new Date().toISOString();
+      fetch(webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+        .then(function (r) { if (!r.ok) throw new Error('webhook ' + r.status); location.href = form.getAttribute('data-thankyou'); })
+        .catch(function () { sending = false; btn.disabled = false; form.submit(); });
+    });
+  });
+</script>

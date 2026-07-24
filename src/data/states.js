@@ -19,7 +19,7 @@ export const stateNiches = [
     body: (st) => `An SR-22 is a certificate your insurer files with the state to prove you carry ${st}'s required liability coverage — usually after a DUI, a lapse, or a suspension. We handle the filing and the policy together so you're compliant the same day in ${st}.`,
     steps: [
       { t: 'Call or get a quote', d: 'Tell us why you need the SR-22 — 2 minutes.' },
-      { t: 'We find your best rate', d: 'We compare 40+ carriers, including high-risk specialists.' },
+      { t: 'We compare your options', d: 'We compare 40+ carriers, including high-risk specialists.' },
       { t: 'We file same-day', d: 'Your SR-22 is filed and you’re back on the road.' },
     ],
   },
@@ -27,12 +27,12 @@ export const stateNiches = [
     slug: 'auto-insurance',
     label: 'Auto Insurance',
     h1: (st) => `Auto insurance in ${st} — compare 40+ carriers.`,
-    sub: (st) => `Full coverage, liability, SR-22 and high-risk drivers in ${st}. One call, every option compared, bound same-day.`,
+    sub: (st) => `Full coverage, liability, SR-22 and high-risk drivers in ${st}. One call, every option compared — same-day coverage may be available.`,
     body: (st) => `As an independent broker we shop 40+ carriers for ${st} drivers — including DUI history, lapses, foreign licenses and new drivers — and usually beat what a single captive carrier can offer.`,
     steps: [
       { t: 'Tell us about you', d: '2 minutes, in English or Russian.' },
-      { t: 'We shop 40+ carriers', d: 'We find the lowest rate available for your profile.' },
-      { t: 'Bind same-day', d: 'Drive away covered, ID cards sent immediately.' },
+      { t: 'We shop 40+ carriers', d: 'We find a competitive available rate for your profile.' },
+      { t: 'Same-day coverage', d: 'Drive away covered, ID cards sent immediately.' },
     ],
   },
   {

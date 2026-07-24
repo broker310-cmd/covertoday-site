@@ -33,7 +33,7 @@ export default {
       "d": "Required once you have employed technicians; covers their work injuries."
     }
   ],
-  "cost": "A Business Owners Policy for a nail salon averages about $91/month, and many salons pay roughly $500–$1,200 per year for general liability depending on size, services and payroll. Bundling GL with property into a BOP typically saves 10–20% versus separate policies. Workers’ comp is priced on payroll. We compare carriers to match the $1M/$2M limits your lease requires at the lowest total cost.",
+  "cost": "A Business Owners Policy for a nail salon averages about $91/month, and many salons pay roughly $500–$1,200 per year for general liability depending on size, services and payroll. Bundling GL with property into a BOP typically saves 10–20% versus separate policies. Workers’ comp is priced on payroll. We compare carriers to match the $1M/$2M limits your lease requires at a competitive total cost.",
   "whoNeeds": "Most commercial leases require a salon to carry $1M/$2M general liability and name the landlord as additional insured on a certificate of insurance. If you employ technicians, California requires workers’ comp. Booth renters and independent (1099) techs are generally not covered by the salon’s policy and must carry their own GL and professional liability — usually $1M per occurrence.",
   "steps": [
     {
@@ -52,7 +52,7 @@ export default {
   "faqs": [
     {
       "q": "How much does nail salon insurance cost?",
-      "a": "A BOP averages about $91/month, and general liability often runs $500–$1,200/year depending on size, services and payroll. We shop carriers to find your lowest."
+      "a": "A BOP averages about $91/month, and general liability often runs $500–$1,200/year depending on size, services and payroll. We shop carriers to find competitive options."
     },
     {
       "q": "What does nail salon insurance cover?",

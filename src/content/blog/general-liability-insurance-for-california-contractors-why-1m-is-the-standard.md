@@ -25,7 +25,7 @@ A small one-person trade in California typically pays $400–$1,200/year for $1M
 ## How CoverToday writes contractor GL
 
 - **Multi-carrier shopping** — we work with carriers who write each trade specifically. We don't quote a roofer with a painter carrier and vice versa.
-- **COI delivery in hours** — most contractors call us when they need a COI to start a job tomorrow. We can usually bind same-day and have your COI in your inbox within 2–3 hours.
+- **COI delivery in hours** — most contractors call us when they need a COI to start a job tomorrow. We can often issue same-day coverage and have your COI in your inbox within 2–3 hours.
 - **Bilingual service** — English and Russian.
 - **BOP bundling** — we'll quote GL on its own or as part of a BOP that adds property + business income protection.
 

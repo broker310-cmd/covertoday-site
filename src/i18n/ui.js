@@ -6,6 +6,7 @@ export const UI = {
         { label: 'Auto insurance', href: '/auto-insurance' },
         { label: 'SR-22 filing', href: '/sr22-insurance' },
         { label: 'Rideshare / Uber / TCP', href: '/rideshare-insurance' },
+        { label: 'Uber Black / TCP livery', href: '/uber-black-tcp-insurance' },
       ] },
       { label: 'Business', href: '/business-insurance', children: [
         { label: 'Business insurance', href: '/business-insurance' },
@@ -52,7 +53,7 @@ export const UI = {
     text: 'Text',
     topbar: 'DOI License #0K77310 · Licensed CA broker since 2013 · Serving CA, TX, IL, AZ, NV, NC, WA',
     ctaTitle: 'Talk to a licensed agent today',
-    ctaSub: 'Russian-speaking · English. No pressure, no spam — just your best rate.',
+    ctaSub: 'Russian-speaking · English. No pressure, no spam — just competitive options from 40+ carriers.',
     footerContact: 'Contact',
     footerPrivacy: 'Privacy',
     howItWorks: 'How it works',
@@ -67,6 +68,7 @@ export const UI = {
         { label: 'Автострахование', href: '/ru/auto-insurance' },
         { label: 'Оформление SR-22', href: '/ru/sr22-insurance' },
         { label: 'Uber / Lyft / TCP', href: '/ru/rideshare-insurance' },
+        { label: 'Uber Black / TCP livery', href: '/ru/uber-black-tcp-insurance' },
       ] },
       { label: 'Бизнес', href: '/ru/business-insurance', children: [
         { label: 'Страхование бизнеса', href: '/ru/business-insurance' },
@@ -113,7 +115,7 @@ export const UI = {
     text: 'SMS',
     topbar: 'Лицензия #0K77310 · Лицензированный брокер с 2013 · Работаем в CA, TX, IL, AZ, NV, NC, WA',
     ctaTitle: 'Поговорите с лицензированным агентом',
-    ctaSub: 'Говорим по-русски · English. Без давления и спама — только лучшая цена.',
+    ctaSub: 'Говорим по-русски · English. Без давления и спама — выгодные варианты среди 40+ компаний.',
     footerContact: 'Контакт',
     footerPrivacy: 'Конфиденциальность',
     howItWorks: 'Как это работает',

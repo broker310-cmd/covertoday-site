@@ -1,7 +1,7 @@
 export default {
   "slug": "auto-insurance",
   "h1": "Auto insurance that fits real drivers.",
-  "sub": "Full coverage, liability, SR-22, foreign-license and high-risk drivers welcome. We shop 40+ carriers to find your lowest rate — and bind same-day. Мы говорим по-русски.",
+  "sub": "Full coverage, liability, SR-22, foreign-license and high-risk drivers welcome. We compare 40+ carriers for competitive options — same-day coverage may be available. Мы говорим по-русски.",
   "metaTitle": "Auto Insurance — Compare 40+ Carriers | CoverToday",
   "metaDesc": "Cheap auto insurance with same-day coverage. Full coverage, SR-22, foreign-license & high-risk drivers welcome. Russian-speaking agents. Call (310) 299-5555.",
   "reassure": [
@@ -33,8 +33,8 @@ export default {
       "d": "Coverage if you drive but don’t own, or hold an international/foreign license."
     }
   ],
-  "cost": "In California, basic liability often starts around $29–$70/month for clean profiles, while full coverage typically runs $120–$250/month depending on your car, ZIP code, age and record. High-risk profiles (DUI, lapse, foreign license) cost more, but as an independent broker we compare 40+ carriers — including high-risk specialists — to find the lowest available rate for your exact situation. Bundling renters or a second car usually lowers it further.",
-  "whoNeeds": "Every driver in California must carry at least the state-minimum liability (15/30/5). If you finance or lease, your lender requires full coverage. If you’ve had a DUI, a license suspension or a coverage lapse, the DMV may require an SR-22 filing before you can drive again — we handle the policy and the filing together, same day.",
+  "cost": "Your auto premium depends on your car, ZIP code, age, driving record and the coverage you choose — full coverage costs more than basic liability, and high-risk profiles (DUI, lapse, foreign license) cost more than clean ones. As an independent broker we compare 40+ carriers — including high-risk specialists — and shop the available carrier options for your exact situation. Bundling renters or a second car often lowers the total. Call for a free, no-obligation quote on your real numbers.",
+  "whoNeeds": "Every driver in California must carry at least the state-minimum liability (30/60/15). If you finance or lease, your lender requires full coverage. If you’ve had a DUI, a license suspension or a coverage lapse, the DMV may require an SR-22 filing before you can drive again — we handle the policy and the filing together, same day.",
   "steps": [
     {
       "t": "Tell us about you",
@@ -42,17 +42,17 @@ export default {
     },
     {
       "t": "We shop 40+ carriers",
-      "d": "We find your lowest rate and a carrier that will take your case."
+      "d": "We compare available carrier options and find a carrier that will take your case."
     },
     {
-      "t": "Bind same-day",
-      "d": "Drive away covered, with ID cards sent immediately."
+      "t": "Same-day coverage",
+      "d": "When you’re ready, same-day coverage may be available, with ID cards sent as soon as you bind."
     }
   ],
   "faqs": [
     {
       "q": "How much is car insurance in California?",
-      "a": "Liability often starts around $29–$70/month and full coverage around $120–$250/month, depending on your car, ZIP, age and record. We compare 40+ carriers to find your lowest."
+      "a": "It depends on your car, ZIP, age, driving record and the coverage you choose — full coverage costs more than basic liability, and high-risk profiles cost more than clean ones. Rather than quote a one-size price, we compare 40+ carriers and shop the available options for your exact situation. Call (310) 299-5555 for a free quote on your real numbers."
     },
     {
       "q": "Can you insure high-risk or foreign-license drivers?",
@@ -68,7 +68,7 @@ export default {
     },
     {
       "q": "Can I get covered today?",
-      "a": "Yes — most policies bind the same day with ID cards sent immediately."
+      "a": "Often yes — same-day coverage may be available, with ID cards sent as soon as you bind."
     },
     {
       "q": "Will bundling lower my rate?",
@@ -80,7 +80,7 @@ export default {
     },
     {
       "q": "I let my insurance lapse — can you still help?",
-      "a": "Yes. Lapses raise rates but we work with carriers that accept them and still shop for your best price."
+      "a": "Yes. Lapses raise rates but we work with carriers that accept them and still compare available carrier options for you."
     }
   ]
 };

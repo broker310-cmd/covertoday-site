@@ -10,6 +10,7 @@ export const RU_SERVICE_SLUGS = [
   "business-insurance",
   "home-insurance",
   "rideshare-insurance",
+  "uber-black-tcp-insurance",
   "nail-salon-insurance",
   "hair-salon-insurance",
   "general-liability-insurance",

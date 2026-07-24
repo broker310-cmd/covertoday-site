@@ -38,7 +38,7 @@ export default {
     }
   ],
   "cost": "Cost depends on the program and your fleet. Relay carriers price on trucks, radius, driver records, and cargo type, and must carry higher limits ($1M auto, $100k cargo, $1M/$2M GL, $50k trailer interchange) than most freight lanes — so budget above a bare-bones truck policy. DSP last-mile fleets price on the number of vans, drivers, and payroll for workers’ comp. As an independent broker we shop multiple trucking markets to hit Amazon’s limits at the best available rate, and issue the certificate the same day.",
-  "whoNeeds": "Amazon Relay requires, per Amazon’s own insurance guidance: auto liability $1,000,000 per occurrence, motor truck cargo $100,000, general liability $1,000,000 per occurrence / $2,000,000 aggregate, trailer interchange $50,000 (for operators pulling Amazon trailers), workers’ compensation per state law plus $100,000 Employers Liability, and an MC number that has been active for at least 180 days before you can haul. Amazon DSP / last-mile carriers instead need their own commercial auto (typically ~$1,000,000 CSL — Amazon does not provide it for independent last-mile), general liability, and workers’ comp for W-2 drivers, often with hired/non-owned auto and umbrella. State financial-responsibility minimums (e.g. California 15/30/5) are far below what Amazon’s contract requires — quoting the state minimum is a classic mistake that voids the contract.",
+  "whoNeeds": "Amazon Relay requires, per Amazon’s own insurance guidance: auto liability $1,000,000 per occurrence, motor truck cargo $100,000, general liability $1,000,000 per occurrence / $2,000,000 aggregate, trailer interchange $50,000 (for operators pulling Amazon trailers), workers’ compensation per state law plus $100,000 Employers Liability, and an MC number that has been active for at least 180 days before you can haul. Amazon DSP / last-mile carriers instead need their own commercial auto (typically ~$1,000,000 CSL — Amazon does not provide it for independent last-mile), general liability, and workers’ comp for W-2 drivers, often with hired/non-owned auto and umbrella. State financial-responsibility minimums (e.g. California 30/60/15) are far below what Amazon’s contract requires — quoting the state minimum is a classic mistake that voids the contract.",
   "steps": [
     {
       "t": "Tell us your program",
@@ -86,7 +86,7 @@ export default {
     },
     {
       "q": "Is my state-minimum auto policy enough for Amazon?",
-      "a": "No. State minimums (like California’s 15/30/5) are far below Amazon’s contract limits. Amazon requires $1,000,000 auto and the other Relay limits — a state-minimum policy leaves you uncovered and locked out of loads."
+      "a": "No. State minimums (like California’s 30/60/15) are far below Amazon’s contract limits. Amazon requires $1,000,000 auto and the other Relay limits — a state-minimum policy leaves you uncovered and locked out of loads."
     }
   ]
 };

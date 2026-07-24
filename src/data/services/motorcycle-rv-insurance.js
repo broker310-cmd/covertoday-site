@@ -33,7 +33,7 @@ export default {
       "d": "Custom equipment, safety gear and add-ons."
     }
   ],
-  "cost": "Premiums vary widely by vehicle: a basic motorcycle liability policy can start low (often around $20–$60/month), while RVs and motorhomes cost more because of their value and full-timer needs. Boats and ATVs fall in between. We compare specialty carriers and apply discounts — safety courses, storage/lay-up, and bundling with your auto or home — to get the lowest total.",
+  "cost": "Premiums vary widely by vehicle: a basic motorcycle liability policy can start low (often around $20–$60/month), while RVs and motorhomes cost more because of their value and full-timer needs. Boats and ATVs fall in between. We compare specialty carriers and apply discounts — safety courses, storage/lay-up, and bundling with your auto or home — to get a competitive total.",
   "whoNeeds": "Most states require at least liability to register and ride a motorcycle, and lenders require full coverage if your motorcycle, RV or boat is financed. If you live in your RV, you need full-timer coverage (closer to a homeowners policy). Even when not required, physical-damage coverage protects an expensive toy from theft and damage.",
   "steps": [
     {
@@ -52,7 +52,7 @@ export default {
   "faqs": [
     {
       "q": "How much is motorcycle insurance?",
-      "a": "Basic liability often starts around $20–$60/month; full coverage and high-value bikes cost more. We compare carriers for your lowest rate."
+      "a": "Basic liability often starts around $20–$60/month; full coverage and high-value bikes cost more. We compare carriers for competitive options."
     },
     {
       "q": "Do you cover full-time RV living?",

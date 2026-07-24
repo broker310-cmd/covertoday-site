@@ -33,7 +33,7 @@ export default {
       "d": "Same-day certificates naming the parties your contract requires."
     }
   ],
-  "cost": "In California, general liability averages about $42/month for many small businesses, though it ranges with your trade, revenue and claims history — higher-risk construction trades pay more than low-risk consultants. A $2M aggregate costs only a little more than $1M and is often required. We compare carriers to find the right limit at the lowest price.",
+  "cost": "In California, general liability averages about $42/month for many small businesses, though it ranges with your trade, revenue and claims history — higher-risk construction trades pay more than low-risk consultants. A $2M aggregate costs only a little more than $1M and is often required. We compare carriers to find the right limit at a competitive price.",
   "whoNeeds": "You need general liability whenever a client, landlord or general contractor requires proof of coverage — which is almost always for contractors, trades, vendors and service businesses. Standard limits are $1M per occurrence and $2M aggregate, and you’ll often be asked to add the other party as additional insured on a certificate of insurance.",
   "steps": [
     {
@@ -52,7 +52,7 @@ export default {
   "faqs": [
     {
       "q": "How much is general liability insurance?",
-      "a": "In California it averages about $42/month for many small businesses, but it depends on your trade, revenue and claims history. We shop carriers for your lowest rate."
+      "a": "In California it averages about $42/month for many small businesses, but it depends on your trade, revenue and claims history. We shop carriers for competitive options."
     },
     {
       "q": "How fast can I get a certificate?",

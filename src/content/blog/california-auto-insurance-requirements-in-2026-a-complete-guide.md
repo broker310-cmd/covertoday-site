@@ -9,11 +9,11 @@ California requires all drivers to carry auto insurance. Whether you live in Los
 
 ## California Minimum Auto Insurance Requirements
 
-California law requires every driver to carry at least the following minimum liability insurance coverage: $15,000 for injury or death to one person, $30,000 for injury or death to more than one person, and $5,000 for damage to property. This is commonly referred to as 15/30/5 coverage. While these are the legal minimums, most insurance professionals recommend higher limits to properly protect your assets.
+California law requires every driver to carry at least the following minimum liability insurance coverage: $30,000 for injury or death to one person, $60,000 for injury or death to more than one person, and $15,000 for damage to property. This is commonly referred to as 30/60/15 coverage, and it took effect on January 1, 2025 under Senate Bill 1107 (the Protect California Drivers Act), which raised the prior 15/30/5 minimums. While these are the legal minimums, most insurance professionals recommend higher limits to properly protect your assets.
 
 ## Why You May Need More Than Minimum Coverage
 
-California's minimum coverage limits are among the lowest in the nation. In a serious accident, medical bills and property damage can easily exceed these limits, leaving you personally responsible for the difference. We recommend considering 100/300/100 coverage, uninsured motorist coverage, comprehensive and collision coverage, and medical payments coverage. Our agents at CoverToday can help you find the right balance between coverage and affordability.
+Even after the 2025 increase, California's minimum limits can fall short in a serious accident. Medical bills and property damage can easily exceed these limits, leaving you personally responsible for the difference. We recommend considering 100/300/100 coverage, uninsured motorist coverage, comprehensive and collision coverage, and medical payments coverage. Our agents at CoverToday can help you find the right balance between coverage and affordability.
 
 ## Average Auto Insurance Costs in California
 

@@ -52,7 +52,7 @@ export default {
   "faqs": [
     {
       "q": "How much is small business insurance in California?",
-      "a": "General liability averages ~$42/month and workers’ comp ~$63/month, but it depends on your industry, payroll and revenue. We shop carriers to find your best price."
+      "a": "General liability averages ~$42/month and workers’ comp ~$63/month, but it depends on your industry, payroll and revenue. We shop carriers to find competitive options."
     },
     {
       "q": "Which policies does my business need?",
