@@ -93,10 +93,17 @@ must(`${R}/pages/privacy-policy.astro`, 'No mobile information will be shared wi
 must(`${R}/pages/quote.astro`, 'consent is not a condition of purchase', 'A2P consent-not-required disclosure');
 must(`${R}/pages/quote.astro`, 'unchecked by default', 'A2P unchecked-by-default disclosure');
 must(`${R}/pages/[lang]/quote.astro`, 'name="sms_consent"', 'RU SMS consent checkbox');
-if (existsSync(`${R}/pages/[lang]/quote.astro`)) {
-  const q = read(`${R}/pages/[lang]/quote.astro`);
-  const tag = q.match(/<input[^>]*name="sms_consent"[^>]*>/);
-  if (tag && /\bchecked\b/.test(tag[0])) err('RU sms_consent checkbox is pre-CHECKED — must be unchecked by default (A2P)');
+// A2P LEGAL INVARIANTS #2 + #3: every SMS-consent checkbox, on EVERY opt-in surface,
+// must be UNCHECKED by default AND `required`. (Added 2026-07-25 after /ru/quote was
+// found live without `required` — the old check only tested the RU page for pre-checked.)
+for (const cf of [`${R}/pages/[lang]/quote.astro`, `${R}/components/LeadForm.astro`]) {
+  if (!existsSync(cf)) { err(`${cf} is MISSING (SMS consent surface)`); continue; }
+  const tags = read(cf).match(/<input[^>]*name="sms_consent"[^>]*>/g) || [];
+  if (!tags.length) err(`${cf} has no sms_consent checkbox (A2P invariant #1)`);
+  for (const tag of tags) {
+    if (/(^|[^n])\bchecked\b/.test(tag)) err(`${cf}: sms_consent checkbox is pre-CHECKED — must be unchecked by default (A2P invariant #2)`);
+    if (!/\brequired\b/.test(tag)) err(`${cf}: sms_consent checkbox is missing \`required\` — consent must be required before submit (A2P invariant #3)`);
+  }
 }
 for (const f of ['sms-terms.astro', 'privacy-policy.astro']) if (!existsSync(`${R}/pages/${f}`)) err(`src/pages/${f} missing`);
 
