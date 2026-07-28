@@ -45,6 +45,7 @@ export default {
       "d": "Добавляем additional insured, выдаём сертификат."
     }
   ],
+  "buyOnline": "coterie",
   "faqs": [
     {
       "q": "Сколько стоит страховка ремонта техники?",

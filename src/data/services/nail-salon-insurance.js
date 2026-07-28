@@ -49,6 +49,7 @@ export default {
       "d": "Additional insured added for your landlord and issued fast."
     }
   ],
+  "buyOnline": "coterie",
   "faqs": [
     {
       "q": "How much does nail salon insurance cost?",

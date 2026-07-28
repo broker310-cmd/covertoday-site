@@ -49,6 +49,7 @@ export default {
       "d": "Добавляем additional insured и выдаём сертификат."
     }
   ],
+  "buyOnline": "coterie",
   "faqs": [
     {
       "q": "Сколько стоит страхование малого бизнеса в Калифорнии?",

@@ -49,6 +49,7 @@ export default {
       "d": "Additional insured added and certificate issued fast."
     }
   ],
+  "buyOnline": "coterie",
   "faqs": [
     {
       "q": "How much is general liability insurance?",

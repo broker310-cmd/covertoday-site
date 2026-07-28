@@ -13,6 +13,7 @@ export const SERVICE_SLUGS = [
   "nail-salon-insurance",
   "hair-salon-insurance",
   "general-liability-insurance",
+  "professional-liability-insurance",
   "workers-comp-insurance",
   "cargo-insurance",
   "household-goods-movers-insurance",

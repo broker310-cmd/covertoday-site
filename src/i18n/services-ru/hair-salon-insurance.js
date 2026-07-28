@@ -49,6 +49,7 @@ export default {
       "d": "Добавляем additional insured, выдаём сертификат быстро."
     }
   ],
+  "buyOnline": "coterie",
   "faqs": [
     {
       "q": "Сколько стоит страховка салона красоты?",

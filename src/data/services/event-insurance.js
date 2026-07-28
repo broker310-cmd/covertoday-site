@@ -49,17 +49,7 @@ export default {
       "d": "Venue added as additional insured and certificate issued fast."
     }
   ],
-  "buyOnline": {
-    "href": "https://www.theeventhelper.com#Z6ZsyK",
-    "heroBtn": "Buy online",
-    "title": "Work with an agent, or buy your event policy online",
-    "agentTitle": "Talk to a licensed agent",
-    "agentBody": "Best when the venue’s requirements are unusual, alcohol is being served and you need host liquor liability, the guest count is large, or you’re a vendor who needs coverage across several dates. We read the venue’s certificate request, match the policy to it, and issue the COI with them named as additional insured.",
-    "onlineTitle": "Buy online in minutes",
-    "onlineBody": "For a straightforward one-day event, our online partner The Event Helper lets you complete the application, pay, and download your certificate yourself — any hour, any day. You add your venue as additional insured during checkout. Eligibility and availability depend on your event type, state and the venue’s requirements.",
-    "btn": "Buy online now →",
-    "note": "CoverToday is an independent broker and may earn a commission if you purchase through our partner link. Coverage, eligibility, price and availability vary by carrier and policy and may not be available to everyone. Not sure which path fits your event? Call (310) 299-5555 · covertoday.com/quote"
-  },
+  "buyOnline": "event-helper",
   "faqs": [
     {
       "q": "Can I just buy event insurance online myself?",

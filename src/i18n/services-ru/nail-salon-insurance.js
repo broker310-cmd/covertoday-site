@@ -49,6 +49,7 @@ export default {
       "d": "Добавляем additional insured для арендодателя."
     }
   ],
+  "buyOnline": "coterie",
   "faqs": [
     {
       "q": "Сколько стоит страховка ногтевого салона?",

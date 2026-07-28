@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import LeadForm from '../components/LeadForm.astro';
 import { services } from '../data/services.js';
 import { relatedMap, LABELS, relatedTitle } from '../data/related.js';
+import { partnerFor } from '../data/partners.js';
 
 export function getStaticPaths() {
   return services.map((s) => ({ params: { service: s.slug }, props: { s } }));
@@ -14,6 +15,7 @@ const TRUCKING = ['commercial-truck-insurance','amazon-trucking-insurance','carg
 const AUTO = ['auto-insurance','sr22-insurance','rideshare-insurance','motorcycle-rv-insurance','uber-black-tcp-insurance'];
 const formType = TRUCKING.includes(s.slug) ? 'trucking' : AUTO.includes(s.slug) ? 'auto' : 'default';
 const rel = relatedMap[s.slug] || [];
+const bo = partnerFor(s.buyOnline, 'en');
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -32,7 +34,7 @@ const faqSchema = {
       <a class="btn btn-call btn-lg" href={`tel:${phone}`}>📞 Call (310) 299-5555</a>
       <a class="btn btn-text btn-lg" href={`sms:${phone}`}>💬 Text us</a>
       <a class="btn btn-ghost btn-lg" href="#quote-form">Apply online</a>
-      {s.buyOnline && (<a class="btn btn-text btn-lg" href="#buy-online">⚡ {s.buyOnline.heroBtn}</a>)}
+      {bo && (<a class="btn btn-text btn-lg" href="#buy-online">⚡ {bo.heroBtn}</a>)}
     </div>
     <p style="margin-top:10px;font-size:13.5px;color:var(--muted)">Office hours Mon–Fri 10am–4pm PT — please call during hours. After hours, text <a href={`sms:${phone}`} style="color:var(--blue)">(310) 299-5555</a> or apply online anytime and we’ll follow up.</p>
     <div class="reassure">
@@ -49,15 +51,15 @@ const faqSchema = {
 
   <LeadForm lang="en" line={LABELS.en[s.slug] || s.h1} formType={formType} slug={s.slug} />
 
-  {s.buyOnline && (
+  {bo && (
     <section id="buy-online"><div class="wrap" style="max-width:900px">
-      <div class="eyebrow">Two ways to get covered</div>
-      <h2 class="sec">{s.buyOnline.title}</h2>
+      <div class="eyebrow">{bo.eyebrow}</div>
+      <h2 class="sec">{bo.title}</h2>
       <div class="grid grid-2">
         <div class="card">
           <div class="ic">🧑‍💼</div>
-          <h3>{s.buyOnline.agentTitle}</h3>
-          <p>{s.buyOnline.agentBody}</p>
+          <h3>{bo.agentTitle}</h3>
+          <p>{bo.agentBody}</p>
           <p style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
             <a class="btn btn-call" href={`tel:${phone}`}>📞 Call (310) 299-5555</a>
             <a class="btn btn-ghost" href="#quote-form">Apply online</a>
@@ -65,14 +67,14 @@ const faqSchema = {
         </div>
         <div class="card">
           <div class="ic">⚡</div>
-          <h3>{s.buyOnline.onlineTitle}</h3>
-          <p>{s.buyOnline.onlineBody}</p>
+          <h3>{bo.onlineTitle}</h3>
+          <p>{bo.onlineBody}</p>
           <p style="margin-top:18px">
-            <a class="btn btn-text" href={s.buyOnline.href} target="_blank" rel="noopener sponsored">{s.buyOnline.btn}</a>
+            <a class="btn btn-text" href={bo.href} target="_blank" rel="noopener sponsored">{bo.btn}</a>
           </p>
         </div>
       </div>
-      <p style="margin-top:18px;font-size:13.5px;color:var(--muted)">{s.buyOnline.note}</p>
+      <p style="margin-top:18px;font-size:13.5px;color:var(--muted)">{bo.note}</p>
     </div></section>
   )}
 

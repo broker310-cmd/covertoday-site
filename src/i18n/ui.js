@@ -11,6 +11,7 @@ export const UI = {
       { label: 'Business', href: '/business-insurance', children: [
         { label: 'Business insurance', href: '/business-insurance' },
         { label: 'General liability', href: '/general-liability-insurance' },
+        { label: 'Professional liability (E&O)', href: '/professional-liability-insurance' },
         { label: 'Workers’ comp', href: '/workers-comp-insurance' },
         { label: 'Business Owners Policy', href: '/bop-insurance' },
         { label: 'Surety & license bonds', href: '/surety-bond-insurance' },
@@ -73,6 +74,7 @@ export const UI = {
       { label: 'Бизнес', href: '/ru/business-insurance', children: [
         { label: 'Страхование бизнеса', href: '/ru/business-insurance' },
         { label: 'Общая ответственность', href: '/ru/general-liability-insurance' },
+        { label: 'Professional liability (E&O)', href: '/ru/professional-liability-insurance' },
         { label: 'Компенсация работникам', href: '/ru/workers-comp-insurance' },
         { label: 'Business Owners Policy', href: '/ru/bop-insurance' },
         { label: 'Поручительские бонды', href: '/ru/surety-bond-insurance' },

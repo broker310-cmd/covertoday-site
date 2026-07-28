@@ -45,6 +45,7 @@ export default {
       "d": "Additional insured added and certificate issued fast."
     }
   ],
+  "buyOnline": "coterie",
   "faqs": [
     {
       "q": "How much is appliance-repair insurance?",

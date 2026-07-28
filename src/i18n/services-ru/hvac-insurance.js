@@ -49,6 +49,7 @@ export default {
       "d": "Добавляем GC как additional insured, выдаём быстро."
     }
   ],
+  "buyOnline": "coterie",
   "faqs": [
     {
       "q": "Сколько стоит страховка HVAC-подрядчика?",

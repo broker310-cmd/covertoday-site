@@ -4,6 +4,7 @@ import LeadForm from '../../components/LeadForm.astro';
 import { services } from '../../i18n/content-services.js';
 import { UI } from '../../i18n/ui.js';
 import { relatedMap, LABELS, relatedTitle } from '../../data/related.js';
+import { partnerFor } from '../../data/partners.js';
 
 export function getStaticPaths() {
   const paths = [];
@@ -25,6 +26,7 @@ const L = {
   es: { coverage: 'Cobertura', covers: 'Qué cubre', pricing: 'Precios', cost: 'Cuánto cuesta', req: 'Requisitos', who: 'Quién lo necesita', quoteNote: 'Son rangos de mercado generales — su tarifa exacta depende de su perfil. Llame al', free: 'para una cotización gratis.' },
 }[lang];
 const rel = relatedMap[s.slug] || [];
+const bo = partnerFor(s.buyOnline, lang);
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -43,7 +45,7 @@ const faqSchema = {
       <a class="btn btn-call btn-lg" href={`tel:${phone}`}>📞 {t.callNow}</a>
       <a class="btn btn-text btn-lg" href={`sms:${phone}`}>💬 {t.textUs}</a>
       <a class="btn btn-ghost btn-lg" href="#quote-form">{lang==='ru'?'Подать онлайн':'Aplicar en línea'}</a>
-      {s.buyOnline && (<a class="btn btn-text btn-lg" href="#buy-online">⚡ {s.buyOnline.heroBtn}</a>)}
+      {bo && (<a class="btn btn-text btn-lg" href="#buy-online">⚡ {bo.heroBtn}</a>)}
     </div>
     <p style="margin-top:10px;font-size:13.5px;color:var(--muted)">{lang==='ru'?'Часы работы Пн–Пт 10:00–16:00 PT — звоните в рабочее время. В нерабочее время напишите SMS на':'Horario Lun–Vie 10am–4pm PT — llame en horario. Fuera de horario, envíe un SMS al'} <a href={`sms:${phone}`} style="color:var(--blue)">(310) 299-5555</a> {lang==='ru'?'или подайте заявку онлайн в любое время — мы перезвоним.':'o aplique en línea cuando quiera.'}</p>
     <div class="reassure">{s.reassure.map((r) => (<span><span class="tick">✓</span> {r}</span>))}</div>
@@ -58,15 +60,15 @@ const faqSchema = {
 
   <LeadForm lang={lang} line={LABELS[lang][s.slug] || s.h1} formType={formType} slug={s.slug} />
 
-  {s.buyOnline && (
+  {bo && (
     <section id="buy-online"><div class="wrap" style="max-width:900px">
-      <div class="eyebrow">{lang==='ru'?'Два способа оформить':'Dos formas'}</div>
-      <h2 class="sec">{s.buyOnline.title}</h2>
+      <div class="eyebrow">{bo.eyebrow}</div>
+      <h2 class="sec">{bo.title}</h2>
       <div class="grid grid-2">
         <div class="card">
           <div class="ic">🧑‍💼</div>
-          <h3>{s.buyOnline.agentTitle}</h3>
-          <p>{s.buyOnline.agentBody}</p>
+          <h3>{bo.agentTitle}</h3>
+          <p>{bo.agentBody}</p>
           <p style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
             <a class="btn btn-call" href={`tel:${phone}`}>📞 (310) 299-5555</a>
             <a class="btn btn-ghost" href="#quote-form">{lang==='ru'?'Подать онлайн':'Aplicar en línea'}</a>
@@ -74,14 +76,14 @@ const faqSchema = {
         </div>
         <div class="card">
           <div class="ic">⚡</div>
-          <h3>{s.buyOnline.onlineTitle}</h3>
-          <p>{s.buyOnline.onlineBody}</p>
+          <h3>{bo.onlineTitle}</h3>
+          <p>{bo.onlineBody}</p>
           <p style="margin-top:18px">
-            <a class="btn btn-text" href={s.buyOnline.href} target="_blank" rel="noopener sponsored">{s.buyOnline.btn}</a>
+            <a class="btn btn-text" href={bo.href} target="_blank" rel="noopener sponsored">{bo.btn}</a>
           </p>
         </div>
       </div>
-      <p style="margin-top:18px;font-size:13.5px;color:var(--muted)">{s.buyOnline.note}</p>
+      <p style="margin-top:18px;font-size:13.5px;color:var(--muted)">{bo.note}</p>
     </div></section>
   )}
 

@@ -49,6 +49,7 @@ export default {
       "d": "Additional insured added for the GC and issued fast."
     }
   ],
+  "buyOnline": "coterie",
   "faqs": [
     {
       "q": "How much is HVAC contractor insurance?",
