@@ -12,12 +12,6 @@ export const cities = [
       en: 'Sacramento has one of the largest Slavic (Russian and Ukrainian) communities in the United States — across Citrus Heights, North Highlands, Antelope, Fair Oaks, Carmichael and Rancho Cordova. We’re the Russian-speaking broker for the region’s drivers, owner-operators and salon owners.',
       ru: 'В Сакраменто одно из крупнейших славянских (русских и украинских) сообществ в США — Ситрус-Хайтс, Норт-Хайлендс, Антелоуп, Фэр-Оукс, Кармайкл и Ранчо-Кордова. Мы — русскоязычный брокер для водителей, владельцев-операторов и салонов региона.',
       es: 'Sacramento tiene una de las mayores comunidades eslavas (rusas y ucranianas) de EE. UU. — en Citrus Heights, North Highlands, Antelope, Fair Oaks, Carmichael y Rancho Cordova. Somos el corredor que habla ruso para conductores, propietarios-operadores y dueños de salón de la región.' } },
-  { slug: 'seattle', name: 'Seattle', abbr: 'WA',
-    niches: ['commercial-truck-insurance', 'general-liability-insurance', 'auto-insurance'],
-    community: {
-      en: 'The Seattle area — Renton, Kent, Bellevue and Lynnwood, plus Spokane statewide — has a large Russian, Ukrainian and Slavic community. We serve Washington’s Russian-speaking owner-operators, contractors and families.',
-      ru: 'В районе Сиэтла — Рентон, Кент, Беллвью и Линнвуд, а также Спокан по штату — большое русское, украинское и славянское сообщество. Мы обслуживаем русскоязычных владельцев-операторов, подрядчиков и семьи Вашингтона.',
-      es: 'El área de Seattle — Renton, Kent, Bellevue y Lynnwood, además de Spokane en el estado — tiene una gran comunidad rusa, ucraniana y eslava. Atendemos a propietarios-operadores, contratistas y familias de habla rusa de Washington.' } },
   { slug: 'chicago', name: 'Chicago', abbr: 'IL',
     niches: ['auto-insurance', 'sr22-insurance', 'general-liability-insurance'],
     community: {

@@ -3,7 +3,12 @@
     "redirects": [
         {
             "source": "/:path*",
-            "has": [{ "type": "host", "value": "www.covertoday.com" }],
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.covertoday.com"
+                }
+            ],
             "destination": "https://covertoday.com/:path*",
             "permanent": true
         },
@@ -170,6 +175,26 @@
         {
             "source": "/ru/motorcycle-rv-atv",
             "destination": "/ru/auto-insurance",
+            "permanent": true
+        },
+        {
+            "source": "/washington/:niche",
+            "destination": "/:niche",
+            "permanent": true
+        },
+        {
+            "source": "/ru/washington/:niche",
+            "destination": "/ru/:niche",
+            "permanent": true
+        },
+        {
+            "source": "/seattle/:niche",
+            "destination": "/:niche",
+            "permanent": true
+        },
+        {
+            "source": "/ru/seattle/:niche",
+            "destination": "/ru/:niche",
             "permanent": true
         }
     ]

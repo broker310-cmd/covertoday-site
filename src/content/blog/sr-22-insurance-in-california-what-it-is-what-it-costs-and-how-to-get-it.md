@@ -25,4 +25,4 @@ The SR-22 filing itself typically costs between $15 and $25. However, the bigger
 
 ## Get Your SR-22 Fast with CoverToday
 
-CoverToday Insurance Agency can help you get your SR-22 filed quickly — often within 24 hours. We handle everything online and over the phone, so there is no need to visit an office. We serve all of California, from Los Angeles to San Francisco, San Diego to Sacramento, and everywhere in between. Call us at (310) 299-5555 to get your SR-22 insurance quote today. We also offer SR-22 filing services in Texas, Arizona, Nevada, Illinois, North Carolina, and Washington.
+CoverToday Insurance Agency can help you get your SR-22 filed quickly — often within 24 hours. We handle everything online and over the phone, so there is no need to visit an office. We serve all of California, from Los Angeles to San Francisco, San Diego to Sacramento, and everywhere in between. Call us at (310) 299-5555 to get your SR-22 insurance quote today. We also offer SR-22 filing services in Texas, Arizona, Nevada, Illinois and North Carolina.

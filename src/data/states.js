@@ -6,7 +6,6 @@ export const states = [
   { slug: 'arizona', name: 'Arizona', abbr: 'AZ' },
   { slug: 'nevada', name: 'Nevada', abbr: 'NV' },
   { slug: 'north-carolina', name: 'North Carolina', abbr: 'NC' },
-  { slug: 'washington', name: 'Washington', abbr: 'WA' },
 ];
 
 // Niches that get a dedicated page per state
