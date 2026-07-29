@@ -174,5 +174,24 @@ const schema = {
   <script is:inline>
     function ctToggleMenu(){var m=document.getElementById('mobileMenu');var b=document.querySelector('.hamburger');var o=m.classList.toggle('open');if(b){b.classList.toggle('is-open',o);b.setAttribute('aria-expanded',o);}m.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':'';}
   </script>
+  <script is:inline>
+    // Partner outbound clicks -> GTM/GA4. MUST live here (Base) and not on the
+    // /go/ hop pages: the hops are standalone HTML without GTM, so a dataLayer
+    // push there is never collected. Fires on the source page, before navigation.
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href^="/go/"]') : null;
+      if (!a) return;
+      try {
+        var partner = a.getAttribute('href').split('/')[2] || 'unknown';
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'partner_click',
+          partner: partner,
+          page_path: window.location.pathname,
+          page_lang: document.documentElement.lang || 'en'
+        });
+      } catch (err) {}
+    }, true);
+  </script>
 </body>
 </html>
