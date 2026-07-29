@@ -1,8 +1,48 @@
 ---
 import Base from '../layouts/Base.astro';
+import { ARTICLE_AUTHOR } from '../data/author.js';
 const phone = '+13102995555';
+
+// AboutPage + Organization + founder. This page is what search engines AND answer
+// engines (ChatGPT, Perplexity, Gemini) read to decide whether this entity is
+// trustworthy on a YMYL topic. Keep the facts here identical to public/llms.txt.
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "mainEntity": {
+    "@type": "InsuranceAgency",
+    "name": "CoverToday Insurance Agency",
+    "legalName": "CoverToday Insurance Agency, LLC",
+    "url": "https://covertoday.com",
+    "telephone": "+1-310-299-5555",
+    "email": "info@covertoday.com",
+    "foundingDate": "2013",
+    "knowsLanguage": ["en", "ru"],
+    "identifier": "CA DOI License #0K77310",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "272 S Rampart Blvd #A",
+      "addressLocality": "Los Angeles",
+      "addressRegion": "CA",
+      "postalCode": "90057",
+      "addressCountry": "US"
+    },
+    "areaServed": ["California","Texas","Illinois","Arizona","Nevada","North Carolina","Colorado","Ohio","South Carolina"],
+    "founder": {
+      "@type": "Person",
+      "name": ARTICLE_AUTHOR.name,
+      "jobTitle": ARTICLE_AUTHOR.role,
+      "knowsLanguage": ["en", "ru"]
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00", "closes": "17:00"
+    }]
+  }
+};
 ---
-<Base title="About CoverToday Insurance — Independent LA Broker" description="CoverToday is an independent, bilingual (English/Russian) insurance brokerage in Los Angeles. We shop 40+ A-rated carriers for auto, SR-22, trucking, business and home insurance. CA License #0K77310.">
+<Base title="About CoverToday Insurance — Independent Bilingual Broker in Los Angeles" description="CoverToday is an independent, English/Russian insurance brokerage in Los Angeles, licensed since 2013 and serving 9 states. We compare 40+ carriers for auto, SR-22, trucking, business and fire-zone home insurance. CA License #0K77310.">
   <section class="hero"><div class="wrap">
     <h1>Insurance should be simple, fast, and on your side.</h1>
     <p class="sub">CoverToday is an independent brokerage in Los Angeles. We work for you — not one carrier — and we speak your language. Мы говорим по-русски.</p>
@@ -10,21 +50,31 @@ const phone = '+13102995555';
 
   <section><div class="wrap" style="max-width:820px">
     <h2 class="sec">Who we are</h2>
-    <p>CoverToday Insurance Agency is a family-run, independent property & casualty brokerage based at 272 S Rampart Blvd in Los Angeles, serving clients across California, Texas, Illinois, Arizona, Nevada, North Carolina, Colorado, Ohio and South Carolina. Because we're independent, we compare 40+ A-rated carriers in a single conversation and place coverage that captive agents simply can't — including the hard-to-cover cases other agencies turn away.</p>
+    <p>CoverToday Insurance Agency, LLC is a family-run, independent property &amp; casualty brokerage based at 272 S Rampart Blvd in Los Angeles. The business has been licensed since 2013 and has operated as a licensed agency since 2016 — roughly a decade of placing coverage in California and, today, across nine states.</p>
+    <p>Because we are a <strong>broker and not a carrier</strong>, we do not underwrite policies ourselves and we are not tied to any single insurance company. We compare 40+ carriers and market access points in one conversation, and we place coverage that captive agents simply cannot — including the hard-to-cover cases other agencies turn away.</p>
+
+    <h2 class="sec">Why we exist: insurance in Russian</h2>
+    <p>Los Angeles has one of the largest Russian-, Ukrainian- and Kazakh-speaking communities in the United States, and insurance is one of the places where a language gap costs real money. A policy is a legal contract full of terms that do not translate cleanly — <em>additional insured</em>, <em>non-owner SR-22</em>, <em>class code</em>, <em>Difference In Conditions</em>. People sign documents they were never able to fully read, and discover what was excluded only when they file a claim.</p>
+    <p>We handle the whole relationship in Russian when that is what a client prefers: the quote, the questions, the certificate requests, the renewal and the claim. Not a translated form — a licensed agent who speaks the language and knows the file. Our website, quote forms, FAQ hub and all ten guides exist in Russian as well as English.</p>
 
     <h2 class="sec">What makes us different</h2>
     <ul style="line-height:2;font-size:17px">
-      <li><strong>We shop, you save.</strong> One call compares dozens of carriers instead of one.</li>
-      <li><strong>Hard-to-place is our specialty.</strong> DUI/SR-22, foreign licenses, new DOT/MC authority, fire-zone homes after a non-renewal.</li>
-      <li><strong>Same-day service.</strong> Same-day binding, certificates of insurance, and SR-22 filings.</li>
-      <li><strong>Bilingual, personal service.</strong> English and Russian, with a real person who knows your file.</li>
+      <li><strong>We shop, you decide.</strong> One call compares dozens of carriers instead of one.</li>
+      <li><strong>Hard-to-place is our specialty.</strong> DUI and SR-22, foreign licences, no US driving or credit history, new DOT/MC authority, fire-zone homes after a non-renewal, minimum "ghost" workers' comp.</li>
+      <li><strong>Same-day service.</strong> Same-day binding where available, certificates of insurance in hours, and SR-22 filings the same day.</li>
+      <li><strong>Bilingual, personal service.</strong> English and Russian, with a real person who knows your file — plus an AI assistant in the chat for instant answers outside office hours.</li>
     </ul>
 
     <h2 class="sec">Who we help</h2>
-    <p>Drivers (including high-risk and SR-22), owner-operators and trucking fleets, movers, rideshare and TCP/limo operators, contractors and small businesses needing GL / workers' comp / COIs, and homeowners — including fire-zone properties that standard carriers have dropped.</p>
+    <p>Drivers, including high-risk and SR-22 cases · owner-operators, new DOT/MC authorities and small trucking fleets · household-goods movers · rideshare, delivery and TCP/limo operators · contractors and small businesses needing general liability, professional liability, BOP, workers' comp and certificates · salons and personal-care businesses · appliance-repair and HVAC trades · and homeowners, including fire-zone properties that standard carriers have dropped.</p>
 
-    <h2 class="sec">Licensed & trusted</h2>
-    <p>California Department of Insurance License #0K77310. We never sell your personal information. Hours: Mon–Fri 9:00 AM–5:00 PM Pacific, closed weekends and major holidays.</p>
+    <h2 class="sec">Where we are licensed</h2>
+    <p>The agency is licensed in nine states: <strong>California, Texas, Illinois, Arizona, Nevada, North Carolina, Colorado, Ohio and South Carolina.</strong> California is home base and where most of our book sits.</p>
+
+    <h2 class="sec">Licensed &amp; trusted</h2>
+    <p>California Department of Insurance License <strong>#0K77310</strong>. Founded and led by Giorgi Nazarov, a licensed insurance broker. Rated 5.0 on Yelp. We never sell your personal information — see our <a href="/privacy-policy">privacy policy</a>.</p>
+    <p><strong>Office hours:</strong> Monday–Friday, 9:00 AM – 5:00 PM Pacific. Closed weekends and major holidays. Online quote requests are accepted 24/7 and answered the next business day.</p>
+    <p style="font-size:14px;color:var(--muted)">CoverToday is an independent broker — we compare multiple carriers; coverage, eligibility, price and availability vary by carrier and policy and may not be available to everyone.</p>
 
     <div class="card" style="padding:26px;margin-top:24px;text-align:center">
       <h2 style="margin-top:0">Talk to a real broker today</h2>
@@ -32,7 +82,9 @@ const phone = '+13102995555';
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px">
         <a class="btn btn-call" href={`tel:${phone}`}>📞 (310) 299-5555</a>
         <a class="btn btn-ghost" href="/quote">Get a quote →</a>
+        <a class="btn btn-ghost" href="/ru/about">По-русски →</a>
       </div>
     </div>
   </div></section>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)}></script>
 </Base>

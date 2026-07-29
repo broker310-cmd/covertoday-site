@@ -1,0 +1,90 @@
+---
+// Russian About page. Written natively — this is the page an answer engine reads
+// when deciding whether to trust this entity for a Russian-language query.
+import Base from '../../layouts/Base.astro';
+import { ARTICLE_AUTHOR } from '../../data/author.js';
+const phone = '+13102995555';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ru' } }];
+}
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "inLanguage": "ru",
+  "mainEntity": {
+    "@type": "InsuranceAgency",
+    "name": "CoverToday Insurance Agency",
+    "legalName": "CoverToday Insurance Agency, LLC",
+    "url": "https://covertoday.com/ru",
+    "telephone": "+1-310-299-5555",
+    "email": "info@covertoday.com",
+    "foundingDate": "2013",
+    "knowsLanguage": ["ru", "en"],
+    "identifier": "CA DOI License #0K77310",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "272 S Rampart Blvd #A",
+      "addressLocality": "Los Angeles",
+      "addressRegion": "CA",
+      "postalCode": "90057",
+      "addressCountry": "US"
+    },
+    "areaServed": ["California","Texas","Illinois","Arizona","Nevada","North Carolina","Colorado","Ohio","South Carolina"],
+    "founder": { "@type": "Person", "name": ARTICLE_AUTHOR.name, "knowsLanguage": ["ru", "en"] },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00", "closes": "17:00"
+    }]
+  }
+};
+---
+<Base title="О нас — русскоязычный страховой брокер в Лос-Анджелесе | CoverToday" description="CoverToday — независимый страховой брокер в Лос-Анджелесе, работаем на русском и английском с 2013 года, лицензированы в 9 штатах. Сравниваем 40+ компаний: авто, SR-22, грузоперевозки, бизнес, жильё. Лицензия CA #0K77310.">
+  <section class="hero"><div class="wrap">
+    <h1>Страховка должна быть понятной, быстрой и на вашей стороне.</h1>
+    <p class="sub">CoverToday — независимый брокер в Лос-Анджелесе. Мы работаем на вас, а не на одну страховую компанию. И мы говорим по-русски.</p>
+  </div></section>
+
+  <section><div class="wrap" style="max-width:820px">
+    <h2 class="sec">Кто мы</h2>
+    <p>CoverToday Insurance Agency, LLC — независимое семейное брокерское агентство по имущественному страхованию и страхованию ответственности. Офис в Лос-Анджелесе, 272 S Rampart Blvd. Бизнес лицензирован с 2013 года, как агентство работаем с 2016-го — около десяти лет практики в Калифорнии, а сегодня и в девяти штатах.</p>
+    <p>Мы <strong>брокер, а не страховая компания</strong>: сами полисы не выпускаем и не привязаны ни к одной компании. Мы сравниваем 40+ компаний и точек доступа к рынку в одном разговоре — и размещаем то, что «привязанный» агент разместить просто не может, включая сложные случаи, от которых отказываются другие агентства.</p>
+
+    <h2 class="sec">Зачем мы нужны: страховка по-русски</h2>
+    <p>В Лос-Анджелесе одно из крупнейших русскоязычных сообществ США — русские, украинцы, казахстанцы. И страхование — как раз та область, где языковой барьер стоит реальных денег.</p>
+    <p>Полис — это юридический договор, полный терминов, которые не переводятся один в один: <em>additional insured</em>, <em>non-owner SR-22</em>, <em>class code</em>, <em>Difference In Conditions</em>. Люди подписывают документы, которые не смогли до конца прочитать, и узнают, что именно исключено, только когда наступает страховой случай.</p>
+    <p>Мы ведём всё общение на русском, если клиенту так удобнее: расчёт, вопросы, запросы сертификатов, продление и убыток. Не переведённая форма, а лицензированный агент, который говорит на вашем языке и знает ваше дело. Сайт, формы заявок, раздел вопросов и все десять гайдов у нас существуют и на русском, и на английском.</p>
+
+    <h2 class="sec">Чем мы отличаемся</h2>
+    <ul style="line-height:2;font-size:17px">
+      <li><strong>Мы сравниваем — вы решаете.</strong> Один звонок вместо обзвона десятков компаний.</li>
+      <li><strong>Сложные случаи — наша специализация.</strong> DUI и SR-22, иностранные права, отсутствие американской истории вождения и кредитной истории, новое DOT/MC authority, дома в зоне пожаров после отказа в продлении, минимальный («ghost») workers' comp.</li>
+      <li><strong>В тот же день.</strong> Оформление в тот же день, где доступно; сертификаты (COI) за часы; подача SR-22 день в день.</li>
+      <li><strong>Живое обслуживание на двух языках.</strong> Русский и английский, конкретный человек, который знает ваше дело — плюс ИИ-ассистент в чате для мгновенных ответов в нерабочее время.</li>
+    </ul>
+
+    <h2 class="sec">Кому мы помогаем</h2>
+    <p>Водителям, в том числе с высоким риском и с SR-22 · owner-operator, новым DOT/MC authority и небольшим транспортным флотам · компаниям по переездам · водителям Uber, Lyft, доставки и операторам TCP/лимузинов · подрядчикам и малому бизнесу, которым нужны general liability, professional liability, BOP, workers' comp и сертификаты · салонам красоты и ногтевым салонам · мастерам по ремонту техники и HVAC · и домовладельцам, включая дома в пожароопасных зонах, от которых отказались обычные компании.</p>
+
+    <h2 class="sec">Где мы лицензированы</h2>
+    <p>Агентство лицензировано в девяти штатах: <strong>Калифорния, Техас, Иллинойс, Аризона, Невада, Северная Каролина, Колорадо, Огайо и Южная Каролина.</strong> Калифорния — основной штат, где сосредоточена бо́льшая часть портфеля.</p>
+
+    <h2 class="sec">Лицензия и доверие</h2>
+    <p>Лицензия Департамента страхования Калифорнии <strong>#0K77310</strong>. Основатель и руководитель — Giorgi Nazarov, лицензированный страховой брокер. Рейтинг 5.0 на Yelp. Мы никогда не продаём ваши персональные данные — см. <a href="/ru/privacy-policy">политику конфиденциальности</a>.</p>
+    <p><strong>Часы работы:</strong> понедельник–пятница, 9:00–17:00 по тихоокеанскому времени. Суббота и воскресенье — выходной, в основные праздники закрыто. Заявки онлайн принимаем круглосуточно, отвечаем на следующий рабочий день.</p>
+    <p style="font-size:14px;color:var(--muted)">CoverToday — независимый брокер; сравниваем несколько компаний. Покрытие, право на него, цена и доступность зависят от компании и полиса и доступны не всем.</p>
+
+    <div class="card" style="padding:26px;margin-top:24px;text-align:center">
+      <h2 style="margin-top:0">Поговорите с живым брокером</h2>
+      <p style="color:var(--muted)">Бесплатный расчёт за несколько минут — по-русски или по-английски.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px">
+        <a class="btn btn-call" href={`tel:${phone}`}>📞 (310) 299-5555</a>
+        <a class="btn btn-ghost" href="/ru/quote">Заявка онлайн →</a>
+        <a class="btn btn-ghost" href="/about">In English →</a>
+      </div>
+    </div>
+  </div></section>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)}></script>
+</Base>
