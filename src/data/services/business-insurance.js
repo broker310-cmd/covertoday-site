@@ -3,7 +3,7 @@ export default {
   "h1": "Business insurance for California & multi-state owners.",
   "sub": "General liability, workers’ comp, BOP, and commercial auto — placed fast, with same-day certificates of insurance for your contracts.",
   "metaTitle": "Business Insurance — GL, Workers’ Comp, BOP | CoverToday",
-  "metaDesc": "Small-business insurance: general liability, workers’ comp, BOP & commercial auto. Same-day COIs. CA, TX, IL, AZ, NV, NC. Call (310) 299-5555.",
+  "metaDesc": "Small-business insurance: general liability, workers’ comp, BOP & commercial auto. Same-day COIs. CA, TX, IL, AZ, NV, NC, CO, OH, SC. Call (310) 299-5555.",
   "reassure": [
     "Same-day COIs",
     "GL · WC · BOP · Auto",
@@ -81,7 +81,7 @@ export default {
     },
     {
       "q": "What states do you serve?",
-      "a": "California plus Texas, Illinois, Arizona, Nevada and North Carolina."
+      "a": "California plus Texas, Illinois, Arizona, Nevada, North Carolina, Colorado, Ohio and South Carolina — nine states."
     }
   ]
 };

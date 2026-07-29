@@ -47,7 +47,7 @@ Trucking insurance is its own market with carriers and underwriters who only do 
 
 ## Get a trucking quote today
 
-Call or text 310-299-5555. We'll quote multiple carriers, bind the policy same-day, and have your COI in your inbox before close of business. CoverToday Insurance Agency, LLC. CA License #0K77310. Licensed in California, Texas, Illinois, Arizona, Nevada and North Carolina.
+Call or text 310-299-5555. We'll quote multiple carriers, bind the policy same-day, and have your COI in your inbox before close of business. CoverToday Insurance Agency, LLC. CA License #0K77310. Licensed in California, Texas, Illinois, Arizona, Nevada, North Carolina, Colorado, Ohio and South Carolina.
 
 ## Related guides
 

@@ -86,6 +86,21 @@ for (const s of enFiles) {
 for (const m of sm.matchAll(/covertoday\.com\/(?:ru\/)?([a-z0-9-]+-insurance)\b/g))
   if (!enFiles.includes(m[1])) err(`sitemap.xml has URL for "${m[1]}" which has no page (dead entry)`);
 
+console.log('== 7b. sitemap.xml /resources/ URLs all have a real blog post ==');
+// Added 2026-07-29 after three /resources/ URLs were found in the sitemap with no
+// matching file in src/content/blog/ — Google was being sent to three 404s and the
+// service-slug check in step 7 could not see it. Blog slug === filename.
+const BLOG_DIR = `${R}/content/blog`;
+const blogSlugs = existsSync(BLOG_DIR)
+  ? readdirSync(BLOG_DIR).filter(f => /\.mdx?$/.test(f)).map(f => f.replace(/\.mdx?$/, ''))
+  : [];
+const smResourceSlugs = [...sm.matchAll(/covertoday\.com\/(?:ru\/)?resources\/([a-z0-9-]+)/g)].map(m => m[1]);
+for (const slug of new Set(smResourceSlugs))
+  if (!blogSlugs.includes(slug)) err(`sitemap.xml submits /resources/${slug} but src/content/blog/${slug}.md does not exist (404 in Google's index)`);
+for (const slug of blogSlugs)
+  if (!smResourceSlugs.includes(slug)) warn(`blog post "${slug}" exists but is NOT in sitemap.xml (Google may never find it)`);
+console.log(`  ${blogSlugs.length} blog posts, ${new Set(smResourceSlugs).size} /resources/ URLs in sitemap`);
+
 console.log('== 8. Legal / A2P invariants still present (never delete these) ==');
 const must = (file, str, why) => { if (!existsSync(file)) return err(`${file} is MISSING (${why})`);
   if (!read(file).includes(str)) err(`${file} no longer contains required text: "${str.slice(0,60)}…" (${why})`); };
