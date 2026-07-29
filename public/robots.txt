@@ -1,4 +1,59 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.covertoday.com/sitemap.xml
+# --- AI / answer-engine crawlers -------------------------------------------
+# Explicitly allowed. "User-agent: *" already permits them, but being explicit
+# states intent, survives a future change in anyone's default, and is the signal
+# these crawlers' operators ask sites to send. CoverToday WANTS to be quoted by
+# answer engines — especially for Russian-language insurance questions.
+# Machine-readable summary of the business: /llms.txt
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Sitemap must be the APEX host. The canonical host moved to covertoday.com on
+# 2026-07-24 and www 30x-redirects to it — pointing crawlers at the www copy sent
+# them through a redirect for the single most important file on the site.
+Sitemap: https://covertoday.com/sitemap.xml

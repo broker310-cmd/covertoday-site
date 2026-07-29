@@ -17,11 +17,11 @@ const enHref = bp;
 // EN-only pages (blog articles, about, careers, 404) fall back to the closest RU page.
 const EN_ONLY = ['/careers', '/404'];
 const ruHref = bp === '/' ? '/ru/'
-  : bp.startsWith('/resources/') ? '/ru/resources'
+  : bp.startsWith('/resources/') ? '/ru' + bp   // RU article twin (verify.mjs 7c enforces the twin exists)
   : EN_ONLY.includes(bp) ? '/ru/'
   : '/ru' + bp;
 const homeHref = lang === 'en' ? '/' : '/' + lang + '/';
-const canonical = site + pathname;
+const canonical = site + (pathname !== '/' ? pathname.replace(/\/$/, '') : '/');
 const ogLocale = lang === 'ru' ? 'ru_RU' : lang === 'es' ? 'es_ES' : 'en_US';
 const schema = {
   "@context": "https://schema.org",

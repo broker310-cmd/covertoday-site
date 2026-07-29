@@ -114,8 +114,36 @@ for (const slug of ruBlogSlugs) {
   if (!sm.includes(`covertoday.com/ru/resources/${slug}`)) err(`sitemap.xml missing RU article URL for "${slug}"`);
 }
 const untranslated = blogSlugs.filter(s => !ruBlogSlugs.includes(s));
-if (untranslated.length) warn(`${untranslated.length} article(s) still English-only — Russian readers get no RU version: ${untranslated.join(', ')}`);
+if (untranslated.length) err(`${untranslated.length} article(s) have NO Russian twin: ${untranslated.join(', ')}. This is now a HARD ERROR, not a warning: Base.astro points every /resources/<slug> at /ru/resources/<slug> for hreflang, so a missing twin publishes a broken hreflang to Google. Translate it or remove the EN post.`);
 console.log(`  ${ruBlogSlugs.length}/${blogSlugs.length} articles translated to Russian`);
+
+console.log('== 7d. Crawl signals: robots.txt + canonical/hreflang URL form ==');
+// Added 2026-07-29 after an audit found robots.txt pointing crawlers at the www
+// sitemap (which redirects) and canonical carrying a trailing slash while hreflang
+// and the sitemap did not — the same page advertised in three URL forms.
+const robots = existsSync('public/robots.txt') ? read('public/robots.txt') : '';
+if (!robots) err('public/robots.txt is MISSING');
+if (/Sitemap:\s*https?:\/\/www\./i.test(robots)) err('robots.txt Sitemap points at the www host, which redirects — must be the apex covertoday.com');
+if (!/Sitemap:\s*https:\/\/covertoday\.com\/sitemap\.xml/i.test(robots)) err('robots.txt is missing the apex Sitemap directive');
+for (const bot of ['GPTBot', 'PerplexityBot', 'ClaudeBot', 'Google-Extended', 'OAI-SearchBot'])
+  if (!robots.includes(bot)) warn(`robots.txt no longer explicitly allows ${bot} — answer-engine visibility is a stated goal`);
+if (!existsSync('public/llms.txt')) err('public/llms.txt is MISSING — it is how answer engines read the business summary');
+
+if (existsSync('dist')) {
+  const sample = 'dist/general-liability-insurance/index.html';
+  if (existsSync(sample)) {
+    const html = read(sample);
+    const can = (html.match(/rel="canonical" href="([^"]+)"/) || [])[1] || '';
+    const hre = (html.match(/hreflang="en" href="([^"]+)"/) || [])[1] || '';
+    if (can && hre && can !== hre) err(`canonical (${can}) and hreflang en (${hre}) disagree — same page advertised in two URL forms`);
+    if (/\/$/.test(can) && can !== 'https://covertoday.com/') err(`canonical has a trailing slash (${can}) but the sitemap does not — normalise them`);
+  }
+  const art = 'dist/resources/sr-22-insurance-in-california-what-it-is-what-it-costs-and-how-to-get-it/index.html';
+  if (existsSync(art)) {
+    const ru = (read(art).match(/hreflang="ru" href="([^"]+)"/) || [])[1] || '';
+    if (!ru.includes('/ru/resources/sr-22')) err(`article hreflang ru points at "${ru}" instead of its RU twin — Google will not pair the translations`);
+  }
+}
 
 console.log('== 8. Legal / A2P invariants still present (never delete these) ==');
 const must = (file, str, why) => { if (!existsSync(file)) return err(`${file} is MISSING (${why})`);
