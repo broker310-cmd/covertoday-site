@@ -33,3 +33,10 @@ California is one of the more expensive WC markets. Office work runs $0.30–$0.
 ## Get a WC quote today
 
 Call or text 310-299-5555. Have your business name + FEIN, list of employees with job descriptions, annual payroll per employee, and any prior X-mod ready. CoverToday Insurance Agency, LLC. CA License #0K77310.
+
+## Related
+
+- [Workers' compensation — service page](/workers-comp-insurance)
+- [General liability](/general-liability-insurance)
+- [Business Owners Policy (BOP)](/bop-insurance)
+- [General liability for California contractors — why $1M is the standard](/resources/general-liability-insurance-for-california-contractors-why-1m-is-the-standard)

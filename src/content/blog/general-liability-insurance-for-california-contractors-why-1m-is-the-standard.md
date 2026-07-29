@@ -32,3 +32,10 @@ A small one-person trade in California typically pays $400–$1,200/year for $1M
 ## Get a quote today
 
 Call or text 310-299-5555. Have your trade, gross receipts last 12 months, number of employees, and the COI requirements from the contracting party ready. CoverToday Insurance Agency, LLC. CA License #0K77310.
+
+## Related
+
+- [General liability — service page](/general-liability-insurance)
+- [Professional liability (E&O)](/professional-liability-insurance)
+- [Business Owners Policy (BOP)](/bop-insurance)
+- [Workers' compensation in California](/resources/workers-compensation-insurance-in-california-mandatory-coverage-every-employer-needs)

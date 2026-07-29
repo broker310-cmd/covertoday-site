@@ -48,7 +48,7 @@ Our [practice test](/dmv-practice-test) organizes all 180 questions into 20 topi
 
 Here's what surprises most new drivers and their parents: **new drivers pay the highest auto insurance rates of anyone on the road.** No driving history means insurers price you as a risk — and the difference between carriers for the exact same new driver can be enormous.
 
-That's where an independent broker earns their keep. At CoverToday we compare 15+ carriers to find the one that treats new drivers (and drivers new to the US, with no American driving history) the best. We work in English and Russian, and quotes are free.
+That's where an independent broker earns their keep. At CoverToday we compare 40+ carriers to find the one that treats new drivers (and drivers new to the US, with no American driving history) the best. We work in English and Russian, and quotes are free.
 
 **Ready when you are:** [get a free quote](/quote) or call/text **(310) 299-5555**.
 

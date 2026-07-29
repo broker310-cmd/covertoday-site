@@ -17,6 +17,13 @@ const url = PARTNERS.coterie.href;
       <p>Taking you to our partner’s secure quote page…</p>
       <p><a href={url} rel="noopener sponsored">Continue &rarr;</a> &middot; <a href="/business-insurance">Back to CoverToday</a></p>
     </div>
-    <script is:inline define:vars={{ url }}>window.location.replace(url);</script>
+    <script is:inline define:vars={{ url, partner: 'coterie' }}>
+      // Fire the click into GTM/GA4 before redirecting, so partner clicks are measurable.
+      try {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'partner_click', partner: partner, destination: url });
+      } catch (e) {}
+      setTimeout(function () { window.location.replace(url); }, 120);
+    </script>
   </body>
 </html>
