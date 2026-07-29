@@ -18,6 +18,36 @@ export const cities = [
       en: 'Chicago is home to the largest Russian-speaking community in the Midwest — in West Rogers Park, Skokie, Buffalo Grove, Northbrook and Wheeling. Our agents serve Chicagoland’s Russian-speaking drivers and business owners.',
       ru: 'Чикаго — крупнейшее русскоязычное сообщество на Среднем Западе: Уэст-Роджерс-Парк, Скоки, Баффало-Гроув, Нортбрук и Уилинг. Наши агенты обслуживают русскоязычных водителей и владельцев бизнеса Чикаголенда.',
       es: 'Chicago alberga la mayor comunidad de habla rusa del Medio Oeste — en West Rogers Park, Skokie, Buffalo Grove, Northbrook y Wheeling. Atendemos a conductores y dueños de negocios de habla rusa de Chicagoland.' } },
+  { slug: 'las-vegas', name: 'Las Vegas', abbr: 'NV',
+    niches: ['auto-insurance', 'sr22-insurance', 'nail-salon-insurance'],
+    community: {
+      en: 'Las Vegas has a steadily growing Russian- and Ukrainian-speaking community, concentrated in Summerlin, Spring Valley and the southwest of the valley. Many arrived recently, and the two things they ask us about most are auto insurance without a US driving history and the certificates a salon or small business needs to sign a lease. We are licensed in Nevada and handle both in Russian.',
+      ru: 'В Лас-Вегасе растёт русско- и украиноязычное сообщество — Саммерлин, Спринг-Вэлли и юго-запад долины. Многие приехали недавно, и чаще всего нас спрашивают о двух вещах: автостраховка без американской истории вождения и сертификаты, которые нужны салону или малому бизнесу для подписания аренды. Мы лицензированы в Неваде и решаем оба вопроса по-русски.',
+      es: 'Las Vegas tiene una creciente comunidad de habla rusa y ucraniana en Summerlin, Spring Valley y el suroeste del valle. Estamos licenciados en Nevada y atendemos en ruso e inglés.' } },
+  { slug: 'phoenix', name: 'Phoenix', abbr: 'AZ',
+    niches: ['auto-insurance', 'commercial-truck-insurance', 'general-liability-insurance'],
+    community: {
+      en: 'Phoenix and the wider Valley — Scottsdale, Glendale, Mesa and Chandler — have a well-established Russian-speaking community, with a strong share of owner-operators running freight out of Arizona and tradespeople working the construction boom. We are licensed in Arizona and quote both sides of that: DOT/MC trucking programs and the general liability certificates contractors need to get on a job.',
+      ru: 'В Финиксе и по всей долине — Скоттсдейл, Глендейл, Меса, Чандлер — давно сложилось русскоязычное сообщество, в котором много owner-operator, возящих груз из Аризоны, и мастеров, работающих на строительном буме. Мы лицензированы в Аризоне и котируем и то и другое: программы DOT/MC для грузоперевозок и сертификаты general liability, без которых подрядчика не пустят на объект.',
+      es: 'Phoenix y el Valle — Scottsdale, Glendale, Mesa y Chandler — tienen una comunidad de habla rusa establecida. Estamos licenciados en Arizona.' } },
+  { slug: 'houston', name: 'Houston', abbr: 'TX',
+    niches: ['commercial-truck-insurance', 'auto-insurance', 'general-liability-insurance'],
+    community: {
+      en: 'Houston is a freight city, and a large share of the Russian-speaking families who settle here end up in and around trucking — owner-operators, small fleets, and the shops and services that support them. We are licensed in Texas and specialise in exactly that profile: new DOT/MC authorities, single-truck operations, and the general liability certificates a broker or shipper demands before your first load.',
+      ru: 'Хьюстон — грузовой город, и значительная часть русскоязычных семей, которые здесь оседают, так или иначе связана с грузоперевозками: owner-operator, небольшие флоты и сервисы вокруг них. Мы лицензированы в Техасе и специализируемся именно на этом профиле — новые DOT/MC authority, работа на одном траке и сертификаты general liability, которые брокер или шиппер требует до первой загрузки.',
+      es: 'Houston es una ciudad de carga y gran parte de la comunidad de habla rusa trabaja en el transporte. Estamos licenciados en Texas.' } },
+  { slug: 'dallas', name: 'Dallas', abbr: 'TX',
+    niches: ['commercial-truck-insurance', 'auto-insurance', 'sr22-insurance'],
+    community: {
+      en: 'The Dallas–Fort Worth metroplex sits on the country\u2019s busiest freight corridors, and its Russian-speaking community includes a large number of owner-operators and new authorities. We are licensed in Texas and write DOT/MC trucking programs, personal auto for drivers with foreign licences or no US history, and same-day SR-22 filings — in English or Russian.',
+      ru: 'Метроплекс Даллас–Форт-Уэрт стоит на самых загруженных грузовых коридорах страны, и в местном русскоязычном сообществе много owner-operator и новых authority. Мы лицензированы в Техасе: оформляем программы DOT/MC, личное авто для водителей с иностранными правами или без американской истории и подачу SR-22 в тот же день — по-русски или по-английски.',
+      es: 'El metroplex Dallas–Fort Worth está en los corredores de carga más transitados del país. Estamos licenciados en Texas.' } },
+  { slug: 'charlotte', name: 'Charlotte', abbr: 'NC',
+    niches: ['auto-insurance', 'commercial-truck-insurance', 'general-liability-insurance'],
+    community: {
+      en: 'Charlotte has one of the faster-growing Russian- and Ukrainian-speaking populations in the Southeast, spread through the north and southeast suburbs. Newcomers usually need two things quickly: auto insurance that recognises driving experience earned outside the US, and — for the many who start a trucking or trade business — DOT/MC coverage and liability certificates. We are licensed in North Carolina for both.',
+      ru: 'В Шарлотт одно из наиболее быстро растущих русско- и украиноязычных сообществ на Юго-Востоке — в северных и юго-восточных пригородах. Приехавшим обычно быстро нужны две вещи: автостраховка, где учтён стаж вождения, полученный за пределами США, и — для тех, кто открывает транспортный или сервисный бизнес — покрытие DOT/MC и сертификаты ответственности. Мы лицензированы в Северной Каролине и для того, и для другого.',
+      es: 'Charlotte tiene una de las comunidades de habla rusa y ucraniana de más rápido crecimiento del sureste. Estamos licenciados en Carolina del Norte.' } },
 ];
 
 export const cityNiches = {
