@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import { ARTICLE_AUTHOR, articleSchema } from '../../data/author.js';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -9,21 +10,25 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 const phone = '+13102995555';
+const schema = articleSchema(post, `https://covertoday.com/resources/${post.slug}`, 'en');
 ---
 <Base title={`${post.data.title} | CoverToday`} description={post.data.description}>
   <article class="wrap" style="max-width:740px;padding:48px 22px 10px">
     <a href="/resources" style="color:var(--blue);font-weight:600;font-size:14px">← Resources</a>
     <h1 style="font-size:34px;margin-top:14px">{post.data.title}</h1>
     <p style="color:var(--muted);margin-top:8px;font-size:14px">{post.data.category ? post.data.category + ' · ' : ''}{post.data.date}</p>
+    <p style="color:var(--muted);margin-top:4px;font-size:14px">By <strong style="color:var(--ink)">{ARTICLE_AUTHOR.name}</strong> — {ARTICLE_AUTHOR.role}, {ARTICLE_AUTHOR.license}</p>
     <div class="post-body">
       <Content />
     </div>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:26px">Independent broker — we compare multiple carriers; coverage, eligibility, price and availability vary and may not be available to everyone. General information, not advice on a specific policy.</p>
     <div class="card" style="margin:34px 0;background:var(--blue-light);border:none;text-align:center">
       <h3 style="color:var(--blue)">Get a free quote in minutes</h3>
       <p style="margin:8px 0 16px">Call or text — English &amp; Russian.</p>
       <a class="btn btn-call" href={`tel:${phone}`}>📞 (310) 299-5555</a>
     </div>
   </article>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)}></script>
 </Base>
 <style is:global>
   .post-body{margin-top:26px}

@@ -237,7 +237,7 @@ export default {
     searchPh: 'Search all 180 questions… (e.g. "speed limit", "school bus", "BAC")',
     noResults: 'No questions match your search.',
     ctaTitle: 'First car? First policy.',
-    ctaBody: 'New drivers pay the highest insurance rates of anyone — unless someone shops the market for them. As an independent broker, we compare 15+ carriers to find the right fit.',
+    ctaBody: 'New drivers pay the highest insurance rates of anyone — unless someone shops the market for them. As an independent broker, we compare 40+ carriers to find the right fit.',
     ctaBtn: 'Get a free quote',
     linksTitle: 'Official DMV resources',
     link1: "Official CA Driver's Handbook", link2: 'Official DMV Sample Tests', link3: 'Book a DMV Appointment',

@@ -1,0 +1,44 @@
+---
+// Russian article pages — /ru/resources/<slug>. Slugs are identical to the English
+// posts so hreflang pairs 1:1 and verify.mjs can gate EN/RU blog twins.
+import Base from '../../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { ARTICLE_AUTHOR, articleSchema } from '../../../data/author.js';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog-ru');
+  return posts.map((post) => ({ params: { lang: 'ru', slug: post.slug }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await post.render();
+const phone = '+13102995555';
+const schema = articleSchema(post, `https://covertoday.com/ru/resources/${post.slug}`, 'ru');
+---
+<Base title={`${post.data.title} | CoverToday`} description={post.data.description}>
+  <article class="wrap" style="max-width:740px;padding:48px 22px 10px">
+    <a href="/ru/resources" style="color:var(--blue);font-weight:600;font-size:14px">← Полезные материалы</a>
+    <h1 style="font-size:34px;margin-top:14px">{post.data.title}</h1>
+    <p style="color:var(--muted);margin-top:8px;font-size:14px">{post.data.category ? post.data.category + ' · ' : ''}{post.data.date}</p>
+    <p style="color:var(--muted);margin-top:4px;font-size:14px">Автор: <strong style="color:var(--ink)">{ARTICLE_AUTHOR.name}</strong> — {ARTICLE_AUTHOR.roleRu}, {ARTICLE_AUTHOR.licenseRu}</p>
+    <div class="post-body">
+      <Content />
+    </div>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:26px">Независимый брокер — сравниваем несколько компаний; покрытие, право на него, цена и доступность зависят от компании и полиса и доступны не всем. Это общая информация, а не консультация по конкретному полису.</p>
+    <div class="card" style="margin:34px 0;background:var(--blue-light);border:none;text-align:center">
+      <h3 style="color:var(--blue)">Бесплатный расчёт за несколько минут</h3>
+      <p style="margin:8px 0 16px">Звоните или пишите — по-русски и по-английски.</p>
+      <a class="btn btn-call" href={`tel:${phone}`}>📞 (310) 299-5555</a>
+      <a class="btn btn-ghost" href="/ru/quote" style="margin-left:8px">Заявка онлайн</a>
+    </div>
+  </article>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)}></script>
+</Base>
+<style is:global>
+  .post-body{margin-top:26px}
+  .post-body h2{font-size:24px;margin:30px 0 10px;font-weight:800}
+  .post-body p{margin:14px 0;font-size:17px;line-height:1.75;color:var(--ink)}
+  .post-body ul,.post-body ol{margin:14px 0 14px 22px}
+  .post-body li{margin:7px 0;font-size:17px;line-height:1.6}
+  .post-body strong{color:var(--ink)}
+  .post-body a{color:var(--blue);font-weight:600}
+</style>

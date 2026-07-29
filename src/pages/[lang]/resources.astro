@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { resources } from '../../i18n/content-standalone.js';
+import { getCollection } from 'astro:content';
 
 export function getStaticPaths() {
   return [
@@ -8,6 +9,8 @@ export function getStaticPaths() {
   ];
 }
 const { c } = Astro.props;
+// Russian articles — real RU content, not a fallback to the English list.
+const posts = (await getCollection('blog-ru')).sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
 ---
 <Base title={c.metaTitle} description={c.metaDesc}>
   <section class="hero"><div class="wrap">
@@ -21,6 +24,21 @@ const { c } = Astro.props;
         <h2 class="sec">{c.toolsTitle}</h2>
         <div class="grid grid-3" style="margin-bottom:40px">
           {c.tools.map((tl) => (<a class="card" href={tl.href}><div class="eyebrow" style="margin-bottom:6px">{tl.k}</div><h3>{tl.t}</h3><p>{tl.d}</p></a>))}
+        </div>
+      </>
+    )}
+    {posts.length > 0 && (
+      <>
+        <div class="eyebrow">Статьи на русском</div>
+        <h2 class="sec">Гайды и разборы</h2>
+        <div class="grid grid-3" style="margin-bottom:40px">
+          {posts.map((post) => (
+            <a class="card" href={`/ru/resources/${post.slug}`} style="text-decoration:none">
+              <div class="eyebrow" style="margin-bottom:6px">{post.data.category}</div>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </a>
+          ))}
         </div>
       </>
     )}

@@ -101,6 +101,22 @@ for (const slug of blogSlugs)
   if (!smResourceSlugs.includes(slug)) warn(`blog post "${slug}" exists but is NOT in sitemap.xml (Google may never find it)`);
 console.log(`  ${blogSlugs.length} blog posts, ${new Set(smResourceSlugs).size} /resources/ URLs in sitemap`);
 
+console.log('== 7c. RU article twins + sitemap ==');
+// Russian blog collection (src/content/blog-ru) uses the SAME slugs as EN so
+// hreflang pairs 1:1. A RU post with no EN twin is an error; an EN post with no
+// RU twin is a WARNING (translation is in progress, not a deploy blocker).
+const RU_BLOG_DIR = `${R}/content/blog-ru`;
+const ruBlogSlugs = existsSync(RU_BLOG_DIR)
+  ? readdirSync(RU_BLOG_DIR).filter(f => /\.mdx?$/.test(f)).map(f => f.replace(/\.mdx?$/, ''))
+  : [];
+for (const slug of ruBlogSlugs) {
+  if (!blogSlugs.includes(slug)) err(`blog-ru/${slug}.md has no English twin (src/content/blog/${slug}.md)`);
+  if (!sm.includes(`covertoday.com/ru/resources/${slug}`)) err(`sitemap.xml missing RU article URL for "${slug}"`);
+}
+const untranslated = blogSlugs.filter(s => !ruBlogSlugs.includes(s));
+if (untranslated.length) warn(`${untranslated.length} article(s) still English-only — Russian readers get no RU version: ${untranslated.join(', ')}`);
+console.log(`  ${ruBlogSlugs.length}/${blogSlugs.length} articles translated to Russian`);
+
 console.log('== 8. Legal / A2P invariants still present (never delete these) ==');
 const must = (file, str, why) => { if (!existsSync(file)) return err(`${file} is MISSING (${why})`);
   if (!read(file).includes(str)) err(`${file} no longer contains required text: "${str.slice(0,60)}…" (${why})`); };

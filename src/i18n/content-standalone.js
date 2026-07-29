@@ -46,11 +46,11 @@ export const contact = {
   ru: { metaTitle: 'Контакт CoverToday | (310) 299-5555', metaDesc: 'Свяжитесь с CoverToday в Лос-Анджелесе. Звоните или пишите (310) 299-5555. Русскоговорящие агенты.',
     h1: 'Поговорите с лицензированным агентом', sub: 'Звоните, пишите или заходите. Отвечаем на русском и английском.',
     reachTitle: 'Связаться', reach: '<strong>Телефон / SMS:</strong> (310) 299-5555<br/><strong>Email:</strong> info@covertoday.com<br/><strong>Адрес:</strong> 272 S Rampart Blvd, Los Angeles, CA 90057<br/><strong>Лицензия:</strong> DOI #0K77310',
-    hoursTitle: 'Часы работы', hours: 'Пн–Пт: 9:00 – 18:30<br/>Суббота: 9:00 – 17:00<br/>Воскресенье: закрыто' },
+    hoursTitle: 'Часы работы', hours: 'Пн–Пт: 9:00 – 17:00 (тихоокеанское)<br/>Суббота и воскресенье: закрыто<br/>В основные праздники закрыто' },
   es: { metaTitle: 'Contacto CoverToday | (310) 299-5555', metaDesc: 'Contacte a CoverToday en Los Ángeles. Llame o escriba al (310) 299-5555. Agentes que hablan español.',
     h1: 'Hable con un agente con licencia', sub: 'Llame, escriba o visítenos. Atendemos en español e inglés.',
     reachTitle: 'Comuníquese', reach: '<strong>Teléfono / SMS:</strong> (310) 299-5555<br/><strong>Email:</strong> info@covertoday.com<br/><strong>Dirección:</strong> 272 S Rampart Blvd, Los Angeles, CA 90057<br/><strong>Licencia:</strong> DOI #0K77310',
-    hoursTitle: 'Horario', hours: 'Lun–Vie: 9:00 – 18:30<br/>Sábado: 9:00 – 17:00<br/>Domingo: cerrado' },
+    hoursTitle: 'Horario', hours: 'Lun–Vie: 9:00 – 17:00 (Pacífico)<br/>Sábado y domingo: cerrado<br/>Cerrado en días festivos principales' },
 };
 
 export const resources = {

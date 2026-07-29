@@ -47,7 +47,7 @@ const faqSchema = {
       <a class="btn btn-ghost btn-lg" href="#quote-form">{lang==='ru'?'Подать онлайн':'Aplicar en línea'}</a>
       {bo && (<a class="btn btn-text btn-lg" href="#buy-online">⚡ {bo.heroBtn}</a>)}
     </div>
-    <p style="margin-top:10px;font-size:13.5px;color:var(--muted)">{lang==='ru'?'Часы работы Пн–Пт 10:00–16:00 PT — звоните в рабочее время. В нерабочее время напишите SMS на':'Horario Lun–Vie 10am–4pm PT — llame en horario. Fuera de horario, envíe un SMS al'} <a href={`sms:${phone}`} style="color:var(--blue)">(310) 299-5555</a> {lang==='ru'?'или подайте заявку онлайн в любое время — мы перезвоним.':'o aplique en línea cuando quiera.'}</p>
+    <p style="margin-top:10px;font-size:13.5px;color:var(--muted)">{lang==='ru'?'Часы работы Пн–Пт 9:00–17:00 PT (закрыто в основные праздники) — звоните в рабочее время. В нерабочее время напишите SMS на':'Horario Lun–Vie 9am–5pm PT (cerrado en días festivos principales) — llame en horario. Fuera de horario, envíe un SMS al'} <a href={`sms:${phone}`} style="color:var(--blue)">(310) 299-5555</a> {lang==='ru'?'или подайте заявку онлайн в любое время — мы перезвоним.':'o aplique en línea cuando quiera.'}</p>
     <div class="reassure">{s.reassure.map((r) => (<span><span class="tick">✓</span> {r}</span>))}</div>
   </div></section>
 
