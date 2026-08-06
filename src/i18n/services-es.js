@@ -35,7 +35,7 @@ export default [
       }
     ],
     "cost": "En California, la responsabilidad básica suele empezar en $29–$70/mes para perfiles limpios, y la cobertura total $120–$250/mes según su auto, ZIP, edad e historial. Los perfiles de alto riesgo cuestan más, pero como corredor independiente comparamos 40+ aseguradoras para hallar la tarifa más baja para su caso.",
-    "whoNeeds": "Todo conductor en California debe llevar al menos la responsabilidad mínima (15/30/5). Si financia o arrienda, el prestamista exige cobertura total. Tras un DUI, suspensión o lapso, el DMV puede exigir un SR-22 antes de manejar — hacemos la póliza y el trámite juntos, el mismo día.",
+    "whoNeeds": "Todo conductor en California debe llevar al menos la responsabilidad mínima (30/60/15). Si financia o arrienda, el prestamista exige cobertura total. Tras un DUI, suspensión o lapso, el DMV puede exigir un SR-22 antes de manejar — hacemos la póliza y el trámite juntos, el mismo día.",
     "steps": [
       {
         "t": "Cuéntenos sobre usted",
