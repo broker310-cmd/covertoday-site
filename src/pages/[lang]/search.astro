@@ -1,0 +1,31 @@
+---
+// Russian twin of /search. Same three jobs (Enter target, shareable ?q= URL,
+// no-JS fallback); the index it loads is /search-index-ru.json, chosen by
+// ct-search.js from <html lang>. noindex, like the EN page.
+import Base from '../../layouts/Base.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'ru' }, props: { lang: 'ru' } }];
+}
+const { lang } = Astro.props;
+const phone = '+13102995555';
+---
+<Base title="Поиск — CoverToday Insurance" description="Поиск по сайту CoverToday: страховки, статьи и инструменты — авто, SR-22, грузоперевозки, ответственность, бизнес, жильё." noindex={true}>
+  <section class="hero"><div class="wrap">
+    <h1>Поиск</h1>
+    <p class="sub">Страховки, статьи и инструменты. Начните печатать — подсказки появятся сразу.</p>
+    <div id="cts-page">
+      <label class="cts-page-box" for="cts-page-input">
+        <svg class="cts-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.3-4.3M11 19a8 8 0 110-16 8 8 0 010 16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        <input id="cts-page-input" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+          role="combobox" aria-expanded="false" aria-controls="cts-page-list" aria-autocomplete="list"
+          placeholder="Поиск: страховки, статьи, инструменты…" aria-label="Поиск по сайту" />
+      </label>
+      <div id="cts-page-list" role="listbox" aria-label="Результаты"></div>
+    </div>
+    <noscript>
+      <p style="margin-top:18px">Для поиска нужен JavaScript. Откройте <a href={`/${lang}/auto-insurance`}>авто</a>, <a href={`/${lang}/commercial-truck-insurance`}>грузоперевозки</a>, <a href={`/${lang}/business-insurance`}>бизнес</a> или <a href={`/${lang}/home-insurance`}>жильё</a>, либо <a href={`/${lang}/resources`}>статьи</a>. Или позвоните: <a href={`tel:${phone}`}>(310) 299-5555</a>.</p>
+    </noscript>
+  </div></section>
+</Base>
+<script is:inline src="/ct-search.js?v=1" defer></script>

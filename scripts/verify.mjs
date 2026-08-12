@@ -5,6 +5,7 @@
 // a page" class of mistakes: missing EN/RU twin, dangling nav/related/sitemap link,
 // missing sitemap entry, a deleted legal (A2P) invariant, or a corrupt page file.
 import { readFileSync, readdirSync, existsSync } from 'fs';
+import { gzipSync } from 'zlib';
 const R = 'src', root = '.';
 let errors = 0, warns = 0;
 const err = (m) => { console.error('  ✗ ' + m); errors++; };
@@ -182,6 +183,77 @@ if (existsSync('dist')) {
     else if (!/<html[^>]*lang="ru"/.test(read(ru))) err(`${ru}: <html> not lang="ru"`);
   }
   console.log(`  checked ${enFiles.length} pages × 2 langs in dist/`);
+} else {
+  console.log('  (dist/ not built — run `npm run check` for the full gate incl. this section)');
+}
+
+console.log('== 11. Site search: index integrity + payload budget ==');
+// Site search is the one feature here that can quietly get heavy: the index is
+// generated, so it grows every time a page is added, and nobody notices until
+// it is a 200KB download. So the budget is enforced on EVERY build, and the
+// numbers are printed whether or not they pass — a trend you can see beats a
+// limit you only hear about once it breaks.
+//
+// The budget is what ONE visitor downloads the first time they open search:
+// the engine plus their own language's index (never both languages).
+const SEARCH_BUDGET_KB = 40;   // hard stop — do not deploy
+const SEARCH_WARN_KB = 28;     // "look at this before adding more"
+if (existsSync('dist')) {
+  const gzKB = (p) => Math.round((gzipSync(readFileSync(p)).length / 1024) * 10) / 10;
+  const engine = 'public/ct-search.js';
+  if (!existsSync(engine)) err('public/ct-search.js is MISSING — the search button would open nothing');
+
+  let worstIndex = 0;
+  for (const lg of ['en', 'ru']) {
+    const p = `dist/search-index-${lg}.json`;
+    if (!existsSync(p)) { err(`${p} was not generated — search would 404 for ${lg.toUpperCase()} visitors`); continue; }
+    let json;
+    try { json = JSON.parse(read(p)); }
+    catch (e) { err(`${p} is not valid JSON (${e.message})`); continue; }
+    if (!Array.isArray(json.entries) || !json.entries.length) { err(`${p} has no entries`); continue; }
+
+    // A search result pointing at a page that does not exist is worse than no
+    // search at all, so every indexed URL is resolved against dist/.
+    let dead = 0;
+    for (const e of json.entries) {
+      if (!e.u || !e.t) { err(`${p}: entry missing url/title`); continue; }
+      if (!existsSync(`dist${e.u}/index.html`) && !existsSync(`dist${e.u}.html`)) {
+        if (dead < 5) err(`${p}: indexed URL "${e.u}" has no built page (dead search result)`);
+        dead++;
+      }
+    }
+    if (dead > 5) err(`${p}: ...and ${dead - 5} more dead search result(s)`);
+
+    // Every money page must be findable. A service page missing from the index
+    // is invisible to search while looking perfectly fine in the nav.
+    const urls = new Set(json.entries.map((e) => e.u));
+    const pre = lg === 'en' ? '' : `/${lg}`;
+    for (const s of enFiles) if (!urls.has(`${pre}/${s}`)) err(`${p}: service page "${s}" is not in the search index`);
+    for (const s of blogSlugs) if (!urls.has(`${pre}/resources/${s}`)) warn(`${p}: article "${s}" is not in the search index`);
+
+    const kb = gzKB(p);
+    if (kb > worstIndex) worstIndex = kb;
+    console.log(`  ${lg}: ${json.entries.length} entries, ${kb} KB gzipped`);
+  }
+
+  if (existsSync(engine)) {
+    const eKB = gzKB(engine);
+    const total = Math.round((eKB + worstIndex) * 10) / 10;
+    console.log(`  engine: ${eKB} KB gzipped → worst-case first search = ${total} KB (budget ${SEARCH_BUDGET_KB} KB)`);
+    if (total > SEARCH_BUDGET_KB) err(`search payload ${total} KB exceeds the ${SEARCH_BUDGET_KB} KB budget — trim the index (src/data/search-entries.js) before deploying`);
+    else if (total > SEARCH_WARN_KB) warn(`search payload ${total} KB is past the ${SEARCH_WARN_KB} KB soft limit — worth a look`);
+  }
+
+  // The loader in Base.astro is the only search code on a normal page load.
+  // If it is gone, search silently stops existing on every page but /search.
+  const home = 'dist/index.html';
+  if (existsSync(home)) {
+    const h = read(home);
+    if (!h.includes('data-cts-open')) err('dist/index.html has no search button (data-cts-open) — the header search is gone');
+    if (!h.includes('/ct-search.js')) err('dist/index.html never references /ct-search.js — the search loader was dropped from Base.astro');
+  }
+  if (existsSync('dist/search/index.html') === false) err('dist/search/index.html missing — the Enter-key / no-JS fallback page did not build');
+  if (existsSync('dist/ru/search/index.html') === false) err('dist/ru/search/index.html missing — the RU search page did not build');
 } else {
   console.log('  (dist/ not built — run `npm run check` for the full gate incl. this section)');
 }

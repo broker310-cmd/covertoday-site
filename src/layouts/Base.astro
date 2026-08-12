@@ -111,6 +111,10 @@ const schema = {
         ) : (<a href={n.href}>{n.label}</a>)
       ))}
     </nav>
+    <button class="cts-open" type="button" data-cts-open aria-label={t.searchLabel} title={t.searchLabel}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.3-4.3M11 19a8 8 0 110-16 8 8 0 010 16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="cts-open-label">{t.searchShort}</span><kbd>/</kbd>
+    </button>
     <div class="header-cta">
       <a class="btn btn-ghost" href={lang === 'en' ? '/quote' : '/' + lang + '/quote'}>{t.getQuote}</a>
       <a class="btn btn-call" href={`tel:${phone}`}>📞 {phoneDisplay}</a>
@@ -173,6 +177,44 @@ const schema = {
   </script>
   <script is:inline>
     function ctToggleMenu(){var m=document.getElementById('mobileMenu');var b=document.querySelector('.hamburger');var o=m.classList.toggle('open');if(b){b.classList.toggle('is-open',o);b.setAttribute('aria-expanded',o);}m.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':'';}
+  </script>
+  <script is:inline>
+    // Search loader. This stub is the ONLY search code on a normal page load —
+    // roughly 700 bytes. The engine (/ct-search.js) and the JSON index are
+    // fetched on the first real signal of intent, and warmed on hover/touch so
+    // the panel still feels instant. A visitor who never searches downloads
+    // nothing. Keep it that way: verify.mjs step 11 budgets the payload.
+    (function () {
+      var started = false;
+      function fetchEngine() {
+        if (started) return; started = true;
+        var s = document.createElement('script');
+        s.src = '/ct-search.js?v=1'; s.defer = true;
+        document.head.appendChild(s);
+      }
+      function open(how) {
+        if (window.CTSearch) { window.CTSearch.open(how); return; }
+        window.__ctsPending = true; window.__ctsHow = how;  // ct-search.js opens itself on load
+        fetchEngine();
+      }
+      document.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('[data-cts-open]');
+        if (!b) return;
+        e.preventDefault();
+        open('button');
+      });
+      ['pointerenter', 'touchstart'].forEach(function (ev) {
+        document.addEventListener(ev, function (e) {
+          if (e.target.closest && e.target.closest('[data-cts-open]')) fetchEngine();
+        }, { capture: true, passive: true });
+      });
+      document.addEventListener('keydown', function (e) {
+        var el = document.activeElement, tag = el && el.tagName;
+        var typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (el && el.isContentEditable);
+        if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); open('hotkey'); return; }
+        if (e.key === '/' && !typing && !e.metaKey && !e.ctrlKey && !e.altKey) { e.preventDefault(); open('slash'); }
+      });
+    })();
   </script>
   <script is:inline>
     // Partner outbound clicks -> GTM/GA4. MUST live here (Base) and not on the

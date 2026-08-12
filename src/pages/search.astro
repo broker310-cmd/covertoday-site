@@ -1,0 +1,29 @@
+---
+// Search results page. Three jobs:
+//  1. the destination when someone presses Enter without picking a suggestion,
+//  2. a shareable/bookmarkable /search?q=… URL,
+//  3. the graceful fallback if the overlay's JS or index ever fails to load.
+// noindex on purpose — search result pages are thin/duplicative and Google's
+// own guidance is to keep them out of the index.
+import Base from '../layouts/Base.astro';
+const phone = '+13102995555';
+---
+<Base title="Search — CoverToday Insurance" description="Search CoverToday for coverage, guides and tools — auto, SR-22, trucking, general liability, workers' comp, home and more." noindex={true}>
+  <section class="hero"><div class="wrap">
+    <h1>Search</h1>
+    <p class="sub">Coverage, guides and tools. Start typing — suggestions appear as you go.</p>
+    <div id="cts-page">
+      <label class="cts-page-box" for="cts-page-input">
+        <svg class="cts-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.3-4.3M11 19a8 8 0 110-16 8 8 0 010 16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        <input id="cts-page-input" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+          role="combobox" aria-expanded="false" aria-controls="cts-page-list" aria-autocomplete="list"
+          placeholder="Search coverage, guides, tools…" aria-label="Search the site" />
+      </label>
+      <div id="cts-page-list" role="listbox" aria-label="Results"></div>
+    </div>
+    <noscript>
+      <p style="margin-top:18px">Search needs JavaScript. Browse <a href="/business-insurance">business</a>, <a href="/auto-insurance">auto</a>, <a href="/commercial-truck-insurance">trucking</a> and <a href="/home-insurance">home</a> coverage, or the <a href="/resources">guides</a>. Or call <a href={`tel:${phone}`}>(310) 299-5555</a>.</p>
+    </noscript>
+  </div></section>
+</Base>
+<script is:inline src="/ct-search.js?v=1" defer></script>
