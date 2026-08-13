@@ -3,9 +3,17 @@
 // PRESENT, UNCHECKED by default, and REQUIRED before submit, with the exact
 // approved v2 consent text naming the legal entity + Privacy Policy / SMS Terms
 // links (source of truth: Specs/A2P & SMS Compliance — Canonical Spec).
-// Posts to the GHL webhook (same as /ru/quote) with a FormSubmit email fallback.
+// Posts to our OWN server endpoint /api/lead, which validates the submission and
+// then forwards it to GoHighLevel. FormSubmit email fallback is retained.
+//
+// SECURITY — do not "simplify" this back to a direct webhook call.
+// The GHL webhook URL used to live in this file and was therefore printed into
+// the HTML of every service page. A bot scraped it in Aug 2026 and POSTed
+// straight to GHL, bypassing the form entirely — 47 fake leads in 5 days. The
+// URL now lives only in the GHL_WEBHOOK_URL server env var. See api/lead.js.
 const { lang = 'en', line = '', formType = 'default', slug = '' } = Astro.props;
-const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/eYZdYbKt9k4UeIF4JLJJ/webhook-trigger/32bb8191-de93-4bc7-9ff5-6a95fb6599f4';
+const ENDPOINT = '/api/lead';
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 const thankYou = lang === 'en' ? '/thank-you' : `/${lang}/thank-you`;
 const privacyHref = lang === 'en' ? '/privacy-policy' : `/${lang}/privacy-policy`;
 const smsHref = lang === 'en' ? '/sms-terms' : `/${lang}/sms-terms`;
@@ -55,6 +63,8 @@ const source = `Service page lead form (${slug || 'service'}, ${lang})`;
     <input type="hidden" name="_captcha" value="false" />
     <input type="hidden" name="_next" value={`https://covertoday.com${thankYou}`} />
     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+    <input type="text" name="_hp" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <input type="hidden" name="_ts" value="" />
 
     <label>{T.name}</label><input name="name" required autocomplete="name" />
     <label>{T.phone}</label><input name="phone" type="tel" required autocomplete="tel" />
@@ -82,6 +92,10 @@ const source = `Service page lead form (${slug || 'service'}, ${lang})`;
       <span set:html={`${T.consent} ${T.seeOur} <a href="${privacyHref}">${T.privacy}</a> ${T.and} <a href="${smsHref}">${T.sms}</a>.`}></span>
     </label>
 
+    {TURNSTILE_SITE_KEY && (
+      <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="light" style="margin-top:16px"></div>
+    )}
+
     <button class="btn btn-call" type="submit" style="width:100%;justify-content:center;margin-top:18px">{T.button}</button>
     <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:10px">{T.or}</p>
     <p style="text-align:center;color:var(--muted);font-size:11.5px;margin-top:8px;line-height:1.5">{T.dba}</p>
@@ -95,9 +109,19 @@ const source = `Service page lead form (${slug || 'service'}, ${lang})`;
   .lead-form input:focus,.lead-form select:focus{outline:none;border-color:var(--blue)}
 </style>
 
-<script is:inline define:vars={{ webhook: WEBHOOK_URL }}>
+{TURNSTILE_SITE_KEY && (
+  <script is:inline async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+)}
+
+<script is:inline define:vars={{ endpoint: ENDPOINT }}>
   document.querySelectorAll('form.lead-form').forEach(function (form) {
     let sending = false;
+
+    // Stamp render time. api/lead.js rejects submissions completed in under
+    // 2.5s — a bot replaying the payload has no plausible timestamp.
+    const tsField = form.querySelector('input[name="_ts"]');
+    if (tsField) tsField.value = String(Date.now());
+
     form.addEventListener('submit', function (e) {
       if (sending) return; // allow native FormSubmit fallback to resubmit
       const p = form.querySelector('input[name="phone"]');
@@ -105,7 +129,8 @@ const source = `Service page lead form (${slug || 'service'}, ${lang})`;
       if (d.length === 10) p.value = '+1' + d;
       else if (d.length === 11 && d.charAt(0) === '1') p.value = '+' + d;
       if (form.querySelector('input[name="_honey"]').value) { e.preventDefault(); return; } // bot
-      if (!webhook) return; // native FormSubmit path
+      const hp = form.querySelector('input[name="_hp"]');
+      if (hp && hp.value) { e.preventDefault(); return; } // bot
       e.preventDefault();
       sending = true;
       const btn = form.querySelector('button[type="submit"]');
@@ -117,8 +142,12 @@ const source = `Service page lead form (${slug || 'service'}, ${lang})`;
       payload.source = form.getAttribute('data-source');
       payload.page = location.href;
       payload.submitted_at = new Date().toISOString();
-      fetch(webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-        .then(function (r) { if (!r.ok) throw new Error('webhook ' + r.status); location.href = form.getAttribute('data-thankyou'); })
+      payload._ts = tsField ? tsField.value : '';
+      payload._hp = '';
+      const cap = form.querySelector('[name="cf-turnstile-response"]');
+      if (cap) payload._turnstile = cap.value;
+      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+        .then(function (r) { if (!r.ok) throw new Error('lead ' + r.status); location.href = form.getAttribute('data-thankyou'); })
         .catch(function () { sending = false; btn.disabled = false; form.submit(); });
     });
   });
