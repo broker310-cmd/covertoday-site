@@ -125,9 +125,20 @@ function gibberishScore(name) {
   return score;
 }
 
+// Returns { ok } — ok:false means HARD REJECT.
+//
+// A MISSING token is deliberately NOT a rejection. Ad blockers, privacy
+// extensions and locked-down corporate networks all block
+// challenges.cloudflare.com, and those visitors are overwhelmingly real
+// customers, not bots. Rejecting them would quietly cost real quote requests —
+// the worst possible failure for this business. Missing tokens are scored
+// instead (see `cap.missing` below) so the lead still reaches the CRM, flagged.
+//
+// An INVALID token is a hard reject: there is no innocent explanation for
+// presenting a token that fails verification.
 async function verifyTurnstile(token, ip) {
   if (!TURNSTILE_SECRET) return { ok: true, skipped: true };
-  if (!token) return { ok: false, reason: 'missing-captcha' };
+  if (!token) return { ok: true, missing: true };
   try {
     const r = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
@@ -236,7 +247,12 @@ export default {
     //    of the live pipeline.
     let score = gibberishScore(name);
     if (!VALID_NPA.has(phone.slice(2, 5))) score += 3;   // unassigned area code
-    if (!email) score += 0;                              // email is optional; no penalty
+    // +3, deliberately BELOW the flag threshold of 4: roughly a quarter of real
+    // visitors run something that blocks the Turnstile script, so a missing
+    // token must never flag a lead on its own. It only tips the balance when
+    // combined with a genuine content signal (gibberish name, dead area code).
+    if (cap.missing) score += 3;
+    payload.captcha = cap.skipped ? 'not-configured' : cap.missing ? 'missing' : cap.degraded ? 'degraded' : 'passed';
     payload.spam_score = String(score);
     payload.suspected_spam = score >= 4 ? 'yes' : 'no';
 
