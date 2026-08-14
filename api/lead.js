@@ -39,8 +39,12 @@ const ALLOWED_ORIGINS = [
   'https://www.covertoday.com',
 ];
 
-// Minimum seconds a human plausibly takes to fill the form. Bots replay instantly.
-const MIN_FILL_MS = 2500;
+// Minimum time a human plausibly takes to fill the form.
+// Raised 2500 -> 5000 on 2026-08-14: the bot was submitting at exactly
+// fill_seconds:3, i.e. deliberately pacing itself just over the old limit.
+// A human filling name + phone + email + ZIP + coverage type does not finish in
+// five seconds; the shortest genuine submission observed was well above this.
+const MIN_FILL_MS = 5000;
 const MAX_FORM_AGE_MS = 6 * 60 * 60 * 1000; // 6h — stale/replayed token
 
 // Per-IP rate limit. In-memory: resets when the function instance recycles, which
@@ -51,9 +55,29 @@ const RATE_WINDOW_MS = 10 * 60 * 1000;
 const RATE_MAX = 5;
 const hits = new Map();
 
-// Manual blocklist. Add offending IPs / CIDR-free exact matches here if an attack
-// ever recurs; the endpoint logs every client IP so you will have them.
+// Manual blocklist. Exact IP matches. The endpoint logs every client IP, so if a
+// single address ever floods you, drop it in here.
 const BLOCKED_IPS = new Set([]);
+
+// Anonymising-network prefixes, scored rather than blocked.
+//
+// The 2026-08-14 spam arrived from 185.220.100.253 — part of a well-known Tor
+// exit-relay block. Blocking the single address is pointless (exit nodes rotate
+// constantly), and hard-blocking all of Tor would be wrong: a domestic-violence
+// survivor or an undocumented driver shopping for insurance has entirely
+// legitimate reasons to use it, and those are real customers.
+//
+// So this is a heavy SCORE, not a block. On its own it cannot reject anyone. A
+// Tor user with a real name and a real number still gets through; a Tor user
+// with a random-letter name does not.
+const ANON_NETWORK_PREFIXES = [
+  '185.220.100.', '185.220.101.', '185.220.102.', '185.220.103.', // Applied Privacy / F3 Netze exits
+  '171.25.193.',                                                   // DFRI exits
+  '199.249.230.', '199.249.229.',                                  // Quintex exits
+  '204.85.191.',                                                   // Tor exit
+  '45.154.255.', '185.129.62.',                                    // known exit blocks
+];
+const isAnonNetwork = (ip) => ANON_NETWORK_PREFIXES.some((p) => ip.startsWith(p));
 
 function rateLimited(ip) {
   const now = Date.now();
@@ -245,16 +269,33 @@ export default {
     // 8. Soft spam scoring. Suspicious leads still reach the CRM (never silently
     //    dropped) but are flagged so a workflow can route them to review instead
     //    of the live pipeline.
-    let score = gibberishScore(name);
-    if (!VALID_NPA.has(phone.slice(2, 5))) score += 3;   // unassigned area code
-    // +3, deliberately BELOW the flag threshold of 4: roughly a quarter of real
-    // visitors run something that blocks the Turnstile script, so a missing
-    // token must never flag a lead on its own. It only tips the balance when
-    // combined with a genuine content signal (gibberish name, dead area code).
-    if (cap.missing) score += 3;
+    // CONTENT signal — what the visitor actually typed. This is the only
+    // unambiguous bot tell: real people do not type "ftfMiExvJVXGsLfBYyVDF".
+    const nameScore = gibberishScore(name);
+
+    // CIRCUMSTANTIAL signals — suspicious company, but every one of them has an
+    // innocent explanation, so none may reject a lead on its own.
+    let score = nameScore;
+    if (!VALID_NPA.has(phone.slice(2, 5))) score += 3;  // unassigned area code
+    if (cap.missing) score += 3;                        // Turnstile script blocked
+    if (isAnonNetwork(ip)) score += 4;                  // Tor / anonymising exit
+
     payload.captcha = cap.skipped ? 'not-configured' : cap.missing ? 'missing' : cap.degraded ? 'degraded' : 'passed';
     payload.spam_score = String(score);
-    payload.suspected_spam = score >= 4 ? 'yes' : 'no';
+    payload.suspected_spam = score >= 5 ? 'yes' : 'no';
+
+    // HARD REJECT keys off the NAME alone, never the circumstantial signals.
+    //
+    // Someone on Tor, with an ad blocker, on a newly-activated area code stacks up
+    // to 10 points without doing anything wrong — binning that lead would be worse
+    // than logging one more fake. But a name scoring 7+ is conclusive: it needs a
+    // long single token AND random mid-word capitalisation AND either a starved
+    // vowel ratio or an impossible consonant run. Every real name tested scores
+    // 0-2, including the awkward ones (Grzegorz Brzezinski: 2).
+    //
+    // Observed bots: ftfMiExvJVXGsLfBYyVDF = 9, nfuKVNIiWyOjhHEgjaxORsOo = 5.
+    // The 5s are caught by the flag + the GHL trigger filter instead.
+    if (nameScore >= 7) return deny(`bot-name-${nameScore}-score-${score}`, 400);
 
     try {
       const r = await fetch(WEBHOOK, {
