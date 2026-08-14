@@ -67,9 +67,18 @@ const BLOCKED_IPS = new Set([]);
 // survivor or an undocumented driver shopping for insurance has entirely
 // legitimate reasons to use it, and those are real customers.
 //
-// So this is a heavy SCORE, not a block. On its own it cannot reject anyone. A
-// Tor user with a real name and a real number still gets through; a Tor user
-// with a random-letter name does not.
+// BLOCKED OUTRIGHT as of 2026-08-14, on Gio's explicit instruction.
+//
+// The trade-off, recorded so it is a decision and not an accident: a small number
+// of people use Tor for legitimate reasons — a domestic-violence survivor hiding
+// her location, someone on a censored network. Those visitors can no longer use
+// the quote form. They can still call (310) 299-5555, which is on every page.
+// Judgement call by the licensed principal, who knows this customer base.
+//
+// To revert to scoring instead of blocking, set this to false. Nothing else
+// changes; the +4 score path is still wired up below.
+const BLOCK_ANON_NETWORKS = true;
+
 const ANON_NETWORK_PREFIXES = [
   '185.220.100.', '185.220.101.', '185.220.102.', '185.220.103.', // Applied Privacy / F3 Netze exits
   '171.25.193.',                                                   // DFRI exits
@@ -199,6 +208,7 @@ export default {
     };
 
     if (BLOCKED_IPS.has(ip)) return deny('blocklist', 403);
+    if (BLOCK_ANON_NETWORKS && isAnonNetwork(ip)) return deny('anon-network', 403);
 
     // 1. Origin must be our own site. A direct curl/script POST has no Origin
     //    header at all — which is exactly how the August 2026 attack ran.
