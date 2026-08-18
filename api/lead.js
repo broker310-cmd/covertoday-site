@@ -13,25 +13,24 @@
 // never sent to the browser. Every submission passes through the checks below.
 //
 // ENV VARS (set in Vercel → Project → Settings → Environment Variables)
-//   GHL_WEBHOOK_URL           required. The GHL inbound webhook trigger URL.
+//   GHL_WEBHOOK_URL           REQUIRED. The GHL inbound webhook trigger URL.
+//                             No fallback exists. If unset, /api/lead returns 500
+//                             and the form degrades to the email path.
 //   TURNSTILE_SECRET_KEY      optional. Cloudflare Turnstile secret. If set,
 //                             a valid token becomes REQUIRED.
 //   PUBLIC_TURNSTILE_SITE_KEY optional. Build-time; renders the widget.
 // ---------------------------------------------------------------------------
 
-// DEPLOY-ORDER SAFETY NET.
-// This is the OLD webhook URL. It is already public — it sat in the HTML of 47
-// pages, which is how it got scraped — so keeping it here costs nothing: this
-// file is server-side and never reaches the browser.
+// The GHL inbound webhook URL lives ONLY here, read from the environment.
 //
-// Its only job is to keep the quote forms working if this code ships before
-// GHL_WEBHOOK_URL is set in Vercel. The moment that env var exists, it wins.
+// The old hard-coded LEGACY_WEBHOOK constant was removed on 2026-08-18 after the
+// webhook was rotated. It had been a deploy-order safety net; once the trigger it
+// pointed at was deleted it became actively dangerous — see the note above the
+// error-body check in the forward step below.
 //
-// DELETE THIS CONSTANT once the webhook has been rotated and the env var is set.
-const LEGACY_WEBHOOK =
-  'https://services.leadconnectorhq.com/hooks/eYZdYbKt9k4UeIF4JLJJ/webhook-trigger/32bb8191-de93-4bc7-9ff5-6a95fb6599f4';
-
-const WEBHOOK = process.env.GHL_WEBHOOK_URL || LEGACY_WEBHOOK;
+// If this is unset the endpoint returns 500, the browser's fetch throws, and the
+// form falls back to emailing info@covertoday.com. Degraded, never silent.
+const WEBHOOK = process.env.GHL_WEBHOOK_URL;
 const TURNSTILE_SECRET = process.env.TURNSTILE_SECRET_KEY;
 
 const ALLOWED_ORIGINS = [
@@ -178,8 +177,37 @@ async function verifyTurnstile(token, ip) {
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({ secret: TURNSTILE_SECRET, response: token, remoteip: ip }),
     });
+    // Cloudflare itself rejected our CALL (400/5xx). That is our problem, not the
+    // visitor's, so it must never cost a lead. Observed live on 2026-08-17: three
+    // real submissions from /ru/quote were 403'd because siteverify answered 400.
+    if (!r.ok) {
+      console.error(`[lead:CAPTCHA] siteverify HTTP ${r.status} — failing open ip=${ip}`);
+      return { ok: true, degraded: true };
+    }
+
     const d = await r.json();
-    return d.success ? { ok: true } : { ok: false, reason: 'captcha-failed' };
+    if (d.success) return { ok: true };
+
+    const codes = Array.isArray(d['error-codes']) ? d['error-codes'] : [];
+    // Log the reason. Without this a captcha rejection is undiagnosable after the fact.
+    console.warn(`[lead:CAPTCHA] siteverify rejected ip=${ip} codes=${codes.join(',') || 'none'}`);
+
+    // Token expired or already used. Turnstile tokens live ~5 minutes; a person
+    // comparing coverage options, or double-clicking submit, hits this routinely.
+    // Circumstantial, not a content signal — INVARIANT 4 says it may not reject.
+    if (codes.includes('timeout-or-duplicate')) return { ok: true, stale: true };
+
+    // Our own misconfiguration (wrong/absent secret, malformed request, CF outage).
+    // Never bill the visitor for it.
+    if (codes.some((c) => [
+      'invalid-input-secret', 'missing-input-secret', 'bad-request', 'internal-error',
+    ].includes(c))) {
+      return { ok: true, degraded: true };
+    }
+
+    // Left: invalid-input-response — a token that was never issued by our widget.
+    // No innocent explanation, so this stays a hard reject.
+    return { ok: false, reason: 'captcha-failed' };
   } catch {
     // Fail OPEN on Cloudflare outage — the other layers still apply, and losing a
     // real quote request is worse than letting one bot through.
@@ -287,10 +315,14 @@ export default {
     // innocent explanation, so none may reject a lead on its own.
     let score = nameScore;
     if (!VALID_NPA.has(phone.slice(2, 5))) score += 3;  // unassigned area code
-    if (cap.missing) score += 3;                        // Turnstile script blocked
+    if (cap.missing || cap.stale) score += 3;           // Turnstile blocked, or token expired
     if (isAnonNetwork(ip)) score += 4;                  // Tor / anonymising exit
 
-    payload.captcha = cap.skipped ? 'not-configured' : cap.missing ? 'missing' : cap.degraded ? 'degraded' : 'passed';
+    payload.captcha = cap.skipped ? 'not-configured'
+      : cap.missing ? 'missing'
+      : cap.stale ? 'stale'
+      : cap.degraded ? 'degraded'
+      : 'passed';
     payload.spam_score = String(score);
     payload.suspected_spam = score >= 5 ? 'yes' : 'no';
 
@@ -315,6 +347,22 @@ export default {
       });
       if (!r.ok) {
         console.error(`[lead:UPSTREAM] GHL responded ${r.status} ip=${ip}`);
+        return json(502, { ok: false, error: 'Could not reach our system. Please call (310) 299-5555.' });
+      }
+
+      // A 2xx from GHL is NOT proof of delivery.
+      //
+      // On 2026-08-18, during the webhook rotation, posts to the DELETED trigger URL
+      // kept returning HTTP 200. This endpoint read that as success, returned 200 to
+      // the browser, and the form's email fallback therefore never fired — roughly
+      // forty minutes of leads were accepted and silently discarded. The visitor saw
+      // the normal thank-you page throughout.
+      //
+      // GHL signals this in the BODY, not the status line: {"status":"Error: ..."}.
+      // Treat that as a failure so the caller falls back to email.
+      const raw = await r.text();
+      if (/"status"\s*:\s*"Error/i.test(raw)) {
+        console.error(`[lead:UPSTREAM] GHL 2xx but error body ip=${ip} body=${raw.slice(0, 200)}`);
         return json(502, { ok: false, error: 'Could not reach our system. Please call (310) 299-5555.' });
       }
     } catch (e) {
